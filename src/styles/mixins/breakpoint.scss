@@ -1,0 +1,39 @@
+// ========== Breakpoints ========== //
+@mixin breakpoint($point) {
+  @if $point == widescreen {
+    @media (min-width: 1800px) {
+      @content;
+    }
+  }
+
+  @if $point == desktop {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+
+  @if $point == laptop {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+
+  @if $point == tablet {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+
+  @if $point == mobile {
+    @media (max-width: 480px) {
+      @content;
+    }
+  }
+}
+
+// Use:
+// @include breakpoint(typeName) {
+//   div {
+//     style: this;
+//   }
+// }

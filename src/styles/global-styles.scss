@@ -1,0 +1,30 @@
+@import './css-reset/css_reset.scss';
+@import './mixins/fluid-type';
+@import './variables/font-bank';
+
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+* {
+  font-family: $main-font;
+}
+
+.headline {
+  font-family: $headline-font;
+}
+
+code {
+  font-family: $code-font;
+}
+
+body {
+  @include fluid-type(font-size, 320px, 1400px, 18px, 28px);
+}

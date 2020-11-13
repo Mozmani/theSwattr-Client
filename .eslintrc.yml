@@ -1,0 +1,45 @@
+root: true
+env:
+  serviceworker: true
+  browser: true
+  es2021: true
+  node: true
+  jest: true
+parserOptions:
+  ecmaVersion: 12
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+settings:
+  react:
+    version: detect
+extends:
+  - eslint:recommended
+  - plugin:react/recommended
+  - plugin:react-hooks/recommended
+  #! Prettier must be last, in this order
+  - plugin:prettier/recommended
+ignorePatterns:
+  #! target only src/
+  - ./*
+  - '!src/'
+rules:
+  camelcase: 0
+  comma-dangle: 0
+  linebreak-style:
+    - error
+    - unix
+  no-empty-function:
+    - error
+    - allow:
+        #! this allows for empty service/boilerplate code
+        - methods
+  no-plusplus: 0
+  no-return-assign: 0
+  no-param-reassign: 0
+  no-trailing-spaces: 0
+  no-underscore-dangle: 0
+  react/prop-types: 0
+  react/jsx-filename-extension: 0
+  react/jsx-props-no-spreading: 0
+  react/destructuring-assignment: 0

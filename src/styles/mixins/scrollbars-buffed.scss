@@ -1,0 +1,29 @@
+// ========== Custom Scrollbars ==> BUFFED <== ========== //
+@mixin scrollbars-buffed(
+  $size,
+  $border-radius: 3px,
+  $foreground-color: #999,
+  $background-color: #eee
+) {
+  ::-webkit-scrollbar {
+    width: $size;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: $background-color;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: $border-radius;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: $border-radius;
+    background: $foreground-color;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+  ::-webkit-scrollbar-thumb:window-inactive {
+    background-color: mix($foreground-color, white, 40%);
+  }
+}
+
+// Use:
+// @include scrollbars-buffed(.5em);
