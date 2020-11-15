@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import App from './app';
+import BugsRoute from './bugsRoute';
 
-describe.skip('App component:', () => {
+describe.skip('BugsRoute component:', () => {
   it('renders without crashing', () => {
-    shallow(<App />);
+    shallow(<BugsRoute />);
   });
 });

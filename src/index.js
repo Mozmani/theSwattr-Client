@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 //? import layout: modules(\n\n) styles(\n\n) locals(\n\n)
 import './styles/global-styles.scss';
 
-//? paths: './' when able, if not use alias 'src/components'
+//? paths: './' when able, if not use 'src' alias: 'src/components'
 import App from './app/app';
 
 ReactDOM.render(

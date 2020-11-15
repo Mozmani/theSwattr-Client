@@ -1,6 +1,7 @@
 @import './css-reset/css_reset.scss';
 @import './mixins/fluid-type';
 @import './variables/font-bank';
+@import './variables/colors.scss';
 
 .sr-only {
   clip: rect(1px, 1px, 1px, 1px);
@@ -26,5 +27,6 @@ code {
 }
 
 body {
+  background-color: $white;
   @include fluid-type(font-size, 320px, 1400px, 18px, 28px);
 }
