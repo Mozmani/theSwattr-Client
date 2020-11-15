@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import TokenService from 'src/services';
-import { BugsContext } from '../../context/bugsContext';
+// import { TokenService } from 'src/services';
+// import { BugsContext } from 'src/context';
 
-const PublicRoute = ({ path, children }) => {
+const PublicRoute = ({ component, path, children }) => {
   const Component = component;
 
   return (
@@ -13,7 +13,7 @@ const PublicRoute = ({ path, children }) => {
       path={path}
       render={(routeProps) =>
         // Pseudo-code, implement with token services
-        /* TokenService.hasAuthToken() */ 1 == '1' ? (
+        /* TokenService.hasAuthToken() */ 1 === 0 + 1 ? (
           <Redirect
             to={{
               pathname: '/',

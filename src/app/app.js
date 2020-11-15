@@ -24,7 +24,7 @@ const App = () => {
     const compDidMount = async () => {
       setTimeout(() => {
         setHello('Hello ');
-      }, 5e3);
+      }, 1e3);
     };
 
     compDidMount();

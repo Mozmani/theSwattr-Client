@@ -1,6 +1,6 @@
 import React from 'react';
 
-const userContext = React.createContext(null);
+const UserContext = React.createContext(null);
 
 const UserProvider = ({ children }) => {
   const value = {};
@@ -11,7 +11,5 @@ const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
-const UserContext = React.useContext(userContext);
 
 export { UserContext, UserProvider };

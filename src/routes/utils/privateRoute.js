@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import TokenService from 'src/services/token.service';
 import { ROUTES } from 'src/constants/routes.constants';
+// import { TokenService } from 'src/services';
 import { BugsProvider, CommentsProvider } from 'src/context';
 
 const PrivateRoute = ({ component, path, children }) => {
@@ -35,7 +35,7 @@ const PrivateRoute = ({ component, path, children }) => {
       path={path}
       render={(routeProps) =>
         // Pseudo-code, implement with token services
-        /* TokenService.hasAuthToken() */ 1 == '1' ? (
+        /* TokenService.hasAuthToken() */ 1 === 0 + 1 ? (
           Provider ? (
             consumerComponent(Provider, routeProps)
           ) : (
@@ -45,7 +45,7 @@ const PrivateRoute = ({ component, path, children }) => {
           <Redirect
             to={{
               // Pseudo-code, implement with idle services
-              pathname: Context.idle ? ROUTES.LOGIN : ROUTES.REGISTER,
+              // pathname: Context.idle ? ROUTES.LOGIN : ROUTES.REGISTER,
               state: { from: routeProps.location },
             }}
           />
