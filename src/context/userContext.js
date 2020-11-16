@@ -1,6 +1,12 @@
 import React from 'react';
 
-const UserContext = React.createContext(null);
+const UserContext = React.createContext({
+  user: {},
+  error: null,
+  setError: () => {},
+  clearError: () => {},
+  setUser: () => {},
+});
 
 const UserProvider = ({ children }) => {
   const value = {};
