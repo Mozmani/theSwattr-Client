@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="http://fonts.cdnfonts.com/css/andale-mono" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <header class="logo-container">
+        <img class="logo" src="/client/images/logo.png"/>
+    </header>
+    <section class="form-container">
+        <h2 class="welcome">WELCOME! ENTER THE INFO BELOW TO GET STARTED.</h2>
+        <form class="register">
+            <input 
+                type="text"
+                name="first-name-input"
+                class="first-name-input"
+                placeholder="FIRST NAME"
+                required
+            />
+            <input 
+                type="text"
+                name="username-input"
+                class="username-input"
+                placeholder="USERNAME"
+                required
+            />
+            <input 
+                type="text"
+                name="password-input"
+                class="password-input"
+                placeholder="PASSWORD"
+                required
+            />
+            <button type="submit" class="register-submit">CREATE ACCOUNT</button>
+        </form>
+        <a class="redirect-link" href="/client/wireframes/login.html">ALREADY HAVE AN ACCOUNT?</a>
+    </section>
+    <div class="foot-nav-links">
+        <a href="/client/wireframes/login.html">LOGIN</a>
+        <hr />
+        <a href="/client/wireframes/register.html">REGISTER</a>
+    </div>
+</body>
+</html>
