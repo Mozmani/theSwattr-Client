@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {UserContext} from '../../context/userContext'
 import { Link } from 'react-router-dom'
-import TokenService from '../../services/tokenService'
+import TokenService from '../../services/token.service'
 
 
 

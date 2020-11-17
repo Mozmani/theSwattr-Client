@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import TokenService from '../../services/tokenService'
+import TokenService from '../../services/token.service'
 import {UserContext} from '../../context/userContext'
 // import { TokenService } from 'src/services';
 // import { BugsContext } from 'src/context';
