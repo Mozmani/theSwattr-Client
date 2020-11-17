@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import {UserProvider} from './context/userContext'
 
 //? import layout: modules(\n\n) styles(\n\n) locals(\n\n)
 import './styles/global-styles.scss';
@@ -11,7 +12,9 @@ import App from './app/app';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+    <UserProvider>
       <App />
+    </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
