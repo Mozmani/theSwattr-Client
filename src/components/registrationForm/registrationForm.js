@@ -4,11 +4,7 @@ import AuthService from '../../services/auth.service'
 
 const RegistrationForm = (props) => {
   
-  // let [setError] = useState({
-  //   error: null
-  // })
-  
-  //let error = null
+  let [error, setError] = useState(null)
 
   let handleSubmit = ev => {
     ev.preventDefault()
@@ -29,18 +25,22 @@ const RegistrationForm = (props) => {
         password.value = ''
         props.onRegistrationSuccess()
       })
-      // .catch(res => {
-      //   return error = res.error
-      //  })
+      .catch(res => {
+        setError(res.error)
+       })
   }
-  //console.log(error)
+  
   //const error = setError.error
   return (
     <form
     onSubmit={handleSubmit}
       >
         <div role='alert'>
-        
+        <br>
+        </br>
+  <p>{error}</p>
+        <br>
+        </br>
         </div>
         <div>
           <label htmlFor='registration-first-name-input'>

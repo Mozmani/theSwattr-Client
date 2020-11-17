@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {UserContext, UserProvider} from '../../context/userContext'
 import AuthService from '../../services/auth.service'
 
@@ -6,6 +6,8 @@ const LoginForm = (props) => {
   
   const context = useContext(UserContext)
   
+  let [error, setError] = useState(null)
+
   let handleSubmit = ev => {
     ev.preventDefault()
     const { user_name, password } = ev.target
@@ -23,12 +25,13 @@ const LoginForm = (props) => {
         context.processLogin(res.authToken)
         props.onLoginSuccess()
       })
-      // .catch(res => {
-      //   this.setState({ error: res.error })
-      // })
+      .catch(res => {
+        //console.log('res here',res)
+        setError(res.error)
+      })
   }
   
-  console.log(context)
+  
   
   
   return (
@@ -37,7 +40,9 @@ const LoginForm = (props) => {
       onSubmit={handleSubmit}
     >
       <div role='alert'>
-        
+        <br>
+        </br>
+  <p>{error}</p>
       </div>
       <div>
         <label htmlFor='login-username-input'>
