@@ -1,19 +1,27 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {UserContext} from '../../context/userContext'
 import { Link } from 'react-router-dom'
 import TokenService from '../../services/tokenService'
 
 
 
 const Header = () => {
+  
+  let context = useContext(UserContext)
+  
+  const handleLogoutClick = () => {
+    context.processLogout()
+  }
+
   function renderLogoutLink() {
     return (
       <div>
         <span>
-          {this.context.user.name}
+          {context.user.name}
         </span>
         <nav>
           <Link
-            onClick={this.handleLogoutClick}
+            onClick={handleLogoutClick}
             to='/login'>
             Logout
           </Link>
