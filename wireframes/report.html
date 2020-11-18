@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="http://fonts.cdnfonts.com/css/andale-mono" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="dash-header">
+        <div class="logo-container">
+            <img class="logo" src="/client/images/logo.png">
+        </div>
+        <div class="nav">
+            <ul class="head-nav-links">
+                <li><a href="/client/wireframes/dashboard.html">Hello! 'Username'</a></li>
+                <li><a href="/client/wireframes/report.html">Report A Bug</a></li>
+                <li><a href="/client/wireframes/dev.html">Become A Dev</a></li>
+                <li><a href="/client/wireframes/login.html">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <section class="dashboard-content">
+        <div class="bug-container">
+            <form action="submit" class="report">
+                <input class="bug-name-input" type="text" name="bug-name-input" placeholder="Bug Name" required />
+                <input class="app-name-input" type="text" name="app-name-input" placeholder="App Name" required />
+                <textarea class="bug-description-input" type="text" name="bug-description-input"
+                    placeholder="Describe what is going on here." required></textarea>
+                <label for="bug-severity">Choose The Bug Severity:</label>
+                <select name="bug-severity" id="bug-severity">
+                    <option value="1">Low</option>
+                    <option value="2">Medium</option>
+                    <option value="3">High</option>
+                </select>
+                <button class="bug-report-submit" type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

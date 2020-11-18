@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="http://fonts.cdnfonts.com/css/andale-mono" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="dash-header">
+        <div class="logo-container">
+            <img class="logo" src="/client/images/logo.png">
+        </div>
+        <div class="nav">
+            <ul class="head-nav-links">
+                <li><a href="/client/wireframes/dashboard.html">Hello! 'Username'</a></li>
+                <li><a href="/client/wireframes/report.html">Report A Bug</a></li>
+                <li><a href="/client/wireframes/dev.html">Become A Dev</a></li>
+                <li><a href="/client/wireframes/login.html">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <section class="dashboard-content">
+        <div class="bug-container">
+            <h3 class="bug-name">Bug Name</h3>
+            <hr class="bug-underline" />
+            <h6 class="bug-description">Bug Description</h6>
+            <div class="bug-info">
+                <p class="date-created">11-17-20</p>
+                <p class="bug-status">Status: Pending</p>
+            </div>
+            <hr class="comment-separator" />
+            <div class="comment-thread">
+                <div class="comment">
+                    <p class="dev">Dev Name</p>
+                    <p class="date-created">11-18-20</p>
+                    <p class="com-content">Lorem ipsum jksn sonal mdnkjns, jhs jdjissuro mdincow, klknlasa.</p>
+                </div>
+                <div class="comment">
+                    <p class="dev">Dev Name</p>
+                    <p class="date-created">11-18-20</p>
+                    <p class="com-content">Lorem ipsum jksn sonal mdnkjns, jhs jdjissuro mdincow, klknlasa.</p>
+                </div>
+                <div class="comment">
+                    <p class="dev">Dev Name</p>
+                    <p class="date-created">11-18-20</p>
+                    <p class="com-content">Lorem ipsum jksn sonal mdnkjns, jhs jdjissuro mdincow, klknlasa.</p>
+                </div>
+                <form action="submit" class="comment-form">
+                    <textarea name="comment-input" id="comment-input" placeholder="Comment"></textarea>
+                    <button class="comment-submit" type="submit">Comment</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
