@@ -1,9 +1,38 @@
-body, div, span, h1, h2, h3, h4, h5, h6,
-p, code, ol, ul, li, button, caption,
-input, fieldset, form, label, legend,
-table, textarea, tbody, tfoot, thead,
-article, aside, details, footer, header,
-main, menu, nav, section {
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+code,
+ol,
+ul,
+li,
+button,
+caption,
+input,
+fieldset,
+form,
+label,
+legend,
+table,
+textarea,
+tbody,
+tfoot,
+thead,
+article,
+aside,
+details,
+footer,
+header,
+main,
+menu,
+nav,
+section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,43 +40,72 @@ main, menu, nav, section {
   padding: 0;
 }
 
-blockquote, button, caption,
-h1, h2, h3, h4, h5, h6, input,
-legend, option, p, textarea {
+blockquote,
+button,
+caption,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+option,
+p,
+textarea {
   display: block;
   text-align: center;
 }
 
-a, img, br, code, span, strong {
+a,
+img,
+br,
+code,
+span,
+strong {
   display: inline;
 }
 
-input[type=date], input[type=datetime-local],
-input[type=file], input[type=month],
-input[type=time], input[type=week], select {
+input[type='date'],
+input[type='datetime-local'],
+input[type='file'],
+input[type='month'],
+input[type='time'],
+input[type='week'],
+select {
   flex-direction: row;
 }
 
-a, a:link, a:visited, a:hover, a:active {
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
   background-color: transparent;
   background-image: none;
   color: inherit;
   text-decoration: none;
 }
 
-a img, :link img, :visited img {
+a img,
+:link img,
+:visited img {
   border: none;
 }
 
-:link, :visited {
+:link,
+:visited {
   text-decoration: none;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
-img, video {
+img,
+video {
   max-width: 100%;
 }
 
@@ -80,56 +138,168 @@ address {
 - accent: #00a651  */
 
 body {
-    background-color: #262626;
-    font-family: 'Andale Mono', sans-serif;
+  background-color: #262626;
+  font-family: 'Andale Mono', sans-serif;
+}
+
+.dash-header {
+  background-color: #141414;
+  width: 100%;
+}
+
+.head-nav-links {
+  color: #00a651;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+li {
+  margin: 10px 0;
 }
 
 .logo-container {
-    margin: 30px 0;
+  margin: 30px 0;
+  max-width: 300px;
 }
 
 .form-container {
-    background-color: #141414;
-    margin: 0 15px;
-    border-radius: 20px;
-    color: #00a651;
+  background-color: #141414;
+  margin: 0 15px;
+  border-radius: 20px;
+  color: #00a651;
 }
 
 .welcome {
-    margin: 20px;
+  margin: 20px;
 }
 
-.register, .login {
-    width: 80%;
+.register,
+.login {
+  width: 80%;
 }
 
-.first-name-input, .username-input, .password-input {
-    width: 100%;
-    font-family: 'Andale Mono', sans-serif;
-    font-size: 25px;
-    text-align: left;
-    padding: 10px;
-    margin-bottom: 30px;
+.first-name-input,
+.last-name-input,
+.username-input,
+.password-input {
+  width: 100%;
+  font-family: 'Andale Mono', sans-serif;
+  font-size: 25px;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 30px;
 }
 
-.register-submit, .login-submit {
-    width: 100%;
-    font-family: 'Andale Mono', sans-serif;
-    font-size: 25px;
-    padding: 10px;
-    margin-bottom: 30px;
-    background-color: #00a651;
-    border: none;
+.register-submit,
+.login-submit {
+  width: 100%;
+  font-family: 'Andale Mono', sans-serif;
+  font-size: 25px;
+  padding: 10px;
+  margin-bottom: 30px;
+  background-color: #00a651;
+  border: none;
 }
 
 .redirect-link {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .foot-nav-links {
-    flex-direction: row;
-    color: #bababa;
-    font-size: 20px;
-    margin-top: 30px;
+  flex-direction: row;
+  color: #bababa;
+  font-size: 20px;
+  margin: 30px 0;
 }
 
+.dashboard-content {
+  margin: 10px 0 30px 0;
+  padding: 0;
+  width: 100%;
+}
+
+.bugs-title {
+  margin: 20px 0;
+  color: #00a651;
+}
+
+.bug-container {
+  background-color: #bababa;
+  width: 90%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.bug-underline,
+.comment-separator {
+  border: none;
+  height: 1px;
+  background-color: #aaaaaa;
+}
+
+.bug-description {
+  font-size: 16px;
+}
+
+.bug-info {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  color: #00a651;
+}
+
+.report,
+.comment-form,
+.dev-password {
+  width: 100%;
+}
+
+textarea {
+  resize: none;
+}
+
+.bug-name-input,
+.app-name-input,
+.bug-description-input,
+#bug-severity,
+.bug-report-submit,
+.dev-password-input,
+.dev-password-submit,
+#comment-input,
+.comment-submit {
+  width: 90%;
+  margin: 10px 0;
+  font-size: 20px;
+  text-align: left;
+  padding: 10px;
+  font-family: 'Andale Mono', sans-serif;
+}
+
+.bug-description-input,
+#comment-input {
+  height: 100px;
+}
+
+.bug-report-submit,
+.dev-password-submit,
+.comment-submit {
+  border: none;
+  outline: none;
+  background-color: #00a651;
+}
+
+.comment {
+  width: 90%;
+  text-align: left;
+  background-color: #00a651;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.com-content {
+  text-align: left;
+  margin: 10px 0;
+}
