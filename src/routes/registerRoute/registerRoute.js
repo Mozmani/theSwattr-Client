@@ -1,5 +1,6 @@
 import React from 'react';
-import RegistrationForm from '../../components/registrationForm/registrationForm'
+
+import { RegistrationForm } from 'src/components';
 
 const RegisterRoute = (props) => {
   //  defaultProps = {
@@ -9,18 +10,18 @@ const RegisterRoute = (props) => {
   // }
 
   let handleRegistrationSuccess = () => {
-   
-    props.history.push('/login')
-  }
+    props.history.push('/login');
+  };
 
   //console.log(props.history)
-  
-  return <>
-  
-  <RegistrationForm 
-  onRegistrationSuccess={handleRegistrationSuccess}
-  />
-  </>;
+
+  return (
+    <>
+      <RegistrationForm
+        onRegistrationSuccess={handleRegistrationSuccess}
+      />
+    </>
+  );
 };
 
 export default RegisterRoute;

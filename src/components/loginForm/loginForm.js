@@ -1,55 +1,85 @@
-import React, { useContext, useState } from 'react';
-import { UserContext, UserProvider } from '../../context/userContext';
-import AuthService from '../../services/auth.service';
+import React from 'react';
 
-const LoginForm = (props) => {
-  const context = useContext(UserContext);
+import useFormState from 'src/hooks/useFormState';
+import { UserContext } from 'src/context';
+import { AuthService, TokenService } from 'src/services';
 
-  let [error, setError] = useState(null);
+const LoginForm = ({ onLoginSuccess }) => {
+  const [error, setError] = React.useState(null);
+  const Context = React.useContext(UserContext);
 
-  let handleSubmit = (ev) => {
+  const { formFields, setFormFields, handleOnChange } = useFormState({
+    user_name: '',
+    password: '',
+  });
+
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
-    const { user_name, password } = ev.target;
+    const { user_name, password } = formFields;
 
-    //this.setState({ error: null })
+    const res = await AuthService.postLogin({
+      user_name,
+      password,
+    });
 
-    AuthService.postLogin({
-      user_name: user_name.value,
-      password: password.value,
-    })
-      .then((res) => {
-        user_name.value = '';
-        password.value = '';
-        context.processLogin(res.authToken);
-        props.onLoginSuccess();
-      })
-      .catch((res) => {
-        //console.log('res here',res)
-        setError(res.error);
-      });
+    if (res.error) {
+      console.error(res);
+      setError(res.error);
+      return;
+    }
+
+    setFormFields({
+      user_name: '',
+      password: '',
+    });
+
+    TokenService.saveAuthToken(res.authToken);
+    Context.processLogin();
+    onLoginSuccess();
   };
 
+  const renderError = !error ? null : (
+    <div role="alert">{`Oh no! ${error}`}</div>
+  );
+
+  const fields = ['user_name', 'password'];
+
+  const fieldDisplayText = {
+    user_name: 'Username',
+    password: 'Password',
+  };
+
+  const inputType = {
+    user_name: 'text',
+    password: 'password',
+  };
+
+  const inputFields = fields.map((field) => (
+    <label
+      key={field}
+      htmlFor={field}
+      className={`${field}-login-label`}
+    >
+      {fieldDisplayText[field]}
+      <input
+        required
+        id={field}
+        type={inputType[field]}
+        value={formFields[field]}
+        onChange={handleOnChange(field)}
+        className={`${field}-login-input`}
+      />
+    </label>
+  ));
+
   return (
-    <form className="LoginForm" onSubmit={handleSubmit}>
-      <div role="alert">
-        <br></br>
-        <p>{error}</p>
-      </div>
-      <div>
-        <label htmlFor="login-username-input">Username</label>
-        <input id="login-username-input" name="user_name" required />
-      </div>
-      <div>
-        <label htmlFor="login-password-input">Password</label>
-        <input
-          id="login-password-input"
-          name="password"
-          type="password"
-          required
-        />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+    <>
+      {renderError}
+      <form className="LoginForm" onSubmit={handleSubmit}>
+        <div>{inputFields}</div>
+        <button type="submit">Login</button>
+      </form>
+    </>
   );
 };
 

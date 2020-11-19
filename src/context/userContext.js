@@ -1,40 +1,50 @@
-import React, { useState } from "react";
-import AuthService from "../services/auth.service";
-import TokenService from "../services/token.service";
+import React from 'react';
 
-const UserContext = React.createContext(null);
+import { TokenService } from 'src/services';
+
+const UserContext = React.createContext({});
 
 const UserProvider = ({ children }) => {
-  //const value = {};
+  const [userData, setUserData] = React.useState({});
 
-  let [user, setUserVal] = useState({});
-
-  let setUser = (curVal) => {
-    setUserVal(curVal);
-  };
-
-  let processLogin = (authToken) => {
-    TokenService.saveAuthToken(authToken);
-    const jwtPayload = TokenService.parseAuthToken();
-    setUser({
-      id: jwtPayload.user_id,
-      name: jwtPayload.name,
-      username: jwtPayload.sub,
-    });
-  };
-
-  let processLogout = () => {
+  const processLogout = () => {
     TokenService.clearAuthToken();
-    setUser({});
+    setUserData({});
   };
+
+  const processLogin = React.useCallback(() => {
+    const payload = TokenService.parseAuthToken();
+
+    if (payload.message) {
+      processLogout();
+      return;
+    }
+
+    setUserData({
+      userName: payload.sub,
+      email: payload.email,
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+    });
+  }, []);
+
+  React.useEffect(() => {
+    if (TokenService.hasAuthToken()) {
+      processLogin();
+    }
+  }, [processLogin]);
 
   const value = {
-    user: user,
-    setUser: setUser,
-    processLogin: processLogin,
-    processLogout: processLogout,
+    userData,
+    processLogin,
+    processLogout,
   };
-  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+
+  return (
+    <UserContext.Provider value={value}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export { UserContext, UserProvider };

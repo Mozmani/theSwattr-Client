@@ -1,10 +1,10 @@
 import React from 'react';
-import LoginForm from '../../components/loginForm/loginForm';
-import { UserContext } from '../../context/userContext';
 
-const LoginRoute = (props) => {
+import { LoginForm } from 'src/components';
+
+const LoginRoute = ({ history }) => {
   let handleLoginSuccess = () => {
-    props.history.push('/');
+    history.push('/');
   };
 
   return (

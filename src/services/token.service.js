@@ -19,7 +19,12 @@ const TokenService = {
   },
 
   parseJwt(jwt) {
-    return jwtDecode(jwt);
+    try {
+      const payload = jwtDecode(jwt);
+      return payload;
+    } catch (err) {
+      return err;
+    }
   },
 
   parseAuthToken() {

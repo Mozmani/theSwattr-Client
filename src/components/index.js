@@ -9,4 +9,9 @@
 | import { Comp1, Comp2, Comp3, Comp4 } from './components'
 | import { Route1, Route2, Route3, Route4 } from './routes'
 */
-export { default as Example } from './example/example';
+export { default as BugsContainer } from './bugsContainer/bugsContainer';
+export { default as CommentsContainer } from './commentsContainer/commentsContainer';
+export { default as FiltersContainer } from './filtersContainer/filtersContainer';
+export { default as Header } from './header/header';
+export { default as LoginForm } from './loginForm/loginForm';
+export { default as RegistrationForm } from './registrationForm/registrationForm';
