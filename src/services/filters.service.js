@@ -2,11 +2,11 @@ import { ENDPOINTS } from 'src/constants/endpoints.constants';
 import config from 'src/config';
 import TokenService from './token.service';
 
-const COMMENTS_ENDPOINT = config.API_ENDPOINT + ENDPOINTS.COMMENTS;
+const FILTERS_ENDPOINT = config.API_ENDPOINT + ENDPOINTS.FILTERS;
 
-const CommentsService = {
-  async getAllComments() {
-    const res = await fetch(COMMENTS_ENDPOINT, {
+const FiltersService = {
+  async getAllFilters() {
+    const res = await fetch(FILTERS_ENDPOINT, {
       method: 'GET',
       headers: TokenService.getHeaders(),
     });
@@ -15,4 +15,4 @@ const CommentsService = {
   },
 };
 
-export default CommentsService;
+export default FiltersService;

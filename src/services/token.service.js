@@ -15,7 +15,7 @@ const TokenService = {
   },
 
   hasAuthToken() {
-    return !!TokenService.getAuthToken();
+    return !!this.getAuthToken();
   },
 
   parseJwt(jwt) {
@@ -28,9 +28,16 @@ const TokenService = {
   },
 
   parseAuthToken() {
-    const authToken = TokenService.getAuthToken();
-    if (authToken) return TokenService.parseJwt(authToken);
+    const authToken = this.getAuthToken();
+    if (authToken) return this.parseJwt(authToken);
     else return undefined;
+  },
+
+  getHeaders() {
+    return {
+      'content-type': 'application/json',
+      authorization: `Bearer ${this.getAuthToken()}`,
+    };
   },
 };
 
