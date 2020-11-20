@@ -232,7 +232,8 @@ li {
 }
 
 .bug-underline,
-.comment-separator {
+.comment-separator,
+.dev-separator {
   border: none;
   height: 1px;
   background-color: #aaaaaa;
@@ -268,7 +269,8 @@ textarea {
 .dev-password-input,
 .dev-password-submit,
 #comment-input,
-.comment-submit {
+.comment-submit,
+.swat-button {
   width: 90%;
   margin: 10px 0;
   font-size: 20px;
@@ -284,7 +286,8 @@ textarea {
 
 .bug-report-submit,
 .dev-password-submit,
-.comment-submit {
+.comment-submit,
+.swat-button {
   border: none;
   outline: none;
   background-color: #00a651;
@@ -302,4 +305,21 @@ textarea {
 .com-content {
   text-align: left;
   margin: 10px 0;
+}
+
+.dev-banner {
+  background-color: #00a651;
+  width: 100%;
+  padding: 5px;
+}
+
+.dev-swats {
+  background-color: #bababa;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.swat-title,
+.pending-swats {
+  margin-bottom: 20px;
 }
