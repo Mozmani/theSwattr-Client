@@ -4,7 +4,7 @@ import { LoginForm } from 'src/components';
 
 const LoginRoute = ({ history }) => {
   let handleLoginSuccess = () => {
-    history.push('/');
+    history.push('/dashboard');
   };
 
   return (

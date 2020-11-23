@@ -18,7 +18,7 @@ const RegisterRoute = (props) => {
       context.processLogin()
     })
 
-    props.history.push('/')
+    props.history.push('/dashboard')
   }
   
   return <>
