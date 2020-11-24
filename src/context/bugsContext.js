@@ -6,22 +6,33 @@ import { UserContext } from './userContext';
 const BugsContext = React.createContext(null);
 //so now hopefully we can pull apps here
 
-const BugsProvider = ({ children, apps }) => {
+const BugsProvider = ({ children, app }) => {
+  const { userData } = React.useContext(UserContext);
+  
+  const userLog = false;
+  const [user, setUser] = React.useState(userData.userName)
   const [bugs, setBugs] = React.useState(null);
+  const[userBugs, setUserBugs] = React.useState(null);
   const [error, setError] = React.useState(null);
 
-  const { userData } = React.useContext(UserContext);
+  if(userLog === null && userData.userName){
+    setUser(userData.userName)
+  }
+  
 
-
+  console.log('Here is user', user);
+  //console.log({app})
   
   React.useEffect(() => {
-    console.log('Here is user', userData);
+   
 
     const getBugs = async () => {
-      const bugData = await BugsService.getAllBugsDev('main-app');
-      //const userBugsData = await BugsService.getAllBugsUser(userData.userName);
-      //setUserBugs(userBugsData);
+      await setUser(userData.userName)
+      const bugData = await BugsService.getAllBugsDev(app);
+      const userBugsData = await BugsService.getAllBugsUser(user);
+      setUserBugs(userBugsData);
 
+      
       if (!bugData || 'error' in bugData) {
         console.error(bugData.error);
         setError(bugData.error);
@@ -30,7 +41,7 @@ const BugsProvider = ({ children, apps }) => {
 
     getBugs();
   }, []);
-
+  console.log({userBugs})
   //user bugs will not pass down
   const value = {
     bugs,
