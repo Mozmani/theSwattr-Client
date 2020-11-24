@@ -14,23 +14,33 @@ const DashboardRoute = () => {
     const getApps = async () => {
       const appData = await BugsService.getAllApps();
 
+      let newArr = [];
+      let arr = appData.apps;
+      for (let i = 0; i < arr.length; i++) {
+        const str = arr[i].app_name;
+        //console.log('str is', str.replace(' ', '-'))
+        newArr.push(str.replace(' ', '-'));
+      }
+
+      //console.log('apps', newArr)
       if (!appData || 'error' in appData) {
-        console.error(appData.error);
+        //console.error(appData.error);
         setError(appData.error);
-      } else setApps(appData.apps);
+      } else setApps(newArr);
     };
 
     getApps();
   }, []);
 
+  //console.log({apps})
   const makeButtons = apps.map((app) => {
     return (
       <button
-        key={app.app_name}
-        value={app.app_name}
+        key={app}
+        value={app}
         onClick={(ev) => setSelectedApp(ev.currentTarget.value)}
       >
-        {app.app_name}
+        {app.replace('-', ' ')}
       </button>
     );
   });
@@ -40,7 +50,7 @@ const DashboardRoute = () => {
       <p>Please select an app!</p>
       <div htmlFor="apps">{makeButtons}</div>
 
-      <BugsProvider apps={apps}>
+      <BugsProvider app={selectedApp}>
         <CommentsProvider>
           <MainContainer />
         </CommentsProvider>
