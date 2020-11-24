@@ -17,7 +17,7 @@ const DashboardRoute = () => {
     //   } else setApps(appData);
     // };
 
-    getComments();
+    getApps();
   }, []);
 
   return (
@@ -25,12 +25,11 @@ const DashboardRoute = () => {
       <p>Here is Dashboard</p>
 
       <BugsProvider apps={apps}>
-        <BugsContainer />
+        <CommentsProvider>
+          <BugsContainer apps={apps} />
+          <CommentsContainer />
+        </CommentsProvider>
       </BugsProvider>
-
-      <CommentsProvider>
-        <CommentsContainer />
-      </CommentsProvider>
     </>
   );
 };

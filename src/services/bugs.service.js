@@ -13,15 +13,20 @@ const BugsService = {
 
     return await res.json();
   },
-  async getAllBugsDev(app){
-    const res = await fetch(`${config.API_ENDPOINT}/sort/severity/${app}`, {
-      method: 'GET',
-      headers: TokenService.getHeaders(),
-    });
+
+  async getAllBugsDev(app) {
+    const res = await fetch(
+      `${config.API_ENDPOINT}/sort/severity/${app}`,
+      {
+        method: 'GET',
+        headers: TokenService.getHeaders(),
+      },
+    );
 
     return await res.json();
   },
-  async getAllApps(){
+
+  async getAllApps() {
     const res = await fetch(`${config.API_ENDPOINT}/app`, {
       method: 'GET',
       headers: TokenService.getHeaders(),
@@ -29,14 +34,18 @@ const BugsService = {
 
     return await res.json();
   },
-  async getAllBugsUser(user){
-    const res = await fetch(`${config.API_ENDPOINT}/bugs/user/${user}`, {
-      method: 'GET',
-      headers: TokenService.getHeaders(),
-    });
+
+  async getAllBugsUser(user) {
+    const res = await fetch(
+      `${config.API_ENDPOINT}/bugs/user/${user}`,
+      {
+        method: 'GET',
+        headers: TokenService.getHeaders(),
+      },
+    );
 
     return await res.json();
-  }
+  },
 };
 
 export default BugsService;
