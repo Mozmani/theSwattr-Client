@@ -11,21 +11,16 @@ const DashboardRoute = () => {
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    
-    
-    
     const getApps = async () => {
       const appData = await BugsService.getAllApps();
 
-      
-
-      let newArr =[]
-      let arr = appData.apps
-      for (let i=0; i < arr.length; i++){
-        const str = arr[i].app_name
+      let newArr = [];
+      let arr = appData.apps;
+      for (let i = 0; i < arr.length; i++) {
+        const str = arr[i].app_name;
         //console.log('str is', str.replace(' ', '-'))
-        newArr.push(str.replace(' ', '-'))
-      }    
+        newArr.push(str.replace(' ', '-'));
+      }
 
       //console.log('apps', newArr)
       if (!appData || 'error' in appData) {
