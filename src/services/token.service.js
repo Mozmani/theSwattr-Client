@@ -1,17 +1,19 @@
 import jwtDecode from 'jwt-decode';
 import config from '../config';
 
+const { TOKEN_KEY } = config;
+
 const TokenService = {
   saveAuthToken(token) {
-    window.localStorage.setItem(config.TOKEN_KEY, token);
+    window.localStorage.setItem(TOKEN_KEY, token);
   },
 
   getAuthToken() {
-    return window.localStorage.getItem(config.TOKEN_KEY);
+    return window.localStorage.getItem(TOKEN_KEY);
   },
 
   clearAuthToken() {
-    window.localStorage.removeItem(config.TOKEN_KEY);
+    window.localStorage.removeItem(TOKEN_KEY);
   },
 
   hasAuthToken() {
@@ -29,8 +31,7 @@ const TokenService = {
 
   parseAuthToken() {
     const authToken = this.getAuthToken();
-    if (authToken) return this.parseJwt(authToken);
-    else return undefined;
+    return authToken ? this.parseJwt(authToken) : undefined;
   },
 
   getHeaders() {

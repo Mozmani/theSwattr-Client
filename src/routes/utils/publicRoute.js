@@ -1,21 +1,21 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { TokenService } from 'src/services';
+import { UserContext } from 'src/context';
 
 const PublicRoute = ({ component, path, children }) => {
   const Component = component;
-  const loggedIn = TokenService.hasAuthToken();
+  const { userData } = React.useContext(UserContext);
 
   return (
     <Route
       {...children}
       path={path}
       render={(routeProps) =>
-        loggedIn ? (
+        userData.userName ? (
           <Redirect
             to={{
-              pathname: path,
+              pathname: '/',
               state: { from: routeProps.location },
             }}
           />

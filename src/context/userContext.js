@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TokenService } from 'src/services';
+import { AuthService, IdleService, TokenService } from 'src/services';
 
 const UserContext = React.createContext({});
 
@@ -29,6 +29,42 @@ const UserProvider = ({ children }) => {
     });
   }, []);
 
+  const fetchRefreshToken = React.useCallback(async () => {
+    const res = await AuthService.refreshToken();
+
+    if ('error' in res) {
+      processLogout();
+      return;
+    }
+
+    TokenService.saveAuthToken(res.authToken);
+
+    IdleService.loadCallbackBeforeExpiry(() => {
+      fetchRefreshToken();
+    });
+  }, []);
+
+  const logoutBecauseIdle = React.useCallback(() => {
+    IdleService.clearCallbackBeforeExpiry();
+    IdleService.removeIdleResets();
+    processLogout();
+  }, []);
+
+  React.useEffect(() => {
+    IdleService.setIdleCallback(logoutBecauseIdle);
+
+    if (userData) {
+      IdleService.addIdleResets();
+      IdleService.loadCallbackBeforeExpiry(() => {
+        fetchRefreshToken();
+      });
+    } else {
+      IdleService.removeIdleResets();
+      IdleService.clearCallbackBeforeExpiry();
+    }
+  }, [userData, fetchRefreshToken, logoutBecauseIdle]);
+
+  // ? for page refresh
   React.useEffect(() => {
     if (TokenService.hasAuthToken()) {
       processLogin();
