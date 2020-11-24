@@ -14,3 +14,4 @@ export { default as CommentsContainer } from './commentsContainer/commentsContai
 export { default as Header } from './header/header';
 export { default as LoginForm } from './loginForm/loginForm';
 export { default as RegistrationForm } from './registrationForm/registrationForm';
+export { default as MainContainer } from './mainContainer/mainContainer';

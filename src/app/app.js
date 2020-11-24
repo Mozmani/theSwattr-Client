@@ -18,7 +18,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <main className="main-container">
+      <main className="app-container">
         <Switch>
           <PublicRoute exact path={LOGIN} component={LoginRoute} />
           <PublicRoute
