@@ -25,6 +25,7 @@ const UserProvider = ({ children }) => {
       email: payload.email,
       firstName: payload.firstName,
       lastName: payload.lastName,
+      dev: payload.dev,
     });
   }, []);
 
