@@ -6,7 +6,6 @@
 
 const AdminRoute = ({ component, path, children }) => {
   // const Component = component;
-
   // return (
   // <Route
   //   {...children}

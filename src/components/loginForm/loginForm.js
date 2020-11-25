@@ -78,7 +78,9 @@ const LoginForm = ({ onLoginSuccess }) => {
       {renderError}
       <form className="LoginForm" onSubmit={handleSubmit}>
         <div>{inputFields}</div>
-        <button type="submit" className="submit-button">LOGIN</button>
+        <button type="submit" className="submit-button">
+          LOGIN
+        </button>
       </form>
     </>
   );
