@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import EditBugRoute from './editBugRoute';
 
-describe.skip('EditBugRoute component:', () => {
+describe('EditBugRoute component:', () => {
   it('renders without crashing', () => {
     shallow(<EditBugRoute />);
   });

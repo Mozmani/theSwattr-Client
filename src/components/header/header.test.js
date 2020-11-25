@@ -1,10 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import { UserProvider } from 'src/context';
 import Header from './header';
 
-describe.skip('Header component:', () => {
+describe('Header component:', () => {
   it('renders without crashing', () => {
-    shallow(<Header />);
+    shallow(
+      <UserProvider>
+        <Header />
+      </UserProvider>,
+    );
   });
 });

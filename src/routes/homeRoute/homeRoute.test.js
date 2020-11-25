@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import HomeRoute from './homeRoute';
 
-describe.skip('HomeRoute component:', () => {
+describe('HomeRoute component:', () => {
   it('renders without crashing', () => {
     shallow(<HomeRoute />);
   });

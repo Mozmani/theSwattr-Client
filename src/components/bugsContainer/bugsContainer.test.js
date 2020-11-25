@@ -1,10 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import { UserProvider, BugsProvider } from 'src/context';
 import BugsContainer from './bugsContainer';
 
-describe.skip('BugsContainer component:', () => {
+describe('BugsContainer component:', () => {
   it('renders without crashing', () => {
-    shallow(<BugsContainer />);
+    shallow(
+      <UserProvider>
+        <BugsProvider>
+          <BugsContainer />
+        </BugsProvider>
+      </UserProvider>,
+    );
   });
 });

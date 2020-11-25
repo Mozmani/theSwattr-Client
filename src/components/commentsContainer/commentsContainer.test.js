@@ -1,10 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import { CommentsProvider } from 'src/context';
 import CommentsContainer from './commentsContainer';
 
-describe.skip('CommentsContainer component:', () => {
+describe('CommentsContainer component:', () => {
   it('renders without crashing', () => {
-    shallow(<CommentsContainer />);
+    shallow(
+      <CommentsProvider>
+        <CommentsContainer />
+      </CommentsProvider>,
+    );
   });
 });

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import LoginForm from './loginForm';
 
-describe.skip('LoginForm component:', () => {
+describe('LoginForm component:', () => {
   it('renders without crashing', () => {
     shallow(<LoginForm />);
   });
