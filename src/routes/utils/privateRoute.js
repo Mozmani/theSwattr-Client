@@ -1,18 +1,16 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import { UserContext } from 'src/context';
+import { TokenService } from 'src/services';
 
-const PrivateRoute = ({ component, path, children }) => {
+const PrivateRoute = ({ component, path }) => {
   const Component = component;
-  const { userData } = React.useContext(UserContext);
 
   return (
     <Route
-      {...children}
       path={path}
       render={(routeProps) =>
-        userData.userName ? (
+        TokenService.parseAuthToken() ? (
           <Component {...routeProps} />
         ) : (
           <Redirect

@@ -8,31 +8,32 @@ const MainContainer = () => {
     CommentsContext,
   );
 
-  const renderBugs = bugs
-    ? Object.keys(bugs).map((severity) => {
-        if (bugs[severity].length) {
-          return bugs[severity].map((bug) => (
-            <li
-              key={bug.bugName}
-              onClick={() => {
-                getCommentsByBug(bug.id);
-              }}
-            >
-              <p>{bug.bugName}</p>
-              <p>{bug.description}</p>
-              <p>{bug.createdDate}</p>
-              {comments &&
-                comments.comments.map((comm) => (
-                  <div key={comm.comment}>
-                    <p>{comm.comment}</p>
-                    <p>{comm.createdDate}</p>
-                  </div>
-                ))}
-            </li>
-          ));
-        }
-      })
-    : null;
+  const renderBugs =
+    bugs && bugs.bugsHigh
+      ? Object.keys(bugs).map((severity) => {
+          if (bugs[severity].length) {
+            return bugs[severity].map((bug) => (
+              <li
+                key={bug.bugName}
+                onClick={() => {
+                  getCommentsByBug(bug.id);
+                }}
+              >
+                <p>{bug.bugName}</p>
+                <p>{bug.description}</p>
+                <p>{bug.createdDate}</p>
+                {comments &&
+                  comments.comments.map((comm) => (
+                    <div key={comm.comment}>
+                      <p>{comm.comment}</p>
+                      <p>{comm.createdDate}</p>
+                    </div>
+                  ))}
+              </li>
+            ));
+          }
+        })
+      : null;
 
   // console.log({ MainContainer: { bugs, comments } });
 
