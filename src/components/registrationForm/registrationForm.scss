@@ -1,0 +1,36 @@
+.RegisterForm {
+  background-color: #141414;
+  margin: 20px 15px;
+  border-radius: 20px;
+  color: #00a651;
+  padding: 20px;
+  width: 90%;
+}
+
+.registration-first-name-label,
+.registration-last-name-label,
+.registration-email-label,
+.registration-username-label,
+.registration-password-label {
+  font-family: 'Andale Mono', sans-serif;
+}
+
+.registration-first-name-input,
+.registration-last-name-input,
+.registration-email-input,
+.registration-username-input,
+.registration-password-input,
+.register-button {
+  width: 90%;
+  margin: 10px 0;
+  font-size: 20px;
+  text-align: left;
+  padding: 10px;
+  font-family: 'Andale Mono', sans-serif;
+}
+
+.register-button {
+  border: none;
+  outline: none;
+  background-color: #00a651;
+}
