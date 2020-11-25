@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 import { Link } from 'react-router-dom';
 import TokenService from '../../services/token.service';
+import './header.scss';
+import logo from '../../images/logo.png';
 
 const Header = () => {
   const Context = useContext(UserContext);
@@ -12,8 +14,9 @@ const Header = () => {
   };
 
   const loginLink = (
-    <nav>
-      <Link to="/login">Login</Link>{' '}
+    <nav className="nav-links">
+      <Link to="/login">Login</Link>
+      <div className="seperator">{' | '}</div>
       <Link to="/register">Sign up</Link>
     </nav>
   );
@@ -37,10 +40,14 @@ const Header = () => {
   ));
 
   return (
-    <header>
+    <header className="dash-header">
       {navButtons}
       <h1>
-        <Link to="/">theSwatter</Link>
+        <Link to="/">
+          <div className="logo-container">
+            <img className="logo" src={logo} />
+          </div>
+        </Link>
       </h1>
       {loggedIn ? logoutLink : loginLink}
     </header>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { LoginForm } from 'src/components';
+import './loginRoute.scss';
 
 const LoginRoute = ({ history }) => {
   let handleLoginSuccess = () => {
@@ -9,8 +10,11 @@ const LoginRoute = ({ history }) => {
 
   return (
     <>
-      <h2>Login</h2>
-
+      <h2 className="welcome">
+        ENTER USERNAME AND
+        <br />
+        PASSWORD TO LOGIN
+      </h2>
       <LoginForm onLoginSuccess={handleLoginSuccess} />
     </>
   );

@@ -11,6 +11,7 @@ import {
   PrivateRoute,
   PublicRoute,
 } from 'src/routes';
+import './app.scss';
 
 const { BUGS, COMMENTS, LOGIN, REGISTER } = ROUTES;
 
