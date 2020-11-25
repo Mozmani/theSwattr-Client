@@ -13,6 +13,17 @@ const CommentsService = {
 
     return await res.json();
   },
+  async getAllCommentsBug(bugId) {
+    const res = await fetch(
+      `${config.API_ENDPOINT}/comments/bug/${bugId}`,
+      {
+        method: 'GET',
+        headers: TokenService.getHeaders(),
+      },
+    );
+
+    return await res.json();
+  },
 };
 
 export default CommentsService;
