@@ -29,8 +29,16 @@ const Header = () => {
     </div>
   );
 
+  // ! DELETE THESE LATER
+  const navButtons = ['/', '/dashboard'].map((route) => (
+    <Link key={route} to={route}>
+      <button>Quick nav: {route}</button>
+    </Link>
+  ));
+
   return (
     <header>
+      {navButtons}
       <h1>
         <Link to="/">theSwatter</Link>
       </h1>

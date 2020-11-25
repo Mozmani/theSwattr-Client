@@ -2,18 +2,13 @@ import React, { useState } from 'react';
 import BugsService from '../../services/bugs.service';
 import { BugsContext, UserContext } from 'src/context';
 
-const BugsContainer = () => {
-  const Context = React.useContext(BugsContext);
+const BugsContainer = ({ app }) => {
   const { userData } = React.useContext(UserContext);
-  console.log('here is context', Context);
-  
+  const { bugs } = React.useContext(BugsContext);
 
-  let [app, setApp] = useState({});
-  let [bugs, setBugs] = useState({});
+  console.log({ BugsContainer: { userData, bugs } });
 
   if (userData.dev === true) {
-    
-
     return (
       <>
         <p>You are a Dev!</p>

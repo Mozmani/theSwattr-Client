@@ -18,7 +18,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <main className="app-container">
+      <div className="app-container">
         <Switch>
           <PublicRoute exact path={LOGIN} component={LoginRoute} />
           <PublicRoute
@@ -32,7 +32,7 @@ const App = () => {
             component={DashboardRoute}
           />
         </Switch>
-      </main>
+      </div>
     </>
   );
 };

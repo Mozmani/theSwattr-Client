@@ -8,26 +8,11 @@ const CommentsProvider = ({ children }) => {
   const [comments, setComments] = React.useState(null);
   const [error, setError] = React.useState(null);
 
-  // React.useEffect(() => {
-  //   const getComments = async () => {
-  //     const commData = await CommentsService.getAllComments();
+  const getCommentsByBug = async (bugId) => {
+    const thisBug = await CommentsService.getAllCommentsBug(bugId);
 
-  //     if (!commData || 'error' in commData) {
-  //       console.error(commData.error);
-  //       setError(commData.error);
-  //     } else setComments(commData);
-  //   };
-
-  //   getComments();
-  // }, []);
-  const getCommentsByBug = async (bug) => {
-    const thisBug = CommentsService.getAllCommentsBug(bug);
-
-    setComments(thisBug)
-  }
-
-
-
+    setComments(thisBug);
+  };
 
   const value = {
     comments,
