@@ -38,7 +38,7 @@ const BugsProvider = ({ children, app }) => {
     }
   }, [app, userName]);
 
-  console.log({ userBugs });
+  //console.log({ userBugs });
   //user bugs will not pass down
   const value = {
     bugs,
