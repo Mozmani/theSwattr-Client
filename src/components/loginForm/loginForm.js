@@ -3,6 +3,7 @@ import React from 'react';
 import useFormState from 'src/hooks/useFormState';
 import { UserContext } from 'src/context';
 import { AuthService, TokenService } from 'src/services';
+import './loginForm.scss';
 
 const LoginForm = ({ onLoginSuccess }) => {
   const [error, setError] = React.useState(null);
@@ -77,7 +78,7 @@ const LoginForm = ({ onLoginSuccess }) => {
       {renderError}
       <form className="LoginForm" onSubmit={handleSubmit}>
         <div>{inputFields}</div>
-        <button type="submit">Login</button>
+        <button type="submit" className="submit-button">LOGIN</button>
       </form>
     </>
   );
