@@ -23,7 +23,7 @@ const MainContainer = () => {
               <p>{bug.createdDate}</p>
               {comments &&
                 comments.comments.map((comm) => (
-                  <div key={comm.comment}>
+                  <div key={comm.id}>
                     <p>{comm.comment}</p>
                     <p>{comm.createdDate}</p>
                   </div>
