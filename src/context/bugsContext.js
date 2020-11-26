@@ -4,7 +4,6 @@ import { BugsService } from 'src/services';
 import { UserContext } from './userContext';
 
 const BugsContext = React.createContext(null);
-//so now hopefully we can pull apps here
 
 const BugsProvider = ({ children, app }) => {
   const [bugs, setBugs] = React.useState(null);
@@ -38,13 +37,10 @@ const BugsProvider = ({ children, app }) => {
     }
   }, [app, userName]);
 
-  //console.log({ userBugs });
-  //user bugs will not pass down
   const value = {
     bugs,
     userBugs,
     error,
-    app,
   };
 
   return (

@@ -1,11 +1,10 @@
 import React from 'react';
 
+import { BugsService } from 'src/services';
+import { BugsProvider, CommentsProvider } from 'src/context';
 import { MainContainer } from 'src/components';
 
-import { BugsProvider, CommentsProvider } from 'src/context';
-import BugsService from '../../services/bugs.service';
-
-const DashboardRoute = (props) => {
+const DashboardRoute = ({ history }) => {
   const [apps, setApps] = React.useState([]);
   const [selectedApp, setSelectedApp] = React.useState(null);
   const [error, setError] = React.useState(null);
@@ -14,37 +13,32 @@ const DashboardRoute = (props) => {
     const getApps = async () => {
       const appData = await BugsService.getAllApps();
 
-      let newArr = [];
-      let arr = appData.apps;
-      for (let i = 0; i < arr.length; i++) {
-        const str = arr[i].app_name;
-        //console.log('str is', str.replace(' ', '-'))
-        newArr.push(str.replace(' ', '-'));
+      const formattedApps = [];
+      const apps = appData.apps || [];
+      for (let i = 0; i < apps.length; i++) {
+        const str = apps[i].app_name;
+        formattedApps.push(str.replace(' ', '-'));
       }
 
-      //console.log('apps', newArr)
-      if (!appData || 'error' in appData) {
-        //console.error(appData.error);
+      if (!apps || !appData || 'error' in appData) {
         setError(appData.error);
-      } else setApps(newArr);
+      } else setApps(formattedApps);
     };
 
     getApps();
   }, []);
 
-
-  const setApp = (ev) => {
-    props.history.push('/dashboard')
-    setSelectedApp(ev)
-    
-  }
+  const handleAppSelect = (ev) => {
+    history.push('/dashboard');
+    setSelectedApp(ev);
+  };
 
   const makeButtons = apps.map((app) => {
     return (
       <button
         key={app}
         value={app}
-        onClick={(ev) => setApp(ev.currentTarget.value)}
+        onClick={(ev) => handleAppSelect(ev.currentTarget.value)}
       >
         {app.replace('-', ' ')}
       </button>
@@ -58,7 +52,7 @@ const DashboardRoute = (props) => {
 
       <BugsProvider app={selectedApp}>
         <CommentsProvider>
-          <MainContainer />
+          <MainContainer app={selectedApp} history={history} />
         </CommentsProvider>
       </BugsProvider>
     </>

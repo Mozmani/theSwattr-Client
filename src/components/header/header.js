@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../../context/userContext';
 import { Link } from 'react-router-dom';
-import TokenService from '../../services/token.service';
+
+import { UserContext } from 'src/context';
+import { TokenService } from 'src/services';
 import './header.scss';
-import logo from '../../images/logo.png';
+import logo from 'src/images/logo.png';
 
 const Header = () => {
   const Context = useContext(UserContext);
@@ -45,7 +46,7 @@ const Header = () => {
       <h1>
         <Link to="/">
           <div className="logo-container">
-            <img className="logo" src={logo} />
+            <img className="logo" src={logo} alt="logo" />
           </div>
         </Link>
       </h1>

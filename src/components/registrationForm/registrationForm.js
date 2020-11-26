@@ -1,17 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import AuthService from '../../services/auth.service';
-import { UserContext } from '../../context/userContext';
+
 import './registrationForm.scss';
 
-const RegistrationForm = (props) => {
-  let [error, setError] = useState(null);
-  let [user_name, setUser] = useState(null);
-  let [pword, setPass] = useState(null);
+import { AuthService } from 'src/services';
+import { UserContext } from 'src/context';
 
-  const context = useContext(UserContext);
+const RegistrationForm = ({ onRegistrationSuccess }) => {
+  const [error, setError] = React.useState(null);
+  const [user_name, setUser] = React.useState(null);
+  const [pword, setPass] = React.useState(null);
 
-  let handleSubmit = async (ev) => {
+  const context = React.useContext(UserContext);
+
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
     const {
       firstName,
@@ -21,7 +23,7 @@ const RegistrationForm = (props) => {
       password,
     } = ev.target;
 
-    let response = await AuthService.postUser({
+    const response = await AuthService.postUser({
       first_name: firstName.value,
       last_name: lastName.value,
       email: email.value,
@@ -33,7 +35,7 @@ const RegistrationForm = (props) => {
       setError(response.error);
     }
 
-    props.onRegistrationSuccess(user_name, pword);
+    onRegistrationSuccess(user_name, pword);
   };
 
   const renderError = !error ? null : (

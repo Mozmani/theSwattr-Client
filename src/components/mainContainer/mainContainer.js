@@ -1,58 +1,46 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom'
-import PrivateRoute from '../../routes/utils/privateRoute'
-import CommentsPage from '../CommentsPage/CommentsPage'
-import BugsContainer from '../bugsContainer/bugsContainer'
-import AddBugs from '../AddBugs/addBugs'
-import {Link} from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom';
 
-import { BugsContext, CommentsContext } from '../../context';
-import { CommentsService } from 'src/services';
+import { BugsContext, CommentsContext } from 'src/context';
+import { BugsContainer, CommentsPage, AddBugs } from 'src/components';
 
-const MainContainer = () => {
+const MainContainer = ({ app, history }) => {
   const { bugs } = React.useContext(BugsContext);
-  const { app} = React.useContext(BugsContext);
   const { comments, getCommentsByBug } = React.useContext(
     CommentsContext,
   );
 
-  const addBugsButton =() => {
-    if (app !== null){
+  const addBugsButton = () => {
+    if (app !== null) {
       return (
-      
-      
-      <button>
-        <Link to='/add'>
-        Add a bug!
-        </Link>
-        
-      </button>
-
-     
-      
-      )
+        <button>
+          <Link to="/dashboard/add">Add a bug!</Link>
+        </button>
+      );
     } else {
-      return
+      return;
     }
-  }
-  /*
-  <PrivateRoute
-  path='/dashboard'
-  render={(props) => (
-    <Dashboar {...props} addBugsButton={addBugsButton} />
-  )}
-/>
-  */
+  };
 
+  // ! note, Switch will only render 1 component at a time
+  // ! second, we're inside PrivateRoute, so no need for it here
   return (
-   <>
-      <Switch>
-      <PrivateRoute exact path="/dashboard/bug/:bugId" component={CommentsPage} />
-      <PrivateRoute exact path="/add" component={AddBugs} />
-      <PrivateRoute exact path="/dashboard" component={BugsContainer} />
-      
-      </Switch>
-      
+    <>
+      <>
+        <Route path="/dashboard">
+          <BugsContainer
+            addBugs={addBugsButton}
+            app={app}
+            history={history}
+          />
+        </Route>
+        <Route path="/dashboard/add">
+          <AddBugs />
+        </Route>
+        <Route path="/dashboard/bug/:bugId">
+          <CommentsPage />
+        </Route>
+      </>
     </>
   );
 };

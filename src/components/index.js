@@ -15,3 +15,5 @@ export { default as Header } from './header/header';
 export { default as LoginForm } from './loginForm/loginForm';
 export { default as RegistrationForm } from './registrationForm/registrationForm';
 export { default as MainContainer } from './mainContainer/mainContainer';
+export { default as CommentsPage } from './commentsPage/commentsPage';
+export { default as AddBugs } from './addBugs/addBugs';

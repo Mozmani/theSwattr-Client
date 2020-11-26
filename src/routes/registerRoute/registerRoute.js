@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
-import RegistrationForm from '../../components/registrationForm/registrationForm';
-import AuthService from '../../services/auth.service';
-import TokenService from '../../services/token.service';
-import { UserContext } from '../../context/userContext';
+import React from 'react';
 
-const RegisterRoute = (props) => {
-  const context = useContext(UserContext);
+import { AuthService, TokenService } from 'src/services';
+import { UserContext } from 'src/context/userContext';
+import { RegistrationForm } from 'src/components';
 
-  let handleRegistrationSuccess = (name, pass) => {
+const RegisterRoute = ({ history }) => {
+  const context = React.useContext(UserContext);
+
+  const handleRegistrationSuccess = (name, pass) => {
     AuthService.postLogin({
       user_name: name,
       password: pass,
@@ -16,7 +16,7 @@ const RegisterRoute = (props) => {
       context.processLogin();
     });
 
-    props.history.push('/dashboard');
+    history.push('/dashboard');
   };
 
   return (

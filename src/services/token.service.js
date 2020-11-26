@@ -1,4 +1,5 @@
 import jwtDecode from 'jwt-decode';
+
 import config from '../config';
 
 const { TOKEN_KEY } = config;

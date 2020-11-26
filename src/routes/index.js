@@ -9,6 +9,5 @@ export { default as HomeRoute } from './homeRoute/homeRoute';
 export { default as LoginRoute } from './loginRoute/loginRoute';
 export { default as NotFoundRoute } from './notFoundRoute/notFoundRoute';
 export { default as RegisterRoute } from './registerRoute/registerRoute';
-export { default as AdminRoute } from './utils/adminRoute';
 export { default as PrivateRoute } from './utils/privateRoute';
 export { default as PublicRoute } from './utils/publicRoute';

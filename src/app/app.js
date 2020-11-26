@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 
+import './app.scss';
+
 import { ROUTES } from 'src/constants/routes.constants';
 import { Header } from 'src/components';
 import {
@@ -11,9 +13,8 @@ import {
   PrivateRoute,
   PublicRoute,
 } from 'src/routes';
-import './app.scss';
 
-const { BUGS, COMMENTS, LOGIN, REGISTER } = ROUTES;
+const { DASHBOARD, LOGIN, REGISTER } = ROUTES;
 
 const App = () => {
   return (
@@ -21,17 +22,10 @@ const App = () => {
       <Header />
       <div className="app-container">
         <Switch>
-          <PublicRoute exact path={LOGIN} component={LoginRoute} />
-          <PublicRoute
-            exact
-            path={REGISTER}
-            component={RegisterRoute}
-          />
           <PrivateRoute exact path="/" component={HomeRoute} />
-          <PrivateRoute
-            path="/dashboard"
-            component={DashboardRoute}
-          />
+          <PrivateRoute path={DASHBOARD} component={DashboardRoute} />
+          <PublicRoute path={LOGIN} component={LoginRoute} />
+          <PublicRoute path={REGISTER} component={RegisterRoute} />
         </Switch>
       </div>
     </>
