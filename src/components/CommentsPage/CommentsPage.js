@@ -15,22 +15,24 @@ const CommentsPage = (props) => {
     setLoaded(true);
     if(comments !== null){
       setHeader(comments.comments[0].bugName)
+      
     }
     
   }
+  //console.log(comments)
 
-
-    const mapComments = comments ?
+    const mapComments = comments?
     comments.comments.map((item) => {
-        return (
+        
+    
+    return (
           <li key={item.id}>
             <h4>{`Author: ${item.userName}`}</h4>
             <p>{item.comment}</p>
             <p>{item.createdDate}</p>
           </li>
         );
-      }) : null;
-      
+      })  : null;
     
   
 

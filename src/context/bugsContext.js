@@ -44,6 +44,7 @@ const BugsProvider = ({ children, app }) => {
     bugs,
     userBugs,
     error,
+    app,
   };
 
   return (
