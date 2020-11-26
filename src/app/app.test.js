@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import App from './app';
 
-describe.skip('App component:', () => {
+describe('App component:', () => {
   it('renders without crashing', () => {
     shallow(<App />);
   });

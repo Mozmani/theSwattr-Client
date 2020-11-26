@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import DashboardRoute from './dashboardRoute';
 
-describe.skip('DashboardRoute component:', () => {
+describe('DashboardRoute component:', () => {
   it('renders without crashing', () => {
     shallow(<DashboardRoute />);
   });
