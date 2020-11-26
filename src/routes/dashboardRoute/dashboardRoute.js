@@ -5,7 +5,7 @@ import { MainContainer } from 'src/components';
 import { BugsProvider, CommentsProvider } from 'src/context';
 import BugsService from '../../services/bugs.service';
 
-const DashboardRoute = () => {
+const DashboardRoute = (props) => {
   const [apps, setApps] = React.useState([]);
   const [selectedApp, setSelectedApp] = React.useState(null);
   const [error, setError] = React.useState(null);
@@ -32,13 +32,19 @@ const DashboardRoute = () => {
     getApps();
   }, []);
 
-  //console.log({apps})
+
+  const setApp = (ev) => {
+    props.history.push('/dashboard')
+    setSelectedApp(ev)
+    
+  }
+
   const makeButtons = apps.map((app) => {
     return (
       <button
         key={app}
         value={app}
-        onClick={(ev) => setSelectedApp(ev.currentTarget.value)}
+        onClick={(ev) => setApp(ev.currentTarget.value)}
       >
         {app.replace('-', ' ')}
       </button>
