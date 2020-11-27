@@ -15,7 +15,7 @@ const CommentsPage = (props) => {
     }
   }
   //console.log(comments)
-  const mapComments = comments
+  const mapComments = comments && !comments.comments[0].message
     ? comments.comments.map((item) => {
         return (
           <li key={item.id}>
@@ -26,6 +26,7 @@ const CommentsPage = (props) => {
         );
       })
     : null;
+    console.log(comments)
   return (
     <main className="main-container">
       <h3>{header}</h3>

@@ -22,7 +22,7 @@ const MainContainer = () => {
       
       
       <button>
-        <Link to='/add'>
+        <Link to='/dashboard/add'>
         Add a bug!
         </Link>
         
@@ -36,10 +36,10 @@ const MainContainer = () => {
     }
   }
   /*
-  <PrivateRoute
+  <Route
   path='/dashboard'
   render={(props) => (
-    <Dashboar {...props} addBugsButton={addBugsButton} />
+    <BugsContainer {...props} addBugsButton={addBugsButton} />
   )}
 />
   */
@@ -47,9 +47,14 @@ const MainContainer = () => {
   return (
    <>
       <Switch>
-      <PrivateRoute exact path="/dashboard/bug/:bugId" component={CommentsPage} />
-      <PrivateRoute exact path="/add" component={AddBugs} />
-      <PrivateRoute exact path="/dashboard" component={BugsContainer} />
+      <Route exact path="/dashboard/bug/:bugId" component={CommentsPage} />
+      <Route exact path="/dashboard/add" component={AddBugs} />
+      <Route
+  path='/dashboard'
+  render={(props) => (
+    <BugsContainer {...props} addBugsButton={addBugsButton} />
+  )}
+/>
       
       </Switch>
       
