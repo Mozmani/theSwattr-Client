@@ -8,23 +8,17 @@ const AddBugs = (props) => {
   // const { comments, getCommentsByBug } = React.useContext(
   //   CommentsContext,
   // );
-  React.useEffect(() => {
-    console.log(props)
-
-    
-  } , [])
 
 
-  
 
  return (
   <div>
     <p>Hi</p>
   </div>
-  
-   
+
+
  );
- 
+
 };
 
 export default AddBugs;
