@@ -13,34 +13,50 @@ const MainContainer = ({ app, history }) => {
   const addBugsButton = () => {
     if (app !== null) {
       return (
-        <button>
-          <Link to="/dashboard/add">Add a bug!</Link>
-        </button>
-      );
+      
+      
+      <button>
+        <Link to='/dashboard/add'>
+        Add a bug!
+        </Link>
+        
+      </button>
+
+     
+      
+      )
+
     } else {
       return;
     }
   };
+  
+  /*
+  <Route
+  path='/dashboard'
+  render={(props) => (
+    <BugsContainer {...props} addBugsButton={addBugsButton} />
+  )}
+/>
+  */
+
 
   // ! note, Switch will only render 1 component at a time
   // ! second, we're inside PrivateRoute, so no need for it here
   return (
-    <>
-      <>
-        <Route path="/dashboard">
-          <BugsContainer
-            addBugs={addBugsButton}
-            app={app}
-            history={history}
-          />
-        </Route>
-        <Route path="/dashboard/add">
-          <AddBugs />
-        </Route>
-        <Route path="/dashboard/bug/:bugId">
-          <CommentsPage />
-        </Route>
-      </>
+   <>
+      <Switch>
+      <Route exact path="/dashboard/bug/:bugId" component={CommentsPage} />
+      <Route exact path="/dashboard/add" component={AddBugs} />
+      <Route
+  path='/dashboard'
+  render={(props) => (
+    <BugsContainer {...props} addBugsButton={addBugsButton} />
+  )}
+/>
+      
+      </Switch>
+      
     </>
   );
 };
