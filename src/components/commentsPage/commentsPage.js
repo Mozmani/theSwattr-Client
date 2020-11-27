@@ -1,10 +1,4 @@
-import React from 'react';
 
-const CommentsPage = () => {
-  return <>CommentsPage Component</>;
-};
-
-export default CommentsPage;
 import React from "react";
 import PrivateRoute from "../../routes/utils/privateRoute";
 import { BugsContext, CommentsContext } from "../../context";
