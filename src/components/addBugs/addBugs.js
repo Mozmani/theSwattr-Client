@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
+
+import { BugsService } from 'src/services';
 import {
   BugsContext,
   UserContext,
   CommentsContext,
 } from 'src/context';
-import BugsService from '../../services/bugs.service';
 
-const AddBugs = (props) => {
-  const { bugs } = React.useContext(BugsContext);
-  const { app } = React.useContext(BugsContext);
-  const { comments, getCommentsByBug } = React.useContext(
-    CommentsContext,
-  );
-  const { userData } = React.useContext(UserContext);
-
+const AddBugs = ({ app, history }) => {
   const [apps, setApps] = useState(null);
   const [bugName, setBugName] = useState(null);
   const [description, setDesc] = useState(null);
   const [theApp, setApp] = useState(null);
+
+  const { userData } = React.useContext(UserContext);
+  const { bugs } = React.useContext(BugsContext);
+  const { comments, getCommentsByBug } = React.useContext(
+    CommentsContext,
+  );
 
   //console.log(userData.userName) // user name
   if (apps === null) {
@@ -43,7 +43,7 @@ const AddBugs = (props) => {
     };
 
     await BugsService.postNewBug(newBug);
-    props.history.push('/dashboard');
+    history.push('/dashboard');
   };
 
   console.log(theApp);

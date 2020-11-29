@@ -1,29 +1,31 @@
 import React from 'react';
-import PrivateRoute from '../../routes/utils/privateRoute';
+
+import { CommentsService } from 'src/services';
 import {
   BugsContext,
   CommentsContext,
   UserContext,
-} from '../../context';
-import { CommentsService } from 'src/services';
-const CommentsPage = (props) => {
+} from 'src/context';
+
+const CommentsPage = ({ match }) => {
+  const [commentsLoaded, setLoaded] = React.useState(false);
+  const [header, setHeader] = React.useState(false);
+  const [newComment, setComment] = React.useState(null);
+
   const { userData } = React.useContext(UserContext);
   const { bugs } = React.useContext(BugsContext);
   const { comments, getCommentsByBug } = React.useContext(
     CommentsContext,
   );
-  const [commentsLoaded, setLoaded] = React.useState(false);
-
-  const [header, setHeader] = React.useState(false);
-  const [newComment, setComment] = React.useState(null);
 
   if (commentsLoaded === false) {
-    let commentData = getCommentsByBug(props.match.params.bugId);
+    let commentData = getCommentsByBug(match.params.bugId);
     setLoaded(true);
     if (comments !== null) {
       setHeader(comments.comments[0].bugName);
     }
   }
+
   //console.log(comments)
   const mapComments =
     comments && !comments.comments[0].message
@@ -42,7 +44,7 @@ const CommentsPage = (props) => {
     ev.preventDefault();
     let newCom = {
       user_name: userData.userName,
-      bug_id: props.match.params.bugId,
+      bug_id: match.params.bugId,
       comment: newComment,
     };
     await CommentsService.postNewComment(newCom);

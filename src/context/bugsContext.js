@@ -5,7 +5,7 @@ import { UserContext } from './userContext';
 
 const BugsContext = React.createContext(null);
 
-const BugsProvider = ({ children, app }) => {
+const BugsProvider = ({ app, children }) => {
   const [bugs, setBugs] = React.useState(null);
   const [userBugs, setUserBugs] = React.useState(null);
   const [error, setError] = React.useState(null);

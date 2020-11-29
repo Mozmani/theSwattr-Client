@@ -52,7 +52,7 @@ const DashboardRoute = ({ history }) => {
 
       <BugsProvider app={selectedApp}>
         <CommentsProvider>
-          <MainContainer app={selectedApp} history={history} />
+          <MainContainer app={selectedApp} />
         </CommentsProvider>
       </BugsProvider>
     </>

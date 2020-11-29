@@ -4,7 +4,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import { BugsContext, CommentsContext } from 'src/context';
 import { BugsContainer, CommentsPage, AddBugs } from 'src/components';
 
-const MainContainer = ({ app, history }) => {
+const MainContainer = ({ app }) => {
   const { bugs } = React.useContext(BugsContext);
   const { comments, getCommentsByBug } = React.useContext(
     CommentsContext,
@@ -22,15 +22,6 @@ const MainContainer = ({ app, history }) => {
     }
   };
 
-  /*
-  <Route
-  path='/dashboard'
-  render={(props) => (
-    <BugsContainer {...props} addBugsButton={addBugsButton} />
-  )}
-/>
-  */
-
   // ! note, Switch will only render 1 component at a time
   // ! second, we're inside PrivateRoute, so no need for it here
   return (
@@ -38,15 +29,25 @@ const MainContainer = ({ app, history }) => {
       <Switch>
         <Route
           exact
+          path="/dashboard"
+          render={(routeProps) => (
+            <BugsContainer
+              app={app}
+              addBugsButton={addBugsButton}
+              {...routeProps}
+            />
+          )}
+        />
+        <Route
+          path="/dashboard/add"
+          render={(routeProps) => (
+            <AddBugs app={app} {...routeProps} />
+          )}
+        />
+        <Route
           path="/dashboard/bug/:bugId"
           component={CommentsPage}
-        />
-        <Route exact path="/dashboard/add" component={AddBugs} />
-        <Route
-          path="/dashboard"
-          render={(props) => (
-            <BugsContainer {...props} addBugsButton={addBugsButton} />
-          )}
+          render={(routeProps) => <CommentsPage {...routeProps} />}
         />
       </Switch>
     </>

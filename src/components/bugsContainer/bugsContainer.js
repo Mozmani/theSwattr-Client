@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import BugsService from '../../services/bugs.service';
-import {
-  BugsContext,
-  UserContext,
-  CommentsContext,
-} from 'src/context';
+import React from 'react';
 
-const BugsContainer = (props) => {
+import { BugsService } from 'src/services';
+import { BugsContext, CommentsContext } from 'src/context';
+
+const BugsContainer = ({ app, addBugsButton, history }) => {
   const { bugs } = React.useContext(BugsContext);
-  const { app } = React.useContext(BugsContext);
   const { comments, getCommentsByBug } = React.useContext(
     CommentsContext,
   );
@@ -22,7 +17,7 @@ const BugsContainer = (props) => {
             <li
               key={bug.bugName}
               onClick={() => {
-                props.history.push(`dashboard/bug/${bug.id}`);
+                history.push(`dashboard/bug/${bug.id}`);
               }}
             >
               <p>{bug.bugName}</p>
@@ -53,7 +48,7 @@ const BugsContainer = (props) => {
     <main className="main-container">
       {showHeader()}
       <ul className="bug-list">{renderBugs}</ul>
-      {props.addBugsButton()}
+      {addBugsButton()}
     </main>
   );
 };
