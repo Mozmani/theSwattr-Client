@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { BugsContext } from 'src/context';
 
-const BugsContainer = ({ selectedApp, addBugsButton, history }) => {
-  const { bugs } = React.useContext(BugsContext);
+const BugsContainer = ({ history }) => {
+  const { bugs, selectedApp } = React.useContext(BugsContext);
+  console.log({ bugs, selectedApp });
 
   const renderBugs = bugs
     ? Object.keys(bugs).map((severity) =>
@@ -26,15 +28,17 @@ const BugsContainer = ({ selectedApp, addBugsButton, history }) => {
     : null;
 
   const showHeader =
-    selectedApp !== null ? <h3>{selectedApp}</h3> : null;
-
-  // const newBugForm = <form className="newBug"></form>;
+    selectedApp !== null ? <h3>{selectedApp.formatName}</h3> : null;
 
   return (
     <main className="main-container">
       {showHeader}
       <ul className="bug-list">{renderBugs}</ul>
-      {addBugsButton()}
+      {selectedApp !== null && (
+        <button>
+          <Link to="/dashboard/add">Add a bug!</Link>
+        </button>
+      )}
     </main>
   );
 };

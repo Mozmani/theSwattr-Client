@@ -14,7 +14,7 @@ const BugsService = {
     return await res.json();
   },
 
-  async getAllBugsDev(app) {
+  async getAllBugsSeverityApp(app) {
     const res = await fetch(
       `${config.API_ENDPOINT}/sort/severity/${app}`,
       {

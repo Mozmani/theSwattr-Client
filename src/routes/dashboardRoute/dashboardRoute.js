@@ -13,46 +13,39 @@ const DashboardRoute = ({ history }) => {
     const getApps = async () => {
       const appData = await BugsService.getAllApps();
 
-      const formattedApps = [];
-      const apps = appData.apps || [];
-      for (let i = 0; i < apps.length; i++) {
-        const str = apps[i].app_name;
-        formattedApps.push(str.replace(' ', '-'));
-      }
-
-      if (!apps || !appData || 'error' in appData) {
+      if (!appData || 'error' in appData) {
+        console.error(appData);
         setError(appData.error);
-      } else setApps(formattedApps);
+      } else setApps(appData.apps);
     };
 
     getApps();
   }, []);
 
-  const handleAppSelect = (ev) => {
+  const handleAppSelect = (app) => {
+    setSelectedApp(app);
     history.push('/dashboard');
-    setSelectedApp(ev);
   };
 
-  const makeButtons = apps.map((app) => {
-    return (
-      <button
-        key={app}
-        value={app}
-        onClick={(ev) => handleAppSelect(ev.currentTarget.value)}
-      >
-        {app.replace('-', ' ')}
-      </button>
-    );
-  });
+  const selectAppButtons = apps.map((app) => (
+    <button
+      key={app.id}
+      onClick={() => handleAppSelect(app)}
+      className={`${app.rawName}-dashboard-select-app`}
+    >
+      {app.formatName}
+    </button>
+  ));
 
   return (
     <>
-      <p>Please select an app!</p>
-      <div htmlFor="apps">{makeButtons}</div>
-
+      <div className="dashboard-select-app-div">
+        <p>Please select an app!</p>
+        {selectAppButtons}
+      </div>
       <BugsProvider selectedApp={selectedApp} allApps={apps}>
         <CommentsProvider>
-          <MainContainer app={selectedApp} />
+          <MainContainer />
         </CommentsProvider>
       </BugsProvider>
     </>

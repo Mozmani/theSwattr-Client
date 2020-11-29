@@ -20,9 +20,7 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
-    const res = await AuthService.postRegistration({
-      ...formFields,
-    });
+    const res = await AuthService.postRegistration(formFields);
 
     if (res.error) {
       console.error(res);
@@ -50,16 +48,32 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
     first_name: {
       displayText: 'Enter First Name',
       inputType: 'text',
+      labelClass: 'first-name-register-label',
+      inputClass: 'first-name-register-input',
     },
-    last_name: { displayText: 'Enter Last Name', inputType: 'text' },
-    email: { displayText: 'Enter E-mail', inputType: 'text' },
+    last_name: {
+      displayText: 'Enter Last Name',
+      inputType: 'text',
+      labelClass: 'last-name-register-label',
+      inputClass: 'last-name-register-input',
+    },
+    email: {
+      displayText: 'Enter E-mail',
+      inputType: 'text',
+      labelClass: 'email-register-label',
+      inputClass: 'email-register-input',
+    },
     user_name: {
       displayText: 'Choose a Username',
       inputType: 'text',
+      labelClass: 'user-name-register-label',
+      inputClass: 'user-name-register-input',
     },
     password: {
       displayText: 'Choose a Password',
       inputType: 'password',
+      labelClass: 'password-register-label',
+      inputClass: 'password-register-input',
     },
   };
 
@@ -67,7 +81,7 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
     <label
       key={field}
       htmlFor={field}
-      className={`${field}-register-label`}
+      className={formAttr[field].labelClass}
     >
       {formAttr[field].displayText}
       <input
@@ -76,7 +90,7 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
         type={formAttr[field].inputType}
         value={formFields[field]}
         onChange={handleOnChange(field)}
-        className={`${field}-register-input`}
+        className={formAttr[field].inputClass}
       />
     </label>
   ));

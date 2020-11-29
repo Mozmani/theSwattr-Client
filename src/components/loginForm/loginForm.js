@@ -19,9 +19,7 @@ const LoginForm = ({ onLoginSuccess }) => {
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
-    const res = await AuthService.postLogin({
-      ...formFields,
-    });
+    const res = await AuthService.postLogin(formFields);
 
     if (res.error) {
       console.error(res);
@@ -41,15 +39,25 @@ const LoginForm = ({ onLoginSuccess }) => {
   const fields = ['user_name', 'password'];
 
   const formAttr = {
-    user_name: { displayText: 'Username', inputType: 'text' },
-    password: { displayText: 'Password', inputType: 'password' },
+    user_name: {
+      displayText: 'Username',
+      inputType: 'text',
+      labelClass: 'user-name-login-label',
+      inputClass: 'user-name-login-input',
+    },
+    password: {
+      displayText: 'Password',
+      inputType: 'password',
+      labelClass: 'password-login-label',
+      inputClass: 'password-login-input',
+    },
   };
 
   const inputFields = fields.map((field) => (
     <label
       key={field}
       htmlFor={field}
-      className={`${field}-login-label`}
+      className={formAttr[field].labelClass}
     >
       {formAttr[field].displayText}
       <input
@@ -58,7 +66,7 @@ const LoginForm = ({ onLoginSuccess }) => {
         type={formAttr[field].inputType}
         value={formFields[field]}
         onChange={handleOnChange(field)}
-        className={`${field}-login-input`}
+        className={formAttr[field].inputClass}
       />
     </label>
   ));
