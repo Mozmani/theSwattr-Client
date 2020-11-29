@@ -1,11 +1,7 @@
 import React from 'react';
 
 import { CommentsService } from 'src/services';
-import {
-  BugsContext,
-  CommentsContext,
-  UserContext,
-} from 'src/context';
+import { CommentsContext, UserContext } from 'src/context';
 
 const CommentsPage = ({ match }) => {
   const [commentsLoaded, setLoaded] = React.useState(false);
@@ -13,13 +9,13 @@ const CommentsPage = ({ match }) => {
   const [newComment, setComment] = React.useState(null);
 
   const { userData } = React.useContext(UserContext);
-  const { bugs } = React.useContext(BugsContext);
   const { comments, getCommentsByBug } = React.useContext(
     CommentsContext,
   );
 
   if (commentsLoaded === false) {
-    let commentData = getCommentsByBug(match.params.bugId);
+    const commentData = getCommentsByBug(match.params.bugId);
+    console.log(commentData);
     setLoaded(true);
     if (comments !== null) {
       setHeader(comments.comments[0].bugName);

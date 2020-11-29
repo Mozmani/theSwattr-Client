@@ -1,17 +1,11 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 
-import { BugsContext, CommentsContext } from 'src/context';
 import { BugsContainer, CommentsPage, AddBugs } from 'src/components';
 
-const MainContainer = ({ app }) => {
-  const { bugs } = React.useContext(BugsContext);
-  const { comments, getCommentsByBug } = React.useContext(
-    CommentsContext,
-  );
-
+const MainContainer = ({ selectedApp }) => {
   const addBugsButton = () => {
-    if (app !== null) {
+    if (selectedApp !== null) {
       return (
         <button>
           <Link to="/dashboard/add">Add a bug!</Link>
@@ -32,7 +26,7 @@ const MainContainer = ({ app }) => {
           path="/dashboard"
           render={(routeProps) => (
             <BugsContainer
-              app={app}
+              selectedApp={selectedApp}
               addBugsButton={addBugsButton}
               {...routeProps}
             />
@@ -40,9 +34,7 @@ const MainContainer = ({ app }) => {
         />
         <Route
           path="/dashboard/add"
-          render={(routeProps) => (
-            <AddBugs app={app} {...routeProps} />
-          )}
+          render={(routeProps) => <AddBugs {...routeProps} />}
         />
         <Route
           path="/dashboard/bug/:bugId"

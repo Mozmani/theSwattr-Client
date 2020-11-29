@@ -4,12 +4,10 @@ import { Link } from 'react-router-dom';
 import './registrationForm.scss';
 
 import useFormState from 'src/hooks/useFormState';
-import { UserContext } from 'src/context';
 import { AuthService } from 'src/services';
 
 const RegistrationForm = ({ onRegistrationSuccess }) => {
   const [error, setError] = React.useState(null);
-  const Context = React.useContext(UserContext);
 
   const { formFields, handleOnChange } = useFormState({
     first_name: '',

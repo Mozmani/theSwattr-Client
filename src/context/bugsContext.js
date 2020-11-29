@@ -5,7 +5,7 @@ import { UserContext } from './userContext';
 
 const BugsContext = React.createContext(null);
 
-const BugsProvider = ({ app, children }) => {
+const BugsProvider = ({ selectedApp, allApps, children }) => {
   const [bugs, setBugs] = React.useState(null);
   const [userBugs, setUserBugs] = React.useState(null);
   const [error, setError] = React.useState(null);
@@ -16,10 +16,8 @@ const BugsProvider = ({ app, children }) => {
 
   React.useEffect(() => {
     const getBugs = async () => {
-      const bugData = await BugsService.getAllBugsDev(app);
+      const bugData = await BugsService.getAllBugsDev(selectedApp);
       const userBugsData = await BugsService.getAllBugsUser(userName);
-
-      setUserBugs(userBugsData);
 
       if (!bugData || 'error' in bugData) {
         console.error(bugData.error);
@@ -35,9 +33,10 @@ const BugsProvider = ({ app, children }) => {
     if (userName) {
       getBugs();
     }
-  }, [app, userName]);
+  }, [selectedApp, userName]);
 
   const value = {
+    allApps,
     bugs,
     userBugs,
     error,

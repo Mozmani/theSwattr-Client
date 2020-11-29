@@ -9,9 +9,14 @@ const CommentsProvider = ({ children }) => {
   const [error, setError] = React.useState(null);
 
   const getCommentsByBug = async (bugId) => {
-    const thisBug = await CommentsService.getAllCommentsBug(bugId);
+    const bugComments = await CommentsService.getAllBugComments(
+      bugId,
+    );
 
-    setComments(thisBug);
+    if (!bugComments || 'error' in bugComments) {
+      console.error(bugComments.error);
+      setError(bugComments.error);
+    } else setComments(bugComments);
   };
 
   const value = {

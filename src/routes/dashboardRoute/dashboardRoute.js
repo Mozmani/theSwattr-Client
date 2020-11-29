@@ -7,7 +7,7 @@ import { MainContainer } from 'src/components';
 const DashboardRoute = ({ history }) => {
   const [apps, setApps] = React.useState([]);
   const [selectedApp, setSelectedApp] = React.useState(null);
-  const [error, setError] = React.useState(null);
+  const [, setError] = React.useState(null);
 
   React.useEffect(() => {
     const getApps = async () => {
@@ -50,7 +50,7 @@ const DashboardRoute = ({ history }) => {
       <p>Please select an app!</p>
       <div htmlFor="apps">{makeButtons}</div>
 
-      <BugsProvider app={selectedApp}>
+      <BugsProvider selectedApp={selectedApp} allApps={apps}>
         <CommentsProvider>
           <MainContainer app={selectedApp} />
         </CommentsProvider>

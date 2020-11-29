@@ -1,38 +1,15 @@
 import React, { useState } from 'react';
 
 import { BugsService } from 'src/services';
-import {
-  BugsContext,
-  UserContext,
-  CommentsContext,
-} from 'src/context';
+import { BugsContext, UserContext } from 'src/context';
 
-const AddBugs = ({ app, history }) => {
-  const [apps, setApps] = useState(null);
+const AddBugs = ({ history }) => {
   const [bugName, setBugName] = useState(null);
   const [description, setDesc] = useState(null);
   const [theApp, setApp] = useState(null);
 
   const { userData } = React.useContext(UserContext);
-  const { bugs } = React.useContext(BugsContext);
-  const { comments, getCommentsByBug } = React.useContext(
-    CommentsContext,
-  );
-
-  //console.log(userData.userName) // user name
-  if (apps === null) {
-    const getApps = async () => {
-      let appData = await BugsService.getAllApps();
-      setApps(appData);
-      setApp(appData.apps[0].app_name);
-    };
-    getApps();
-  }
-
-  // React.useEffect(() => {
-  //   console.log('here')
-
-  // }, [theApp]);
+  const { allApps } = React.useContext(BugsContext);
 
   const postBug = async () => {
     let newBug = {
@@ -48,8 +25,8 @@ const AddBugs = ({ app, history }) => {
 
   console.log(theApp);
 
-  const chooseApp = apps
-    ? apps.apps.map((item) => {
+  const chooseApp = allApps
+    ? allApps.map((item) => {
         return (
           <option key={item.id} value={item.app_name}>
             {item.app_name}
