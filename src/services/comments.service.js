@@ -24,16 +24,13 @@ const CommentsService = {
 
     return await res.json();
   },
-  async postNewComment(newComment){
-    const res = await fetch(
-      `${config.API_ENDPOINT}/comments`,
-      {
-        method: 'POST',
-        headers: TokenService.getHeaders(),
-        body: JSON.stringify(newComment)
-      }
-    )
-  }
+  async postNewComment(newComment) {
+    const res = await fetch(`${config.API_ENDPOINT}/comments`, {
+      method: 'POST',
+      headers: TokenService.getHeaders(),
+      body: JSON.stringify(newComment),
+    });
+  },
 };
 
 export default CommentsService;

@@ -5,32 +5,63 @@
   color: #00a651;
   padding: 20px;
   width: 90%;
+
+  > * {
+    font-family: 'Andale Mono', sans-serif;
+
+    > * {
+      width: 90%;
+      margin: 10px 0;
+      font-size: 20px;
+      text-align: left;
+      padding: 10px;
+    }
+
+    .register-button {
+      border: none;
+      outline: none;
+      background-color: #00a651;
+    }
+
+    .link-to-login {
+      text-align: center;
+    }
+  }
 }
 
-.registration-first-name-label,
-.registration-last-name-label,
-.registration-email-label,
-.registration-username-label,
-.registration-password-label {
-  font-family: 'Andale Mono', sans-serif;
-}
+// .first_name-register-label,
+// .last_name-register-label,
+// .email-register-label,
+// .user_name-register-label,
+// .password-register-label {
+//   font-family: 'Andale Mono', sans-serif;
 
-.registration-first-name-input,
-.registration-last-name-input,
-.registration-email-input,
-.registration-username-input,
-.registration-password-input,
-.register-button {
-  width: 90%;
-  margin: 10px 0;
-  font-size: 20px;
-  text-align: left;
-  padding: 10px;
-  font-family: 'Andale Mono', sans-serif;
-}
+//   > * {
+//     width: 90%;
+//     margin: 10px 0;
+//     font-size: 20px;
+//     text-align: left;
+//     padding: 10px;
+//     font-family: 'Andale Mono', sans-serif;
+//   }
+// }
 
-.register-button {
-  border: none;
-  outline: none;
-  background-color: #00a651;
-}
+// .registration-first-name-input,
+// .registration-last-name-input,
+// .registration-email-input,
+// .registration-username-input,
+// .registration-password-input,
+// .register-button {
+//   width: 90%;
+//   margin: 10px 0;
+//   font-size: 20px;
+//   text-align: left;
+//   padding: 10px;
+//   font-family: 'Andale Mono', sans-serif;
+// }
+
+// .register-button {
+//   border: none;
+//   outline: none;
+//   background-color: #00a651;
+// }

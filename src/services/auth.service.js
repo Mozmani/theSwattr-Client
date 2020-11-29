@@ -2,14 +2,14 @@ import config from 'src/config';
 import TokenService from './token.service';
 
 const AuthService = {
-  async postUser(user) {
+  async postRegistration(registrationBody) {
     try {
       const res = await fetch(
         `${config.API_ENDPOINT}/users/register`,
         {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
-          body: JSON.stringify(user),
+          body: JSON.stringify(registrationBody),
         },
       );
 
@@ -24,12 +24,12 @@ const AuthService = {
     }
   },
 
-  async postLogin(body) {
+  async postLogin(loginBody) {
     try {
       const res = await fetch(`${config.API_ENDPOINT}/users/login`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(body),
+        body: JSON.stringify(loginBody),
       });
 
       return await (res.ok

@@ -10,7 +10,7 @@ const WrappedCommentsContainer = () => (
   </CommentsProvider>
 );
 
-describe('CommentsContainer component:', () => {
+describe.skip('CommentsContainer component:', () => {
   it('renders without crashing', () => {
     shallow(<WrappedCommentsContainer />);
   });

@@ -8,7 +8,7 @@ const useFormState = (initialValues) => {
     setFormFields((prev) => ({ ...prev, [key]: value }));
   };
 
-  return { formFields, setFormFields, handleOnChange };
+  return { formFields, handleOnChange };
 };
 
 export default useFormState;

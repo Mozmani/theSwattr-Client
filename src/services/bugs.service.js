@@ -46,15 +46,13 @@ const BugsService = {
 
     return await res.json();
   },
-  async postNewBug(newBug){
-    const res = await fetch(
-      `${config.API_ENDPOINT}/bugs` , {
-        method: 'POST',
-        headers: TokenService.getHeaders(),
-        body: JSON.stringify(newBug)
-      }
-    )
-  }
+  async postNewBug(newBug) {
+    const res = await fetch(`${config.API_ENDPOINT}/bugs`, {
+      method: 'POST',
+      headers: TokenService.getHeaders(),
+      body: JSON.stringify(newBug),
+    });
+  },
 };
 
 export default BugsService;

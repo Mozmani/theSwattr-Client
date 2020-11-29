@@ -5,26 +5,48 @@
   color: #00a651;
   padding: 20px;
   width: 90%;
+
+  > * {
+    font-family: 'Andale Mono', sans-serif;
+
+    > * {
+      width: 90%;
+      margin: 10px 0;
+      font-size: 20px;
+      text-align: left;
+      padding: 10px;
+    }
+
+    .submit-button {
+      border: none;
+      outline: none;
+      background-color: #00a651;
+    }
+
+    .link-to-register {
+      text-align: center;
+    }
+  }
 }
 
-.user_name-login-label,
-.password-login-label {
-  font-family: 'Andale Mono', sans-serif;
-}
+// .user_name-login-label,
+// .password-login-label {
+//   font-family: 'Andale Mono', sans-serif;
+// }
 
-.user_name-login-input,
-.password-login-input,
-.submit-button {
-  width: 90%;
-  margin: 10px 0;
-  font-size: 20px;
-  text-align: left;
-  padding: 10px;
-  font-family: 'Andale Mono', sans-serif;
-}
+// .user_name-login-input,
+// .password-login-input,
+// .submit-button {
+//   width: 90%;
+//   margin: 10px 0;
+//   font-size: 20px;
+//   text-align: left;
+//   padding: 10px;
+//   font-family: 'Andale Mono', sans-serif;
+// }
 
-.submit-button {
-  border: none;
-  outline: none;
-  background-color: #00a651;
-}
+// .submit-button {
+//   border: none;
+//   outline: none;
+//   background-color: #00a651;
+// }

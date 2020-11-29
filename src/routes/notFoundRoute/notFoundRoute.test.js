@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import NotFoundRoute from './notFoundRoute';
 
-describe('NotFoundRoute component:', () => {
+describe.skip('NotFoundRoute component:', () => {
   it('renders without crashing', () => {
     shallow(<NotFoundRoute />);
   });

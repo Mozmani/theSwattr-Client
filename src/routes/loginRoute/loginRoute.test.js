@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import LoginRoute from './loginRoute';
 
-describe('LoginRoute component:', () => {
+describe.skip('LoginRoute component:', () => {
   it('renders without crashing', () => {
     shallow(<LoginRoute />);
   });

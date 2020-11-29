@@ -1,26 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import './loginForm.scss';
 
 import useFormState from 'src/hooks/useFormState';
 import { UserContext } from 'src/context';
 import { AuthService, TokenService } from 'src/services';
-import './loginForm.scss';
 
 const LoginForm = ({ onLoginSuccess }) => {
   const [error, setError] = React.useState(null);
   const Context = React.useContext(UserContext);
 
-  const { formFields, setFormFields, handleOnChange } = useFormState({
+  const { formFields, handleOnChange } = useFormState({
     user_name: '',
     password: '',
   });
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    const { user_name, password } = formFields;
 
     const res = await AuthService.postLogin({
-      user_name,
-      password,
+      ...formFields,
     });
 
     if (res.error) {
@@ -28,11 +28,6 @@ const LoginForm = ({ onLoginSuccess }) => {
       setError(res.error);
       return;
     }
-
-    setFormFields({
-      user_name: '',
-      password: '',
-    });
 
     TokenService.saveAuthToken(res.authToken);
     Context.processLogin();
@@ -45,14 +40,9 @@ const LoginForm = ({ onLoginSuccess }) => {
 
   const fields = ['user_name', 'password'];
 
-  const fieldDisplayText = {
-    user_name: 'Username',
-    password: 'Password',
-  };
-
-  const inputType = {
-    user_name: 'text',
-    password: 'password',
+  const formAttr = {
+    user_name: { displayText: 'Username', inputType: 'text' },
+    password: { displayText: 'Password', inputType: 'password' },
   };
 
   const inputFields = fields.map((field) => (
@@ -61,11 +51,11 @@ const LoginForm = ({ onLoginSuccess }) => {
       htmlFor={field}
       className={`${field}-login-label`}
     >
-      {fieldDisplayText[field]}
+      {formAttr[field].displayText}
       <input
         required
         id={field}
-        type={inputType[field]}
+        type={formAttr[field].inputType}
         value={formFields[field]}
         onChange={handleOnChange(field)}
         className={`${field}-login-input`}
@@ -77,10 +67,15 @@ const LoginForm = ({ onLoginSuccess }) => {
     <>
       {renderError}
       <form className="LoginForm" onSubmit={handleSubmit}>
-        <div>{inputFields}</div>
-        <button type="submit" className="submit-button">
-          LOGIN
-        </button>
+        {inputFields}
+        <footer>
+          <button type="submit" className="submit-button">
+            LOGIN
+          </button>
+          <Link to="/register" className="link-to-register">
+            Don&apos;t have an account?
+          </Link>
+        </footer>
       </form>
     </>
   );

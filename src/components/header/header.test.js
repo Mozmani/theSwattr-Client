@@ -10,7 +10,7 @@ const WrappedHeader = () => (
   </UserProvider>
 );
 
-describe('Header component:', () => {
+describe.skip('Header component:', () => {
   it('renders without crashing', () => {
     shallow(<WrappedHeader />);
   });

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import RegistrationForm from './registrationForm';
 
-describe('RegistrationForm component:', () => {
+describe.skip('RegistrationForm component:', () => {
   it('renders without crashing', () => {
     shallow(<RegistrationForm />);
   });

@@ -3,127 +3,98 @@ import { Link } from 'react-router-dom';
 
 import './registrationForm.scss';
 
-import { AuthService } from 'src/services';
+import useFormState from 'src/hooks/useFormState';
 import { UserContext } from 'src/context';
+import { AuthService } from 'src/services';
 
 const RegistrationForm = ({ onRegistrationSuccess }) => {
   const [error, setError] = React.useState(null);
-  const [user_name, setUser] = React.useState(null);
-  const [pword, setPass] = React.useState(null);
+  const Context = React.useContext(UserContext);
 
-  const context = React.useContext(UserContext);
+  const { formFields, handleOnChange } = useFormState({
+    first_name: '',
+    last_name: '',
+    user_name: '',
+    password: '',
+    email: '',
+  });
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    const {
-      firstName,
-      lastName,
-      email,
-      username,
-      password,
-    } = ev.target;
 
-    const response = await AuthService.postUser({
-      first_name: firstName.value,
-      last_name: lastName.value,
-      email: email.value,
-      user_name: username.value,
-      password: password.value,
+    const res = await AuthService.postRegistration({
+      ...formFields,
     });
 
-    if (!response.ok) {
-      setError(response.error);
+    if (res.error) {
+      console.error(res);
+      setError(res.error);
+      return;
     }
 
-    onRegistrationSuccess(user_name, pword);
+    const { user_name, password } = formFields;
+    onRegistrationSuccess(user_name, password);
   };
 
   const renderError = !error ? null : (
     <div role="alert">{`Oh no! ${error}`}</div>
   );
 
+  const fields = [
+    'first_name',
+    'last_name',
+    'email',
+    'user_name',
+    'password',
+  ];
+
+  const formAttr = {
+    first_name: {
+      displayText: 'Enter First Name',
+      inputType: 'text',
+    },
+    last_name: { displayText: 'Enter Last Name', inputType: 'text' },
+    email: { displayText: 'Enter E-mail', inputType: 'text' },
+    user_name: {
+      displayText: 'Choose a Username',
+      inputType: 'text',
+    },
+    password: {
+      displayText: 'Choose a Password',
+      inputType: 'password',
+    },
+  };
+
+  const inputFields = fields.map((field) => (
+    <label
+      key={field}
+      htmlFor={field}
+      className={`${field}-register-label`}
+    >
+      {formAttr[field].displayText}
+      <input
+        required
+        id={field}
+        type={formAttr[field].inputType}
+        value={formFields[field]}
+        onChange={handleOnChange(field)}
+        className={`${field}-register-input`}
+      />
+    </label>
+  ));
+
   return (
     <>
       {renderError}
       <form className="RegisterForm" onSubmit={handleSubmit}>
-        <div>
-          <label
-            className="registration-first-name-label"
-            htmlFor="registration-first-name-input"
-          >
-            Enter First Name
-          </label>
-          <input
-            id="registration-first-name-input"
-            className="registration-first-name-input"
-            name="firstName"
-            required
-          />
-        </div>
-        <div>
-          <label
-            className="registration-last-name-label"
-            htmlFor="registration-last-name-input"
-          >
-            Enter Last Name
-          </label>
-          <input
-            id="registration-last-name-input"
-            className="registration-last-name-input"
-            name="lastName"
-            required
-          />
-        </div>
-        <div>
-          <label
-            className="registration-email-label"
-            htmlFor="registration-email-input"
-          >
-            Enter E-mail
-          </label>
-          <input
-            id="registration-email-input"
-            className="registration-email-input"
-            name="email"
-            required
-          />
-        </div>
-        <div>
-          <label
-            className="registration-username-label"
-            htmlFor="registration-username-input"
-          >
-            Choose a Username
-          </label>
-          <input
-            id="registration-username-input"
-            className="registration-username-input"
-            name="username"
-            onChange={(e) => setUser(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label
-            className="registration-password-label"
-            htmlFor="registration-password-input"
-          >
-            Choose a Password
-          </label>
-          <input
-            id="registration-password-input"
-            className="registration-password-input"
-            name="password"
-            type="password"
-            onChange={(e) => setPass(e.target.value)}
-            required
-          />
-        </div>
+        {inputFields}
         <footer>
-          <button className="register-button" type="submit">
+          <button type="submit" className="register-button">
             Sign up
           </button>{' '}
-          <Link to="/login">Already have an account?</Link>
+          <Link to="/login" className="link-to-login">
+            Already have an account?
+          </Link>
         </footer>
       </form>
     </>
