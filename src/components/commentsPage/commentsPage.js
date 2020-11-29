@@ -65,10 +65,10 @@ const CommentsPage = ({ match }) => {
       : null;
 
   const commentField = (
-    <label htmlFor="new-comment" className="new-comment-label">
+    <label htmlFor="newComment" className="new-comment-label">
       <textarea
         required
-        id="new-comment"
+        id="newComment"
         value={formFields.comment}
         onChange={handleOnChange('comment')}
         className="comment-input"
@@ -77,7 +77,7 @@ const CommentsPage = ({ match }) => {
   );
 
   return (
-    <main className="main-container">
+    <div className="comments-container">
       <h3>{header}</h3>
       <ul className="comments">{renderComments}</ul>
       <form onSubmit={handleSubmit} className="new-comment-form">
@@ -88,7 +88,7 @@ const CommentsPage = ({ match }) => {
           </button>
         </footer>
       </form>
-    </main>
+    </div>
   );
 };
 export default CommentsPage;

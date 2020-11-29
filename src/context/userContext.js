@@ -71,10 +71,18 @@ const UserProvider = ({ children }) => {
     }
   }, [processLogin]);
 
+  const toggleDev = () => {
+    setUserData((prev) => ({
+      ...prev,
+      dev: !prev.dev,
+    }));
+  };
+
   const value = {
     userData,
     processLogin,
     processLogout,
+    toggleDev,
   };
 
   return (

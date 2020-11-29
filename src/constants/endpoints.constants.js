@@ -1,5 +1,5 @@
 export const ENDPOINTS = {
-  FILTERS: '/filters',
+  USERS: '/users',
   BUGS: '/bugs',
   COMMENTS: '/comments',
 };

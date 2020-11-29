@@ -40,6 +40,9 @@ const DashboardRoute = ({ history }) => {
   return (
     <>
       <div className="dashboard-select-app-div">
+        <button onClick={() => history.push('/dashboard/dev')}>
+          Toggle Dev
+        </button>
         <p>Please select an app!</p>
         {selectAppButtons}
       </div>

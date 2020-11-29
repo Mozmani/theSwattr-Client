@@ -1,7 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { BugsContainer, CommentsPage, AddBugs } from 'src/components';
+import {
+  BugsContainer,
+  ToggleDev,
+  CommentsPage,
+  AddBugs,
+} from 'src/components';
 
 const MainContainer = () => {
   return (
@@ -11,6 +16,10 @@ const MainContainer = () => {
           exact
           path="/dashboard"
           render={(routeProps) => <BugsContainer {...routeProps} />}
+        />
+        <Route
+          path="/dashboard/dev"
+          render={(routeProps) => <ToggleDev {...routeProps} />}
         />
         <Route
           path="/dashboard/add"
