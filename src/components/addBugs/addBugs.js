@@ -20,7 +20,6 @@ const AddBugs = ({ history }) => {
     ev.preventDefault();
 
     formFields.user_name = userData.userName;
-
     const res = await BugsService.postNewBug(formFields);
 
     if (res.error || res.message) {
@@ -44,7 +43,7 @@ const AddBugs = ({ history }) => {
     },
     description: {
       displayText: 'Description',
-      inputType: 'text',
+      inputType: '',
       labelClass: 'description-add-bug-label',
       inputClass: 'description-add-bug-input',
     },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import { BugsContainer, CommentsPage, AddBugs } from 'src/components';
 
@@ -17,7 +17,7 @@ const MainContainer = () => {
           render={(routeProps) => <AddBugs {...routeProps} />}
         />
         <Route
-          path="/dashboard/bug/:bugId"
+          path="/dashboard/:bugId"
           render={(routeProps) => <CommentsPage {...routeProps} />}
         />
       </Switch>

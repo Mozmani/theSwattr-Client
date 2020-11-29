@@ -13,6 +13,7 @@ const CommentsService = {
 
     return await res.json();
   },
+
   async getAllBugComments(bugId) {
     const res = await fetch(
       `${config.API_ENDPOINT}/comments/bug/${bugId}`,
@@ -24,6 +25,7 @@ const CommentsService = {
 
     return await res.json();
   },
+
   async postNewComment(newComment) {
     const res = await fetch(`${config.API_ENDPOINT}/comments`, {
       method: 'POST',

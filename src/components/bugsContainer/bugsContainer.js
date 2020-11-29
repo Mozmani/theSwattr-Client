@@ -5,7 +5,6 @@ import { BugsContext } from 'src/context';
 
 const BugsContainer = ({ history }) => {
   const { bugs, selectedApp } = React.useContext(BugsContext);
-  console.log({ bugs, selectedApp });
 
   const renderBugs = bugs
     ? Object.keys(bugs).map((severity) =>
@@ -14,7 +13,7 @@ const BugsContainer = ({ history }) => {
               <li
                 key={bug.bugName}
                 onClick={() => {
-                  history.push(`dashboard/bug/${bug.id}`);
+                  history.push(`dashboard/${bug.id}`);
                 }}
               >
                 <p>{bug.bugName}</p>

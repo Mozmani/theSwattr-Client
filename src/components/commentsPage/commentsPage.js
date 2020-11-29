@@ -2,76 +2,92 @@ import React from 'react';
 
 import { CommentsService } from 'src/services';
 import { CommentsContext, UserContext } from 'src/context';
+import useFormState from 'src/hooks/useFormState';
 
 const CommentsPage = ({ match }) => {
-  const [commentsLoaded, setLoaded] = React.useState(false);
-  const [header, setHeader] = React.useState(false);
-  const [newComment, setComment] = React.useState(null);
+  const [header, setHeader] = React.useState('');
+  const [, setError] = React.useState(null);
 
   const { userData } = React.useContext(UserContext);
-  const { comments, getCommentsByBug } = React.useContext(
-    CommentsContext,
-  );
+  const {
+    bugComments,
+    getCommentsByBug,
+    addNewComment,
+  } = React.useContext(CommentsContext);
 
-  if (commentsLoaded === false) {
-    const commentData = getCommentsByBug(match.params.bugId);
-    console.log(commentData);
-    setLoaded(true);
-    if (comments !== null) {
-      setHeader(comments.comments[0].bugName);
+  const { formFields, handleOnChange } = useFormState({
+    bug_id: match.params.bugId,
+    comment: '',
+  });
+
+  const handleSubmit = async (ev) => {
+    ev.preventDefault();
+
+    formFields.user_name = userData.userName;
+    const res = await CommentsService.postNewComment(formFields);
+
+    if (res.error) {
+      console.error(res);
+      setError(res.error);
+      return;
     }
-  }
 
-  //console.log(comments)
-  const mapComments =
-    comments && !comments.comments[0].message
-      ? comments.comments.map((item) => {
+    await addNewComment(res.newComment);
+  };
+
+  React.useEffect(() => {
+    const fetchComments = async () => {
+      await getCommentsByBug(match.params.bugId);
+    };
+
+    if (bugComments && !header) {
+      if (bugComments[0].message) {
+        setError(bugComments[0].message);
+      } else setHeader(bugComments[0].bugName);
+    }
+
+    if (!bugComments) {
+      fetchComments();
+    }
+  }, [getCommentsByBug, match.params.bugId, header, bugComments]);
+
+  const renderComments =
+    bugComments && !bugComments[0].message
+      ? bugComments.map((comment) => {
           return (
-            <li key={item.id}>
-              <h4>{`Author: ${item.userName}`}</h4>
-              <p>{item.comment}</p>
-              <p>{item.createdDate}</p>
+            <li key={comment.id}>
+              <h4>{`Author: ${comment.userName}`}</h4>
+              <p>{comment.comment}</p>
+              <p>{comment.createdDate}</p>
             </li>
           );
         })
       : null;
 
-  const addComment = async (ev) => {
-    ev.preventDefault();
-    let newCom = {
-      user_name: userData.userName,
-      bug_id: match.params.bugId,
-      comment: newComment,
-    };
-    await CommentsService.postNewComment(newCom);
-    setLoaded(false);
-  };
-  //console.log(comments)
+  const commentField = (
+    <label htmlFor="new-comment" className="new-comment-label">
+      <textarea
+        required
+        id="new-comment"
+        value={formFields.comment}
+        onChange={handleOnChange('comment')}
+        className="comment-input"
+      />
+    </label>
+  );
 
-  const addform = () => {
-    return (
-      <form
-        onSubmit={(ev) => {
-          addComment(ev);
-        }}
-      >
-        <label htmlFor="newComment">Add a comment!</label>
-        <textarea
-          id="newComment"
-          onChange={(ev) => {
-            setComment(ev.currentTarget.value);
-          }}
-        ></textarea>
-        <button>Submit</button>
-      </form>
-    );
-  };
-  //console.log(userData.userName)
   return (
     <main className="main-container">
       <h3>{header}</h3>
-      <ul className="comments">{mapComments}</ul>
-      {addform()}
+      <ul className="comments">{renderComments}</ul>
+      <form onSubmit={handleSubmit} className="new-comment-form">
+        {commentField}
+        <footer>
+          <button type="submit" className="new-comment-submit">
+            Submit
+          </button>
+        </footer>
+      </form>
     </main>
   );
 };
