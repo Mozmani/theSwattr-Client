@@ -3,6 +3,7 @@ import React from 'react';
 import { BugsService } from 'src/services';
 import { BugsContext, UserContext } from 'src/context';
 import useFormState from 'src/hooks/useFormState';
+import './addBugs.scss';
 
 const AddBugs = ({ history }) => {
   const [, setError] = React.useState(null);
@@ -76,8 +77,8 @@ const AddBugs = ({ history }) => {
         {field === 'description' ? (
           <textarea {...inputAttrs} />
         ) : (
-          <input {...inputAttrs} />
-        )}
+            <input {...inputAttrs} />
+          )}
       </label>
     );
   });
@@ -92,11 +93,16 @@ const AddBugs = ({ history }) => {
 
   return (
     <div className="add-bug-container">
-      <h3>Add your bug here!</h3>
+      <h3 className="welcome">Add your bug here!</h3>
       <form className="add-bug-form" onSubmit={handleSubmit}>
-        <select onChange={handleOnChange('app')}>{appOptions}</select>
+        <select
+          className="app-selector"
+          onChange={handleOnChange('app')}
+        >
+          {appOptions}
+        </select>
         {inputFields}
-        <footer>
+        <footer className="form-footer">
           <button type="submit" className="add-bug-submit">
             Submit
           </button>

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { UserService } from 'src/services';
 import { UserContext } from 'src/context';
+import './toggleDev.scss';
 
 const ToggleDev = () => {
   const [error, setError] = React.useState('');
@@ -23,6 +24,7 @@ const ToggleDev = () => {
 
   const devSecretField = (
     <label htmlFor="devSecret" className="dev-secret-label">
+      Enter Dev Password
       <input
         type="password"
         id="devSecret"
@@ -33,11 +35,13 @@ const ToggleDev = () => {
 
   return (
     <div className="dev-secret-container">
-      <p>Current dev status: {userData.dev ? 'True' : 'False'}</p>
+      <h3 className="welcome">
+        Current dev status: {userData.dev ? 'True' : 'False'}
+      </h3>
       {error}
       <form onSubmit={handleSubmit} className="dev-secret-form">
         {devSecretField}
-        <footer>
+        <footer className="form-footer">
           <button type="submit" className="dev-secret-submit">
             Submit
           </button>

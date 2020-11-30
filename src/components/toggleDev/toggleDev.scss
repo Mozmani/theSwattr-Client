@@ -1,0 +1,32 @@
+@import 'src/styles/variables/colors.scss';
+
+.dev-secret-form {
+  background-color: $dark;
+  margin: 0 15px;
+  border-radius: 20px;
+  color: $accent;
+  padding: 20px;
+  width: 90%;
+
+  > * {
+    font-family: 'Andale Mono', sans-serif;
+
+    > * {
+      width: 90%;
+      margin: 10px 0;
+      font-size: 20px;
+      text-align: left;
+      padding: 10px;
+    }
+
+    .dev-secret-submit {
+      border: none;
+      outline: none;
+      background-color: $accent;
+    }
+  }
+
+  > .form-footer {
+    width: 100%;
+  }
+}

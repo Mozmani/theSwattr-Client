@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import BugsService from '../../services/bugs.service';
 import { BugsContext, UserContext } from 'src/context';
+import './bugsContainer.scss';
 
 const BugsContainer = ({ history }) => {
   const { bugs, selectedApp, userBugs } = React.useContext(
@@ -14,22 +15,26 @@ const BugsContainer = ({ history }) => {
   if (userData.dev === true) {
     renderBugs = bugs
       ? Object.keys(bugs).map((severity) =>
-          bugs[severity].length
-            ? bugs[severity].map((bug) => (
-                <li
-                  key={bug.bugName}
-                  onClick={() => {
-                    history.push(`dashboard/${bug.id}`);
-                  }}
-                >
-                  <p>{bug.bugName}</p>
-                  <p>{`Severity: ${bug.severity}`}</p>
-                  <p>{bug.description}</p>
-                  <p>{bug.createdDate}</p>
-                </li>
-              ))
-            : null,
-        )
+        bugs[severity].length
+          ? bugs[severity].map((bug) => (
+            <li
+              className="bug-container"
+              key={bug.bugName}
+              onClick={() => {
+                history.push(`dashboard/${bug.id}`);
+              }}
+            >
+              <h3 className="bug-name">{bug.bugName}</h3>
+              <hr className="bug-underline" />
+              <p className="bug-description">{bug.description}</p>
+              <div className="bug-info">
+                <p className="bug-time">{bug.createdDate}</p>
+                <p className="bug-severity">{`Severity: ${bug.severity}`}</p>
+              </div>
+            </li>
+          ))
+          : null,
+      )
       : null;
   } else {
     if (userBugs === null) {
@@ -41,23 +46,27 @@ const BugsContainer = ({ history }) => {
     } else {
       renderBugs = userBugs
         ? userBugs.userBugs.map((bug) => {
-            return (
-              <li
-                key={bug.id}
-                onClick={() => {
-                  history.push(`dashboard/${bug.id}`);
-                }}
-              >
-                <p>{bug.bugName}</p>
-                <p>{bug.description}</p>
-                <p>{bug.createdDate}</p>
-              </li>
-            );
-          })
+          return (
+            <li
+              className="bug-container"
+              key={bug.id}
+              onClick={() => {
+                history.push(`dashboard/${bug.id}`);
+              }}
+            >
+              <h3 className="bug-name">{bug.bugName}</h3>
+              <hr className="bug-underline" />
+              <p className="bug-description">{bug.description}</p>
+              <div className="bug-info">
+                <p className="bug-time">{bug.createdDate}</p>
+              </div>
+            </li>
+          );
+        })
         : null;
     }
     userView = (
-      <button>
+      <button className="add-button">
         <Link to="/dashboard/add">Add a bug!</Link>
       </button>
     );
@@ -72,7 +81,7 @@ const BugsContainer = ({ history }) => {
       {showHeader}
       <ul className="bug-list">{renderBugs}</ul>
       {selectedApp !== null && (
-        <button>
+        <button className="add-button">
           <Link to="/dashboard/add">Add a bug!</Link>
         </button>
       )}
