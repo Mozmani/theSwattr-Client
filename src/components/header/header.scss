@@ -1,5 +1,7 @@
+@import 'src/styles/variables/colors.scss';
+
 .dash-header {
-  background-color: #141414;
+  background-color: $dark;
   width: 100%;
   font-family: 'Andale Mono', sans-serif;
 }
@@ -11,7 +13,7 @@
 
 .nav-links {
   flex-direction: row;
-  color: #00a651;
+  color: $accent;
   margin-bottom: 30px;
   font-size: 20px;
   font-family: 'Andale Mono', sans-serif;

@@ -1,12 +1,14 @@
+@import 'src/styles/variables/colors.scss';
+
 #root {
   width: 100%;
 }
 
 body {
-  background-color: #262626;
+  background-color: $bg;
   font-family: 'Andale Mono', sans-serif;
 }
 
-li {
-  border: 2px solid whitesmoke;
+.app-container {
+  width: 100%;
 }

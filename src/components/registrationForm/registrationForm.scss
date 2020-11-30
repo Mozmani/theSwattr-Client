@@ -1,8 +1,10 @@
+@import 'src/styles/variables/colors.scss';
+
 .RegisterForm {
-  background-color: #141414;
+  background-color: $dark;
   margin: 20px 15px;
   border-radius: 20px;
-  color: #00a651;
+  color: $accent;
   padding: 20px;
   width: 90%;
 
@@ -20,7 +22,7 @@
     .register-button {
       border: none;
       outline: none;
-      background-color: #00a651;
+      background-color: $accent;
     }
 
     .link-to-login {

@@ -18,14 +18,6 @@
   font-family: $main-font;
 }
 
-.headline {
-  font-family: $headline-font;
-}
-
-code {
-  font-family: $code-font;
-}
-
 body {
   background-color: $white;
   @include fluid-type(font-size, 320px, 1400px, 18px, 28px);
