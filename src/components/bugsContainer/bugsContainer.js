@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import BugsService from '../../services/bugs.service';
+
 import { BugsContext, UserContext } from 'src/context';
 
 const BugsContainer = ({ history }) => {
   const { bugs, selectedApp, userBugs } = React.useContext(
     BugsContext,
   );
+
   let renderBugs;
   let userView;
+
+  console.log({ userBugs });
 
   const { userData } = React.useContext(UserContext);
   if (userData.dev === true) {
@@ -17,7 +20,7 @@ const BugsContainer = ({ history }) => {
           bugs[severity].length
             ? bugs[severity].map((bug) => (
                 <li
-                  key={bug.bugName}
+                  key={bug.id}
                   onClick={() => {
                     history.push(`dashboard/${bug.id}`);
                   }}
@@ -40,7 +43,7 @@ const BugsContainer = ({ history }) => {
       );
     } else {
       renderBugs = userBugs
-        ? userBugs.userBugs.map((bug) => {
+        ? userBugs.map((bug) => {
             return (
               <li
                 key={bug.id}

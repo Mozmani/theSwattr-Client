@@ -10,11 +10,8 @@ const BugsProvider = ({ allApps, selectedApp, children }) => {
   const [userBugs, setUserBugs] = React.useState(null);
   const [error, setError] = React.useState(null);
 
-  const {
-    userData: { userName },
-  } = React.useContext(UserContext);
-
   const { userData } = React.useContext(UserContext);
+
   React.useEffect(() => {
     const getBugs = async () => {
       if (userData.dev) {
@@ -28,7 +25,7 @@ const BugsProvider = ({ allApps, selectedApp, children }) => {
         } else setBugs(bugsData);
       } else {
         const userBugsData = await BugsService.getAllBugsUser(
-          userName,
+          userData.userName,
         );
 
         if (!userBugsData || 'error' in userBugsData) {
@@ -38,22 +35,20 @@ const BugsProvider = ({ allApps, selectedApp, children }) => {
       }
     };
 
-    if (selectedApp) {
+    if (selectedApp || (!userData.dev && userData.userName)) {
       getBugs();
     }
-  }, [userData.dev, selectedApp, userName]);
+  }, [userData.dev, selectedApp, userData.userName]);
 
   const addNewBug = (bugInfo) => {
     setBugs((prev) => ({
-      ...prev,
-      bugsPending: [...prev.bugsPending, bugInfo],
+      ...(prev || {}),
+      bugsPending: [...(prev.bugsPending || []), bugInfo],
     }));
   };
 
   const addNewUserBug = (bugInfo) => {
-    setUserBugs((prev) => ({
-      userBugs: [...prev.userBugs, bugInfo],
-    }));
+    setUserBugs((prev) => [...(prev || []), bugInfo]);
   };
 
   const value = {

@@ -4,7 +4,7 @@ import { CommentsService } from 'src/services';
 import { CommentsContext, UserContext } from 'src/context';
 import useFormState from 'src/hooks/useFormState';
 
-const CommentsPage = ({ match }) => {
+const CommentsPage = ({ match, history }) => {
   const [header, setHeader] = React.useState('');
   const [, setError] = React.useState(null);
 
@@ -87,9 +87,15 @@ const CommentsPage = ({ match }) => {
       />
     </label>
   );
-  console.log(bugComments);
+
   return (
     <div className="comments-container">
+      <button
+        onClick={() => history.goBack()}
+        className="go-back-button"
+      >
+        Back to Bugs
+      </button>
       <h3>{header}</h3>
       <ul className="comments">{renderComments}</ul>
       <form onSubmit={handleSubmit} className="new-comment-form">

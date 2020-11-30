@@ -3,7 +3,7 @@ import React from 'react';
 import { UserService } from 'src/services';
 import { UserContext } from 'src/context';
 
-const ToggleDev = () => {
+const ToggleDev = ({ history }) => {
   const [error, setError] = React.useState('');
 
   const { userData, toggleDev } = React.useContext(UserContext);
@@ -33,6 +33,12 @@ const ToggleDev = () => {
 
   return (
     <div className="dev-secret-container">
+      <button
+        onClick={() => history.goBack()}
+        className="go-back-button"
+      >
+        Go back
+      </button>
       <p>Current dev status: {userData.dev ? 'True' : 'False'}</p>
       {error}
       <form onSubmit={handleSubmit} className="dev-secret-form">

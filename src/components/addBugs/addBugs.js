@@ -23,7 +23,7 @@ const AddBugs = ({ history }) => {
 
     formFields.user_name = userData.userName;
     const res = await BugsService.postNewBug(formFields);
-
+    console.log({ formFields });
     if (res.error || res.message) {
       console.error(res);
       setError(res.error || res.message);
@@ -36,7 +36,7 @@ const AddBugs = ({ history }) => {
       await addNewUserBug(res.newBug);
     }
 
-    history.push('/dashboard');
+    history.goBack();
   };
 
   const fields = ['bug_name', 'description'];
@@ -92,6 +92,12 @@ const AddBugs = ({ history }) => {
 
   return (
     <div className="add-bug-container">
+      <button
+        onClick={() => history.goBack()}
+        className="go-back-button"
+      >
+        Back to Bugs
+      </button>
       <h3>Add your bug here!</h3>
       <form className="add-bug-form" onSubmit={handleSubmit}>
         <select onChange={handleOnChange('app')}>{appOptions}</select>
