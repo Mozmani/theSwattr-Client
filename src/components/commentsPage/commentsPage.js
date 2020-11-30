@@ -1,23 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import { CommentsService } from 'src/services';
-import { CommentsContext, UserContext } from 'src/context';
-import useFormState from 'src/hooks/useFormState';
+import { CommentsService } from "src/services";
+import { CommentsContext, UserContext } from "src/context";
+import useFormState from "src/hooks/useFormState";
 
-const CommentsPage = ({ match }) => {
-  const [header, setHeader] = React.useState('');
+const CommentsPage = ({ match, history }) => {
+  const [header, setHeader] = React.useState("");
   const [, setError] = React.useState(null);
 
   const { userData } = React.useContext(UserContext);
-  const {
-    bugComments,
-    getCommentsByBug,
-    addNewComment,
-  } = React.useContext(CommentsContext);
+  const { bugComments, getCommentsByBug, addNewComment } = React.useContext(
+    CommentsContext
+  );
 
   const { formFields, handleOnChange } = useFormState({
     bug_id: match.params.bugId,
-    comment: '',
+    comment: "",
   });
 
   const [commentsLoaded, setLoaded] = React.useState(false);
@@ -44,7 +42,23 @@ const CommentsPage = ({ match }) => {
 
     await addNewComment(res.newComment);
     setLoaded(false);
-    formFields.comment = '';
+    formFields.comment = "";
+  };
+
+  const openEdit = () => {
+    if (userData.dev === true) {
+      return (
+        <div>
+          <button
+            onClick={() => {
+              history.push(`/dashboard/edit/${match.params.bugId}`);
+            }}
+          >
+            Edit bug
+          </button>
+        </div>
+      );
+    }
   };
 
   // React.useEffect(() => {
@@ -82,7 +96,7 @@ const CommentsPage = ({ match }) => {
         required
         id="newComment"
         value={formFields.comment}
-        onChange={handleOnChange('comment')}
+        onChange={handleOnChange("comment")}
         className="comment-input"
       />
     </label>
@@ -91,6 +105,7 @@ const CommentsPage = ({ match }) => {
   return (
     <div className="comments-container">
       <h3>{header}</h3>
+      {openEdit()}
       <ul className="comments">{renderComments}</ul>
       <form onSubmit={handleSubmit} className="new-comment-form">
         {commentField}

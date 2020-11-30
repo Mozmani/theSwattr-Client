@@ -13,7 +13,7 @@ const DashboardRoute = ({ history }) => {
   const [selectedApp, setSelectedApp] = React.useState(null);
   const [, setError] = React.useState(null);
   const { userData } = React.useContext(UserContext);
-  console.log('in dash', userData.dev);
+  //console.log('in dash', userData.dev);
 
   React.useEffect(() => {
     const getApps = async () => {

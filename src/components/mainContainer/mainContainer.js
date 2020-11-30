@@ -6,6 +6,7 @@ import {
   ToggleDev,
   CommentsPage,
   AddBugs,
+  EditBugs
 } from 'src/components';
 
 const MainContainer = () => {
@@ -26,9 +27,16 @@ const MainContainer = () => {
           render={(routeProps) => <AddBugs {...routeProps} />}
         />
         <Route
+          exact
           path="/dashboard/:bugId"
           render={(routeProps) => <CommentsPage {...routeProps} />}
         />
+        <Route
+          exact
+          path="/dashboard/edit/:bugId"
+          render={(routeProps) => <EditBugs {...routeProps} />}
+        />
+
       </Switch>
     </>
   );

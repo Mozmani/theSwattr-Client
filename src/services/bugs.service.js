@@ -34,6 +34,22 @@ const BugsService = {
 
     return await res.json();
   },
+  async getAllSeverity() {
+    const res = await fetch(`${config.API_ENDPOINT}/app/severity`, {
+      method: 'GET',
+      headers: TokenService.getHeaders(),
+    });
+
+    return await res.json();
+  },
+  async getAllStatus() {
+    const res = await fetch(`${config.API_ENDPOINT}/app/status`, {
+      method: 'GET',
+      headers: TokenService.getHeaders(),
+    });
+
+    return await res.json();
+  },
 
   async getAllBugsUser(user) {
     const res = await fetch(
@@ -56,6 +72,16 @@ const BugsService = {
 
     return await res.json();
   },
+  async getBugById(id){
+    const res = await fetch(
+    `${config.API_ENDPOINT}/bugs/${id}`,
+      {
+        method: 'GET',
+        headers: TokenService.getHeaders(),
+      },
+    )
+    return await res.json();
+  }
 };
 
 export default BugsService;

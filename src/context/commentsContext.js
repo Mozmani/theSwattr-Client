@@ -27,7 +27,7 @@ const CommentsProvider = ({ children }) => {
     getCommentsByBug,
     addNewComment,
   };
-  console.log(bugComments);
+  //console.log(bugComments);
   return (
     <CommentsContext.Provider value={value}>
       {children}
