@@ -1,10 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import BugsService from '../../services/bugs.service'
-import { BugsContext, UserContext } from "src/context";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import BugsService from '../../services/bugs.service';
+import { BugsContext, UserContext } from 'src/context';
 
 const BugsContainer = ({ history }) => {
-  const { bugs, selectedApp, userBugs } = React.useContext(BugsContext);
+  const { bugs, selectedApp, userBugs } = React.useContext(
+    BugsContext,
+  );
   let renderBugs;
   let userView;
 
@@ -26,28 +28,33 @@ const BugsContainer = ({ history }) => {
                   <p>{bug.createdDate}</p>
                 </li>
               ))
-            : null
+            : null,
         )
       : null;
   } else {
     if (userBugs === null) {
       renderBugs = (
-        <li>Hello, you have submitted no bugs yet! Please add one below.</li>
+        <li>
+          Hello, you have submitted no bugs yet! Please add one below.
+        </li>
       );
-      
     } else {
-      renderBugs = userBugs ? userBugs.userBugs.map((bug) => {
-        return <li
-        key={bug.id}
-        onClick={() => {
-          history.push(`dashboard/${bug.id}`);
-        }}
-      >
-        <p>{bug.bugName}</p>
-        <p>{bug.description}</p>
-        <p>{bug.createdDate}</p>
-      </li>
-      }) : null;
+      renderBugs = userBugs
+        ? userBugs.userBugs.map((bug) => {
+            return (
+              <li
+                key={bug.id}
+                onClick={() => {
+                  history.push(`dashboard/${bug.id}`);
+                }}
+              >
+                <p>{bug.bugName}</p>
+                <p>{bug.description}</p>
+                <p>{bug.createdDate}</p>
+              </li>
+            );
+          })
+        : null;
     }
     userView = (
       <button>

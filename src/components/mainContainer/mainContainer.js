@@ -26,7 +26,6 @@ const MainContainer = () => {
           render={(routeProps) => <AddBugs {...routeProps} />}
         />
         <Route
-          
           path="/dashboard/:bugId"
           render={(routeProps) => <CommentsPage {...routeProps} />}
         />

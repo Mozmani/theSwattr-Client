@@ -1,15 +1,19 @@
 import React from 'react';
 
 import { BugsService } from 'src/services';
-import { BugsProvider, CommentsProvider, UserContext } from 'src/context';
+import {
+  BugsProvider,
+  CommentsProvider,
+  UserContext,
+} from 'src/context';
 import { MainContainer } from 'src/components';
 
 const DashboardRoute = ({ history }) => {
   const [apps, setApps] = React.useState([]);
   const [selectedApp, setSelectedApp] = React.useState(null);
   const [, setError] = React.useState(null);
-  const {userData} = React.useContext(UserContext)
-  console.log('in dash',userData.dev)
+  const { userData } = React.useContext(UserContext);
+  console.log('in dash', userData.dev);
 
   React.useEffect(() => {
     const getApps = async () => {
@@ -39,7 +43,7 @@ const DashboardRoute = ({ history }) => {
     </button>
   ));
 
-  if (userData.dev === true){
+  if (userData.dev === true) {
     return (
       <>
         <div className="dashboard-select-app-div">
@@ -72,7 +76,6 @@ const DashboardRoute = ({ history }) => {
       </>
     );
   }
-  
 };
 
 export default DashboardRoute;
