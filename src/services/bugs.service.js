@@ -81,7 +81,16 @@ const BugsService = {
       },
     )
     return await res.json();
-  }
+  },
+  async editBug(newBug, id) {
+    const res = await fetch(`${config.API_ENDPOINT}/edit/${id}`, {
+      method: 'PATCH',
+      headers: TokenService.getHeaders(),
+      body: JSON.stringify(newBug),
+    });
+
+    return await res.json();
+  },
 };
 
 export default BugsService;

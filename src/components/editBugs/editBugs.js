@@ -1,36 +1,36 @@
 import React from "react";
 import BugsService from "../../services/bugs.service";
+import {BugsContext} from '../../context/bugsContext'
 
-const EditBugs = ({ match }) => {
-  let [currentBug, setBug] = React.useState(null)
-  let [apps, setApps] = React.useState(null)
-  let [severity, setSeverity] = React.useState(null)
-  let [status, setStatus] = React.useState(null)
+const EditBugs = ({ match, history }) => {
+  let [currentBug, setBug] = React.useState(null);
+  let [apps, setApps] = React.useState(null);
+  let [severity, setSeverity] = React.useState(null);
+  let [status, setStatus] = React.useState(null);
 
+  const {afterEdit} = React.useContext(BugsContext)
 
   let theCurrent;
 
-
   const drawCurrentBug = async () => {
     const bugData = await BugsService.getBugById(match.params.bugId);
-    setBug(bugData)
+    setBug(bugData);
 
     const appData = await BugsService.getAllApps();
-    setApps(appData)
+    setApps(appData);
     const severityData = await BugsService.getAllSeverity();
-    setSeverity(severityData)
+    setSeverity(severityData);
     const statusData = await BugsService.getAllStatus();
-    setStatus(statusData)
+    setStatus(statusData);
 
     //console.log(appData.apps, severityData, statusData);
   };
 
-  if(currentBug === null){
-    drawCurrentBug()
-    
+  if (currentBug === null) {
+    drawCurrentBug();
   }
 
-  if(currentBug !== null){
+  if (currentBug !== null) {
     theCurrent = (
       <div>
         <h3>Current Bug Details:</h3>
@@ -49,23 +49,64 @@ const EditBugs = ({ match }) => {
     );
   }
 
-  const drawSeverities = severity ? 
-    severity.map((sev) => {
-    return (<option key={sev} value={sev}>{sev}</option>)
-    })
-  : null
+  const drawSeverities = severity
+    ? severity.map((sev) => {
+        return (
+          <option key={sev} value={sev}>
+            {sev}
+          </option>
+        );
+      })
+    : null;
 
-  const drawstatus = status ? 
-  status.map(sev => {
-  return (<option key={sev} value={sev}>{sev}</option>)
-  })
-: null
+  const drawstatus = status
+    ? status.map((sev) => {
+        return (
+          <option key={sev} value={sev}>
+            {sev}
+          </option>
+        );
+      })
+    : null;
 
-const drawApps = apps ? 
-apps.apps.map(sev => {
-return (<option key={sev.formatName} value={sev.rawName}>{sev.formatName}</option>)
-})
-: null
+  const drawApps = apps
+    ? apps.apps.map((sev) => {
+        return (
+          <option key={sev.formatName} value={sev.rawName}>
+            {sev.formatName}
+          </option>
+        );
+      })
+    : null;
+
+  const showDescription = currentBug ? (
+    <div>
+      <label htmlFor="description">Description:</label>
+      <textarea name='description' id="description" defaultValue={currentBug.description} ></textarea>
+    </div>
+  ) : null;
+
+   const submitEditedBug = async (ev) => {
+     ev.preventDefault();
+
+     const {description, severity, status, appName, completedNotes} = ev.target
+     //console.log(description.value)
+     const newBug = {
+       status: status.value,
+       app: appName.value,
+       severity: severity.value,
+       user_name: currentBug.bugPostedBy,
+       bug_name: currentBug.bugName,
+       description: description.value,
+       completed_notes: completedNotes.value? completedNotes.value : null
+     }
+     //console.log(newBug)
+     await BugsService.editBug(newBug, currentBug.id)
+     history.push('/dashboard')
+   }
+
+  
+
 
   //console.log(currentBug);
   return (
@@ -73,21 +114,23 @@ return (<option key={sev.formatName} value={sev.rawName}>{sev.formatName}</optio
       <p>{`Bug Id: ${match.params.bugId}`}</p>
       <div>{theCurrent}</div>
       <h3>Edit Bug details:</h3>
-      <form>
-        <label htmlFor='severity'>Severity:</label>
-        <select id='severity'>
-          {drawSeverities}
-        </select>
-        <label htmlFor='status'>Status:</label>
-        <select id='status'>
-          {drawstatus}
-        </select>
-        <label htmlFor='appName'>App Name:</label>
-        <select id='appName'>
-          {drawApps}
-        </select>
-        
-
+      <form onSubmit={submitEditedBug}>
+        <label htmlFor="severity">Severity:</label>
+        <select id="severity" name='severity'>{drawSeverities}</select>
+        <label htmlFor="status">Status:</label>
+        <select id="status" name='status'>{drawstatus}</select>
+        <label htmlFor="appName">App Name:</label>
+        <select id="appName" name='appName'>{drawApps}</select>
+        {showDescription}
+        <label htmlFor="completedNotes">Completed Notes:</label>
+        <textarea
+          id="completedNotes"
+          placeholder="Only enter this if you are closing the bug!"
+          name='completedNotes'
+        ></textarea>
+        <button>
+          Submit Bug Edit!
+        </button>
       </form>
     </>
   );

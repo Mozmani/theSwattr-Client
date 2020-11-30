@@ -19,7 +19,7 @@ const BugsContainer = ({ history }) => {
           ? bugs[severity].map((bug) => (
             <li
               className="bug-container"
-              key={bug.bugName}
+              key={bug.id}
               onClick={() => {
                 history.push(`dashboard/${bug.id}`);
               }}
