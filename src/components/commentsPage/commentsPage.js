@@ -20,6 +20,21 @@ const CommentsPage = ({ match }) => {
     comment: '',
   });
 
+  const [commentsLoaded, setLoaded] = React.useState(false);
+
+  if (commentsLoaded === false) {
+    let commentData = getCommentsByBug(match.params.bugId);
+    setLoaded(true);
+    if (bugComments !== null) {
+      setHeader(bugComments[0].bugName);
+    }
+  }
+
+
+
+
+
+
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
@@ -35,21 +50,23 @@ const CommentsPage = ({ match }) => {
     await addNewComment(res.newComment);
   };
 
-  React.useEffect(() => {
-    const fetchComments = async () => {
-      await getCommentsByBug(match.params.bugId);
-    };
+  // React.useEffect(() => {
+  //   const fetchComments = async () => {
+  //     await getCommentsByBug(match.params.bugId);
+  //   };
 
-    if (bugComments && !header) {
-      if (bugComments[0].message) {
-        setError(bugComments[0].message);
-      } else setHeader(bugComments[0].bugName);
-    }
+  //   if (bugComments && !header) {
+  //     if (bugComments[0].message) {
+  //       setError(bugComments[0].message);
+  //     } else setHeader(bugComments[0].bugName);
+  //   }
 
-    if (!bugComments) {
-      fetchComments();
-    }
-  }, [getCommentsByBug, match.params.bugId, header, bugComments]);
+  //   if (!bugComments) {
+  //     fetchComments();
+  //   }
+  // }, [getCommentsByBug, match.params.bugId, header, bugComments]);
+
+
 
   const renderComments =
     bugComments && !bugComments[0].message
@@ -75,7 +92,7 @@ const CommentsPage = ({ match }) => {
       />
     </label>
   );
-
+    console.log(bugComments)
   return (
     <div className="comments-container">
       <h3>{header}</h3>
