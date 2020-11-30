@@ -14,7 +14,7 @@ const BugsProvider = ({ allApps, selectedApp, children }) => {
     userData: { userName },
   } = React.useContext(UserContext);
 
-  const {userData} = React.useContext(UserContext)
+  const { userData } = React.useContext(UserContext);
   React.useEffect(() => {
     const getBugs = async () => {
       const bugData = await BugsService.getAllBugsSeverityApp(
@@ -34,11 +34,10 @@ const BugsProvider = ({ allApps, selectedApp, children }) => {
     const getUserbugs = async () => {
       const userBugsData = await BugsService.getAllBugsUser(userName);
       setUserBugs(userBugsData);
-    } 
+    };
 
-    if(userData.dev === false){
+    if (userData.dev === false) {
       getUserbugs();
-      
     }
   }, [selectedApp, userName]);
 
@@ -51,9 +50,9 @@ const BugsProvider = ({ allApps, selectedApp, children }) => {
 
   const addNewUserBug = (bugInfo) => {
     setUserBugs((prev) => ({
-       userBugs:[...prev.userBugs, bugInfo]
-    }))
-  }
+      userBugs: [...prev.userBugs, bugInfo],
+    }));
+  };
 
   const value = {
     allApps,

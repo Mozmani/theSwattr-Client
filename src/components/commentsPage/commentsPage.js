@@ -30,11 +30,6 @@ const CommentsPage = ({ match }) => {
     }
   }
 
-
-
-
-
-
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
@@ -48,8 +43,8 @@ const CommentsPage = ({ match }) => {
     }
 
     await addNewComment(res.newComment);
-    setLoaded(false)
-    formFields.comment= '';
+    setLoaded(false);
+    formFields.comment = '';
   };
 
   // React.useEffect(() => {
@@ -67,8 +62,6 @@ const CommentsPage = ({ match }) => {
   //     fetchComments();
   //   }
   // }, [getCommentsByBug, match.params.bugId, header, bugComments]);
-
-
 
   const renderComments =
     bugComments && !bugComments[0].message
@@ -94,7 +87,7 @@ const CommentsPage = ({ match }) => {
       />
     </label>
   );
-    console.log(bugComments)
+  console.log(bugComments);
   return (
     <div className="comments-container">
       <h3>{header}</h3>
