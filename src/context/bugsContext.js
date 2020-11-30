@@ -8,11 +8,13 @@ const BugsContext = React.createContext(null);
 const BugsProvider = ({ allApps, selectedApp, children }) => {
   const [bugs, setBugs] = React.useState(null);
   const [error, setError] = React.useState(null);
+  const [userBugs, setUserBugs] = React.useState(null);
 
   const {
     userData: { userName },
   } = React.useContext(UserContext);
 
+  const {userData} = React.useContext(UserContext)
   React.useEffect(() => {
     const getBugs = async () => {
       const bugData = await BugsService.getAllBugsSeverityApp(
@@ -25,8 +27,18 @@ const BugsProvider = ({ allApps, selectedApp, children }) => {
       } else setBugs(bugData);
     };
 
-    if (selectedApp) {
+    if (selectedApp && userData.dev === true) {
       getBugs();
+    }
+
+    const getUserbugs = async () => {
+      const userBugsData = await BugsService.getAllBugsUser(userName);
+      setUserBugs(userBugsData);
+    } 
+
+    if(userData.dev === false){
+      getUserbugs();
+      
     }
   }, [selectedApp, userName]);
 
@@ -37,14 +49,22 @@ const BugsProvider = ({ allApps, selectedApp, children }) => {
     }));
   };
 
+  const addNewUserBug = (bugInfo) => {
+    setUserBugs((prev) => ({
+       userBugs:[...prev.userBugs, bugInfo]
+    }))
+  }
+
   const value = {
     allApps,
     selectedApp,
     bugs,
     error,
     addNewBug,
+    addNewUserBug,
+    userBugs,
   };
-
+  //console.log('jhrgjhereophr', userData.dev)
   return (
     <BugsContext.Provider value={value}>
       {children}

@@ -1,13 +1,15 @@
 import React from 'react';
 
 import { BugsService } from 'src/services';
-import { BugsProvider, CommentsProvider } from 'src/context';
+import { BugsProvider, CommentsProvider, UserContext } from 'src/context';
 import { MainContainer } from 'src/components';
 
 const DashboardRoute = ({ history }) => {
   const [apps, setApps] = React.useState([]);
   const [selectedApp, setSelectedApp] = React.useState(null);
   const [, setError] = React.useState(null);
+  const {userData} = React.useContext(UserContext)
+  console.log('in dash',userData.dev)
 
   React.useEffect(() => {
     const getApps = async () => {
@@ -37,22 +39,40 @@ const DashboardRoute = ({ history }) => {
     </button>
   ));
 
-  return (
-    <>
-      <div className="dashboard-select-app-div">
-        <button onClick={() => history.push('/dashboard/dev')}>
-          Toggle Dev
-        </button>
-        <p>Please select an app!</p>
-        {selectAppButtons}
-      </div>
-      <BugsProvider selectedApp={selectedApp} allApps={apps}>
-        <CommentsProvider>
-          <MainContainer />
-        </CommentsProvider>
-      </BugsProvider>
-    </>
-  );
+  if (userData.dev === true){
+    return (
+      <>
+        <div className="dashboard-select-app-div">
+          <button onClick={() => history.push('/dashboard/dev')}>
+            Toggle Dev
+          </button>
+          <p>Please select an app!</p>
+          {selectAppButtons}
+        </div>
+        <BugsProvider selectedApp={selectedApp} allApps={apps}>
+          <CommentsProvider>
+            <MainContainer />
+          </CommentsProvider>
+        </BugsProvider>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="dashboard-select-app-div">
+          <button onClick={() => history.push('/dashboard/dev')}>
+            Toggle Dev
+          </button>
+        </div>
+        <BugsProvider selectedApp={selectedApp} allApps={apps}>
+          <CommentsProvider>
+            <MainContainer />
+          </CommentsProvider>
+        </BugsProvider>
+      </>
+    );
+  }
+  
 };
 
 export default DashboardRoute;

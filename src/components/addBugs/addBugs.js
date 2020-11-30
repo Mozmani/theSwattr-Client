@@ -4,11 +4,12 @@ import { BugsService } from 'src/services';
 import { BugsContext, UserContext } from 'src/context';
 import useFormState from 'src/hooks/useFormState';
 
+
 const AddBugs = ({ history }) => {
   const [, setError] = React.useState(null);
 
   const { userData } = React.useContext(UserContext);
-  const { allApps, addNewBug } = React.useContext(BugsContext);
+  const { allApps, addNewBug, addNewUserBug } = React.useContext(BugsContext);
 
   const { formFields, handleOnChange } = useFormState({
     app: 'main-app',
@@ -21,6 +22,7 @@ const AddBugs = ({ history }) => {
 
     formFields.user_name = userData.userName;
     const res = await BugsService.postNewBug(formFields);
+   
 
     if (res.error || res.message) {
       console.error(res);
@@ -28,7 +30,12 @@ const AddBugs = ({ history }) => {
       return;
     }
 
-    await addNewBug(res.newBug);
+    if (userData.dev === true){
+      await addNewBug(res.newBug);
+    } else {
+      await addNewUserBug(res.newBug);
+    }
+    
     history.push('/dashboard');
   };
 

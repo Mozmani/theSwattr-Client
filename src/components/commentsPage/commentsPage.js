@@ -48,6 +48,8 @@ const CommentsPage = ({ match }) => {
     }
 
     await addNewComment(res.newComment);
+    setLoaded(false)
+    formFields.comment= '';
   };
 
   // React.useEffect(() => {
