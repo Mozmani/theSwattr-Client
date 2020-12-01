@@ -6,8 +6,8 @@ import { UserContext } from './userContext';
 const BugsContext = React.createContext(null);
 
 const BugsProvider = ({ allApps, selectedApp, children }) => {
-  const [bugs, setBugs] = React.useState(null);
-  const [userBugs, setUserBugs] = React.useState(null);
+  const [bugs, setBugs] = React.useState({});
+  const [userBugs, setUserBugs] = React.useState([]);
   const [error, setError] = React.useState(null);
 
   const { userData } = React.useContext(UserContext);
@@ -42,23 +42,23 @@ const BugsProvider = ({ allApps, selectedApp, children }) => {
 
   const addNewBug = (bugInfo) => {
     setBugs((prev) => ({
-      ...(prev || {}),
+      ...prev,
       bugsPending: [...(prev.bugsPending || []), bugInfo],
     }));
   };
 
   const addNewUserBug = (bugInfo) => {
-    setUserBugs((prev) => [...(prev || []), bugInfo]);
+    setUserBugs((prev) => [...prev, bugInfo]);
   };
 
   const value = {
     allApps,
     selectedApp,
     bugs,
+    userBugs,
     error,
     addNewBug,
     addNewUserBug,
-    userBugs,
   };
 
   return (

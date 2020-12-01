@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './addBugs.scss';
+
 import { BugsService } from 'src/services';
 import { BugsContext, UserContext } from 'src/context';
 import useFormState from 'src/hooks/useFormState';
@@ -23,7 +25,7 @@ const AddBugs = ({ history }) => {
 
     formFields.user_name = userData.userName;
     const res = await BugsService.postNewBug(formFields);
-    console.log({ formFields });
+
     if (res.error || res.message) {
       console.error(res);
       setError(res.error || res.message);
@@ -100,9 +102,14 @@ const AddBugs = ({ history }) => {
       </button>
       <h3>Add your bug here!</h3>
       <form className="add-bug-form" onSubmit={handleSubmit}>
-        <select onChange={handleOnChange('app')}>{appOptions}</select>
+        <select
+          className="app-selector"
+          onChange={handleOnChange('app')}
+        >
+          {appOptions}
+        </select>
         {inputFields}
-        <footer>
+        <footer className="form-footer">
           <button type="submit" className="add-bug-submit">
             Submit
           </button>

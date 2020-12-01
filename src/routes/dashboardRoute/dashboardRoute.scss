@@ -1,0 +1,19 @@
+@import 'src/styles/variables/colors.scss';
+
+.dashboard-select-app-div {
+  width: 100%;
+}
+
+.dev-button {
+  width: 90%;
+  margin: 10px 0 20px 0;
+  font-size: 20px;
+  padding: 10px;
+  font-family: 'Andale Mono', sans-serif;
+}
+
+.dev-button {
+  border: none;
+  outline: none;
+  background-color: $accent;
+}

@@ -23,8 +23,8 @@ const Header = () => {
   );
 
   const logoutLink = (
-    <div>
-      <span>{Context.userData.userName}</span>
+    <div className="nav-links">
+      <span>Hello {Context.userData.firstName}!-</span>
       <nav>
         <Link onClick={handleLogoutClick} to="/login">
           Logout

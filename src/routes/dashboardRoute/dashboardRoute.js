@@ -7,13 +7,14 @@ import {
   UserContext,
 } from 'src/context';
 import { MainContainer } from 'src/components';
+import './dashboardRoute.scss';
 
 const DashboardRoute = ({ history }) => {
   const [apps, setApps] = React.useState([]);
   const [selectedApp, setSelectedApp] = React.useState(null);
   const [, setError] = React.useState(null);
+
   const { userData } = React.useContext(UserContext);
-  console.log('in dash', userData.dev);
 
   React.useEffect(() => {
     const getApps = async () => {
@@ -47,7 +48,10 @@ const DashboardRoute = ({ history }) => {
     return (
       <>
         <div className="dashboard-select-app-div">
-          <button onClick={() => history.push('/dashboard/dev')}>
+          <button
+            className="dev-button"
+            onClick={() => history.push('/dashboard/dev')}
+          >
             Toggle Dev
           </button>
           <p>Please select an app!</p>
@@ -64,7 +68,10 @@ const DashboardRoute = ({ history }) => {
     return (
       <>
         <div className="dashboard-select-app-div">
-          <button onClick={() => history.push('/dashboard/dev')}>
+          <button
+            className="dev-button"
+            onClick={() => history.push('/dashboard/dev')}
+          >
             Toggle Dev
           </button>
         </div>

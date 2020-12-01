@@ -25,7 +25,7 @@ const CommentsPage = ({ match, history }) => {
   if (commentsLoaded === false) {
     let commentData = getCommentsByBug(match.params.bugId);
     setLoaded(true);
-    if (bugComments !== null) {
+    if (bugComments[0]) {
       setHeader(bugComments[0].bugName);
     }
   }
@@ -47,6 +47,22 @@ const CommentsPage = ({ match, history }) => {
     formFields.comment = '';
   };
 
+  const openEdit = () => {
+    if (userData.dev === true) {
+      return (
+        <div>
+          <button
+            onClick={() => {
+              history.push(`/dashboard/edit/${match.params.bugId}`);
+            }}
+          >
+            Edit bug
+          </button>
+        </div>
+      );
+    }
+  };
+
   // React.useEffect(() => {
   //   const fetchComments = async () => {
   //     await getCommentsByBug(match.params.bugId);
@@ -64,7 +80,7 @@ const CommentsPage = ({ match, history }) => {
   // }, [getCommentsByBug, match.params.bugId, header, bugComments]);
 
   const renderComments =
-    bugComments && !bugComments[0].message
+    bugComments[0] && !bugComments[0].message
       ? bugComments.map((comment) => {
           return (
             <li key={comment.id}>
@@ -97,6 +113,7 @@ const CommentsPage = ({ match, history }) => {
         Back to Bugs
       </button>
       <h3>{header}</h3>
+      {openEdit()}
       <ul className="comments">{renderComments}</ul>
       <form onSubmit={handleSubmit} className="new-comment-form">
         {commentField}
