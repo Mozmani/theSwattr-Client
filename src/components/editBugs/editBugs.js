@@ -44,7 +44,7 @@ const EditBugs = ({ match, history }) => {
             <p className="detail">Severity: {currentBug.severity}</p>
             <p className="detail">Bug Status: {currentBug.status}</p>
             <p className="detail">
-              Completed: ${currentBug.completedNotes || 'False'}
+              Completed: {currentBug.completedNotes || `False`}
             </p>
           </li>
         </ul>

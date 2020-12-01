@@ -23,7 +23,10 @@ const DashboardRoute = ({ history }) => {
       if (!appData || 'error' in appData) {
         console.error(appData);
         setError(appData.error);
-      } else setApps(appData.apps);
+      } else {
+        setApps(appData.apps);
+        setSelectedApp(appData.apps[0]);
+      }
     };
 
     if (!TokenService.hasAuthToken()) {
@@ -40,52 +43,37 @@ const DashboardRoute = ({ history }) => {
     <button
       key={app.id}
       onClick={() => handleAppSelect(app)}
-      className={`${app.rawName}-dashboard-select-app`}
-      id="app-button"
+      className={`app-button ${app.rawName}-select`}
     >
       {app.formatName}
     </button>
   ));
 
-  if (userData.dev === true) {
-    return (
-      <>
-        <div className="dashboard-select-app-div">
-          <button
-            className="dev-button"
-            onClick={() => history.push('/dashboard/dev')}
-          >
-            Toggle Dev
-          </button>
-          <h3 className="welcome">Please select an app!</h3>
-          {selectAppButtons}
-        </div>
-        <BugsProvider selectedApp={selectedApp} allApps={apps}>
-          <CommentsProvider>
-            <MainContainer />
-          </CommentsProvider>
-        </BugsProvider>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <div className="dashboard-select-app-div">
-          <button
-            className="dev-button"
-            onClick={() => history.push('/dashboard/dev')}
-          >
-            Toggle Dev
-          </button>
-        </div>
-        <BugsProvider selectedApp={selectedApp} allApps={apps}>
-          <CommentsProvider>
-            <MainContainer />
-          </CommentsProvider>
-        </BugsProvider>
-      </>
-    );
-  }
+  const devView = (
+    <>
+      <h3 className="welcome">Please select an app!</h3>
+      {selectAppButtons}
+    </>
+  );
+
+  return (
+    <>
+      <div className="dashboard-select-app-div">
+        <button
+          className="dev-button"
+          onClick={() => history.push('/dashboard/dev')}
+        >
+          Toggle Dev
+        </button>
+        {userData.dev && devView}
+      </div>
+      <BugsProvider selectedApp={selectedApp} allApps={apps}>
+        <CommentsProvider>
+          <MainContainer />
+        </CommentsProvider>
+      </BugsProvider>
+    </>
+  );
 };
 
 export default DashboardRoute;
