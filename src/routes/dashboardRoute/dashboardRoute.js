@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BugsService } from 'src/services';
+import { BugsService, TokenService } from 'src/services';
 import {
   BugsProvider,
   CommentsProvider,
@@ -26,7 +26,7 @@ const DashboardRoute = ({ history }) => {
       } else setApps(appData.apps);
     };
 
-    if (!userData.userName) {
+    if (!TokenService.hasAuthToken()) {
       history.push('/login');
     } else getApps();
   }, [history, userData.userName]);
