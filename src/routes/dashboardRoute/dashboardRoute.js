@@ -24,8 +24,15 @@ const DashboardRoute = ({ history }) => {
         console.error(appData);
         setError(appData.error);
       } else {
+        let appName = window.localStorage.getItem('selectedApp');
+        if (appName) {
+          appName = appData.apps.find(
+            (app) => app.rawName === appName,
+          );
+        } else appName = null;
+
         setApps(appData.apps);
-        setSelectedApp(appData.apps[0]);
+        setSelectedApp(appName);
       }
     };
 
@@ -35,6 +42,7 @@ const DashboardRoute = ({ history }) => {
   }, [history, userData.userName]);
 
   const handleAppSelect = (app) => {
+    window.localStorage.setItem('selectedApp', app.rawName);
     setSelectedApp(app);
     history.push('/dashboard');
   };
