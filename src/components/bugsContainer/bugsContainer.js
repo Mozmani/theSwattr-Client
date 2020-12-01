@@ -7,6 +7,8 @@ import { BugsContext, UserContext } from 'src/context';
 import { Bug, SeverityDiv } from './components';
 
 const BugsContainer = ({ history }) => {
+  const [showComplete, setShowComplete] = React.useState(false);
+
   const { bugs, selectedApp, userBugs } = React.useContext(
     BugsContext,
   );
@@ -26,6 +28,25 @@ const BugsContainer = ({ history }) => {
             ),
         )
       : null;
+
+  const completeBugs =
+    userData.dev && bugs.bugsComplete ? (
+      <SeverityDiv
+        key={'bugsComplete'}
+        bugs={bugs}
+        severity={'bugsComplete'}
+        history={history}
+      />
+    ) : null;
+
+  const devButton = userData.dev && selectedApp && (
+    <button
+      className="toggle-completed-bugs"
+      onClick={() => setShowComplete((prev) => !prev)}
+    >
+      {showComplete ? 'Hide Completed Bugs' : 'Show Completed Bugs'}
+    </button>
+  );
 
   const nonDevBugs =
     !userData.dev && userBugs && userBugs.length ? (
@@ -53,7 +74,10 @@ const BugsContainer = ({ history }) => {
   return (
     <main className="main-container">
       {showHeader}
-      <ul className="bug-list">{renderBugs}</ul>
+      {devButton}
+      <ul className="bug-list">
+        {showComplete ? completeBugs : renderBugs}
+      </ul>
       {selectedApp && (
         <button className="add-button">
           <Link to="/dashboard/add">Add a bug!</Link>

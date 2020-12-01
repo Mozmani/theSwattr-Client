@@ -19,4 +19,3 @@ export { default as CommentsPage } from './commentsPage/commentsPage';
 export { default as AddBugs } from './addBugs/addBugs';
 export { default as ToggleDev } from './toggleDev/toggleDev';
 export { default as EditBugs } from './editBugs/editBugs';
-export { default as CompletedBugs } from './completedBugs/completedBugs';

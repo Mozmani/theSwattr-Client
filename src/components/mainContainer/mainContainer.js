@@ -4,9 +4,9 @@ import { Switch, Route } from 'react-router-dom';
 import {
   BugsContainer,
   ToggleDev,
-  CommentsPage,
   AddBugs,
   EditBugs,
+  CommentsPage,
 } from 'src/components';
 
 const MainContainer = () => {
