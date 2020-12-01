@@ -50,6 +50,18 @@ const BugsProvider = ({ allApps, selectedApp, children }) => {
   const addNewUserBug = (bugInfo) => {
     setUserBugs((prev) => [...prev, bugInfo]);
   };
+  
+  const updateBugs = async (app) => {
+    const bugsData = await BugsService.getAllBugsSeverityApp(
+      app
+    );
+
+    if (!bugsData || 'error' in bugsData) {
+      console.error(bugsData.error);
+      setError(bugsData.error);
+    } else setBugs(bugsData);
+  }
+  
 
   const value = {
     allApps,
@@ -59,8 +71,9 @@ const BugsProvider = ({ allApps, selectedApp, children }) => {
     error,
     addNewBug,
     addNewUserBug,
+    updateBugs,
   };
-
+  console.log(bugs)
   return (
     <BugsContext.Provider value={value}>
       {children}
