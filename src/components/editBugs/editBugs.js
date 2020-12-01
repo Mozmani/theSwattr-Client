@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BugsService } from 'src/services';
-import { BugsContext } from 'src/context';
+import { BugsContext } from '../../context/bugsContext';
 import './editBugs.scss';
 
 const EditBugs = ({ match, history }) => {
@@ -9,7 +9,7 @@ const EditBugs = ({ match, history }) => {
   let [severity, setSeverity] = React.useState(null);
   let [status, setStatus] = React.useState(null);
 
-  const { allApps } = React.useContext(BugsContext);
+  const { allApps, updateBugs } = React.useContext(BugsContext);
 
   let theCurrent;
 
@@ -117,6 +117,7 @@ const EditBugs = ({ match, history }) => {
     };
     //console.log(newBug)
     await BugsService.editBug(newBug, currentBug.id);
+    await updateBugs(newBug.app)
     history.push('/dashboard');
   };
 
