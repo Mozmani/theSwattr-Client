@@ -26,8 +26,10 @@ const DashboardRoute = ({ history }) => {
       } else setApps(appData.apps);
     };
 
-    getApps();
-  }, []);
+    if (!userData.userName) {
+      history.push('/login');
+    } else getApps();
+  }, [history, userData.userName]);
 
   const handleAppSelect = (app) => {
     setSelectedApp(app);
