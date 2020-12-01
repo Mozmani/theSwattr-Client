@@ -77,7 +77,7 @@ const EditBugs = ({ match, history }) => {
     : null;
 
   const showDescription = currentBug ? (
-    <div>
+    <div className="text-container">
       <label htmlFor="description">Description:</label>
       <textarea
         name="description"
