@@ -78,8 +78,8 @@ const AddBugs = ({ history }) => {
         {field === 'description' ? (
           <textarea {...inputAttrs} />
         ) : (
-          <input {...inputAttrs} />
-        )}
+            <input {...inputAttrs} />
+          )}
       </label>
     );
   });
@@ -100,7 +100,7 @@ const AddBugs = ({ history }) => {
       >
         Back to Bugs
       </button>
-      <h3>Add your bug here!</h3>
+      <h3 className="welcome">Add your bug here!</h3>
       <form className="add-bug-form" onSubmit={handleSubmit}>
         <select
           className="app-selector"

@@ -1,44 +1,41 @@
 @import 'src/styles/variables/colors.scss';
 
-.comments-container {
+.detail-list {
   width: 100%;
 }
 
-.comments {
-  width: 100%;
-}
-
-.comment-item {
-  background-color: $accent;
+.current-item {
+  background-color: $light;
   width: 90%;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 20px;
-}
-
-.auth-and-comm {
-  width: 100%;
   align-items: flex-start;
 }
 
-.comment-content {
+.detail {
   font-size: 20px;
   margin: 10px 0;
 }
 
-.comment-time {
-  width: 100%;
-  align-items: flex-end;
-  color: $bg;
-}
-
-.new-comment-form {
+.edit-bug-form {
   background-color: $dark;
   margin: 0 15px;
   border-radius: 20px;
   color: $accent;
   padding: 20px;
   width: 80%;
+
+  > .selector {
+    margin: 20px 0;
+    font-size: 20px;
+    width: 100%;
+    padding: 10px;
+  }
+
+  > label {
+    color: $accent;
+  }
 
   > * {
     font-family: 'Andale Mono', sans-serif;
@@ -51,7 +48,7 @@
       padding: 10px;
     }
 
-    .new-comment-submit {
+    .edit-submit-button {
       border: none;
       outline: none;
       background-color: $accent;
@@ -64,19 +61,6 @@
   }
 }
 
-.edit-button-holder {
-  width: 100%;
-}
-
-.edit-button {
-  border: none;
-  outline: none;
-  background-color: $dark;
-  color: $accent;
-  margin-bottom: 20px;
+.text-container {
   width: 90%;
-  margin: 10px 0;
-  font-size: 20px;
-  text-align: left;
-  padding: 10px;
 }

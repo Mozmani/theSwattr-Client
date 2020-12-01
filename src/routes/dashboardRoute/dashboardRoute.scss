@@ -4,7 +4,8 @@
   width: 100%;
 }
 
-.dev-button {
+.dev-button,
+#app-button {
   width: 90%;
   margin: 10px 0 20px 0;
   font-size: 20px;
@@ -12,7 +13,8 @@
   font-family: 'Andale Mono', sans-serif;
 }
 
-.dev-button {
+.dev-button,
+#app-button {
   border: none;
   outline: none;
   background-color: $accent;

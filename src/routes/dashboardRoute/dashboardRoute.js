@@ -41,6 +41,7 @@ const DashboardRoute = ({ history }) => {
       key={app.id}
       onClick={() => handleAppSelect(app)}
       className={`${app.rawName}-dashboard-select-app`}
+      id="app-button"
     >
       {app.formatName}
     </button>
@@ -56,7 +57,7 @@ const DashboardRoute = ({ history }) => {
           >
             Toggle Dev
           </button>
-          <p>Please select an app!</p>
+          <h3 className="welcome">Please select an app!</h3>
           {selectAppButtons}
         </div>
         <BugsProvider selectedApp={selectedApp} allApps={apps}>

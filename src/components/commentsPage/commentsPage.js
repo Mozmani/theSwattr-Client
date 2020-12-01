@@ -3,6 +3,7 @@ import React from 'react';
 import { CommentsService } from 'src/services';
 import { CommentsContext, UserContext } from 'src/context';
 import useFormState from 'src/hooks/useFormState';
+import './commentsPage.scss';
 
 const CommentsPage = ({ match, history }) => {
   const [header, setHeader] = React.useState('');
@@ -50,8 +51,9 @@ const CommentsPage = ({ match, history }) => {
   const openEdit = () => {
     if (userData.dev === true) {
       return (
-        <div>
+        <div className="edit-button-holder">
           <button
+            className="edit-button"
             onClick={() => {
               history.push(`/dashboard/edit/${match.params.bugId}`);
             }}
@@ -82,14 +84,22 @@ const CommentsPage = ({ match, history }) => {
   const renderComments =
     bugComments[0] && !bugComments[0].message
       ? bugComments.map((comment) => {
-          return (
-            <li key={comment.id}>
-              <h4>{`Author: ${comment.userName}`}</h4>
-              <p>{comment.comment}</p>
+        return (
+          <li className="comment-item" key={comment.id}>
+            <div className="auth-and-comm">
+              <p className="comment-author">{`Author: ${comment.userName}`}</p>
+              <p className="comment-content">
+                {`"`}
+                {comment.comment}
+                {`"`}
+              </p>
+            </div>
+            <div className="comment-time">
               <p>{comment.createdDate}</p>
-            </li>
-          );
-        })
+            </div>
+          </li>
+        );
+      })
       : null;
 
   const commentField = (
@@ -112,12 +122,13 @@ const CommentsPage = ({ match, history }) => {
       >
         Back to Bugs
       </button>
-      <h3>{header}</h3>
+      <h3 className="welcome">{header}</h3>
       {openEdit()}
       <ul className="comments">{renderComments}</ul>
       <form onSubmit={handleSubmit} className="new-comment-form">
+        <h3 className="welcome">Add A Comment</h3>
         {commentField}
-        <footer>
+        <footer className="form-footer">
           <button type="submit" className="new-comment-submit">
             Submit
           </button>

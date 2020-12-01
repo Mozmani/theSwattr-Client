@@ -6,12 +6,12 @@
   border-radius: 20px;
   color: $accent;
   padding: 20px;
-  width: 90%;
+  width: 80%;
 
   > .app-selector {
     margin: 20px 0;
     font-size: 20px;
-    width: 90%;
+    width: 100%;
     padding: 10px;
   }
 
@@ -19,7 +19,7 @@
     font-family: 'Andale Mono', sans-serif;
 
     > * {
-      width: 90%;
+      width: 100%;
       margin: 10px 0;
       font-size: 20px;
       text-align: left;
@@ -30,10 +30,26 @@
       border: none;
       outline: none;
       background-color: $accent;
+      margin-bottom: 20px;
     }
   }
 
   > .form-footer {
     width: 100%;
   }
+}
+
+.add-bug-container {
+  width: 100%;
+}
+
+.go-back-button {
+  width: 90%;
+  margin: 10px 0;
+  font-size: 20px;
+  text-align: left;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: $accent;
 }

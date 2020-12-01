@@ -47,7 +47,7 @@ const BugsContainer = ({ history }) => {
   ) : null;
 
   const showHeader = selectedApp ? (
-    <h3>{selectedApp.formatName}</h3>
+    <h3 className="welcome">{selectedApp.formatName}</h3>
   ) : null;
 
   return (

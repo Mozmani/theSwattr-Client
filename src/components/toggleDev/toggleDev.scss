@@ -6,13 +6,13 @@
   border-radius: 20px;
   color: $accent;
   padding: 20px;
-  width: 90%;
+  width: 80%;
 
   > * {
     font-family: 'Andale Mono', sans-serif;
 
     > * {
-      width: 90%;
+      width: 100%;
       margin: 10px 0;
       font-size: 20px;
       text-align: left;
@@ -29,4 +29,8 @@
   > .form-footer {
     width: 100%;
   }
+}
+
+.dev-secret-container {
+  width: 100%;
 }
