@@ -17,26 +17,26 @@ const BugsContainer = ({ history }) => {
   if (userData.dev === true) {
     renderBugs = bugs.bugsPending
       ? Object.keys(bugs).map((severity) =>
-          bugs[severity].length
-            ? bugs[severity].map((bug) => (
-                <li
-                  className="bug-container"
-                  key={bug.id}
-                  onClick={() => {
-                    history.push(`dashboard/${bug.id}`);
-                  }}
-                >
-                  <h3 className="bug-name">{bug.bugName}</h3>
-                  <hr className="bug-underline" />
-                  <p className="bug-description">{bug.description}</p>
-                  <div className="bug-info">
-                    <p className="bug-time">{bug.createdDate}</p>
-                    <p className="bug-severity">{`Severity: ${bug.severity}`}</p>
-                  </div>
-                </li>
-              ))
-            : null,
-        )
+        bugs[severity].length
+          ? bugs[severity].map((bug) => (
+            <li
+              className="bug-container"
+              key={bug.id}
+              onClick={() => {
+                history.push(`dashboard/${bug.id}`);
+              }}
+            >
+              <h3 className="bug-name">{bug.bugName}</h3>
+              <hr className="bug-underline" />
+              <p className="bug-description">{bug.description}</p>
+              <div className="bug-info">
+                <p className="bug-time">{bug.createdDate}</p>
+                <p className="bug-severity">{`Severity: ${bug.severity}`}</p>
+              </div>
+            </li>
+          ))
+          : null,
+      )
       : null;
   } else {
     if (!userBugs[0]) {
@@ -73,7 +73,9 @@ const BugsContainer = ({ history }) => {
   }
 
   const showHeader =
-    selectedApp !== null ? <h3>{selectedApp.formatName}</h3> : null;
+    selectedApp !== null ? (
+      <h3 className="welcome">{selectedApp.formatName}</h3>
+    ) : null;
 
   return (
     <main className="main-container">
