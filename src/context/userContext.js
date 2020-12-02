@@ -8,12 +8,12 @@ const UserProvider = ({ children }) => {
   const [userData, setUserData] = React.useState({});
 
   const processLogout = () => {
+    window.localStorage.removeItem('selectedApp');
     TokenService.clearAuthToken();
     setUserData({});
   };
 
   const processLogin = React.useCallback(() => {
-    window.localStorage.removeItem('selectedApp');
     const payload = TokenService.parseAuthToken();
 
     if (payload.message) {
@@ -69,7 +69,7 @@ const UserProvider = ({ children }) => {
   React.useEffect(() => {
     if (TokenService.hasAuthToken()) {
       processLogin();
-    }
+    } else window.localStorage.removeItem('selectedApp');
   }, [processLogin]);
 
   const toggleDev = () => {

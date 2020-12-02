@@ -152,11 +152,10 @@ export const EditBugFields = {
     },
   },
 
-  getInputFields(selectData, bug) {
+  getInputFields(selectData, bug, formFields, handleOnChange) {
     const renderSelects = EditBugFields._selects.map((field) => {
       const datas = selectData[field];
       const attrs = EditBugFields.__formAttributesibutes[field];
-      const defValue = field === 'allApps' ? bug.app : bug[field];
 
       return (
         <label
@@ -168,7 +167,8 @@ export const EditBugFields = {
           <select
             id={field}
             className={attrs.inputClass}
-            defaultValue={defValue}
+            value={formFields[field]}
+            onChange={handleOnChange(field)}
           >
             {datas.map((data) =>
               field === 'allApps' ? (
@@ -189,12 +189,10 @@ export const EditBugFields = {
     const renderTextAreas = EditBugFields._textAreas.map((field) => {
       const attrs = EditBugFields.__formAttributesibutes[field];
 
-      const defValue =
-        field === 'description' ? bug.description : null;
-
-      const placeholder = defValue
-        ? defValue
-        : 'Only enter this if you are closing the bug!';
+      const placeholder =
+        field === 'description'
+          ? bug.description
+          : 'Only enter this if you are closing the bug!';
 
       return (
         <label
@@ -206,8 +204,9 @@ export const EditBugFields = {
           <textarea
             required={field === 'description'}
             id={field}
-            defaultValue={defValue}
             placeholder={placeholder}
+            value={formFields[field]}
+            onChange={handleOnChange(field)}
             className={attrs.inputClass}
           />
         </label>
