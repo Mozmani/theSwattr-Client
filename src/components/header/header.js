@@ -24,7 +24,7 @@ const Header = () => {
 
   const logoutLink = (
     <div className="nav-links">
-      <span>Hello {Context.userData.firstName}!-</span>
+      <span>Hello {Context.userData.firstName}!</span>
       <nav>
         <Link onClick={handleLogoutClick} to="/login">
           Logout

@@ -31,6 +31,7 @@
       outline: none;
       background-color: $accent;
       margin-bottom: 20px;
+      width: 50%;
     }
   }
 
@@ -49,7 +50,7 @@
 }
 
 .go-back-button {
-  width: 90%;
+  width: 50%;
   margin: 10px 0;
   font-size: 20px;
   text-align: left;
@@ -57,4 +58,8 @@
   border: none;
   outline: none;
   background-color: $accent;
+}
+
+.go-back-button:hover, .add-bug-submit:hover {
+  background-color: #BABABA;;
 }

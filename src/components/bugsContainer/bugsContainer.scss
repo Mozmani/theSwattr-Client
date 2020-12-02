@@ -10,7 +10,7 @@
 
 .add-button,
 .toggle-completed-bugs {
-  width: 90%;
+  width: 50%;
   margin: 10px 0;
   font-size: 20px;
   padding: 10px;
@@ -23,7 +23,10 @@
   outline: none;
   background-color: #00a651;
 }
-
+.add-button:hover,
+.toggle-completed-bugs:hover{
+  background-color:#BABABA;
+}
 .add-button {
   margin-top: 20px;
 }
