@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './loginForm.scss';
 
+import { LoginFields } from 'src/helpers/formFields';
 import useFormState from 'src/hooks/useFormState';
 import { UserContext } from 'src/context';
 import { AuthService, TokenService } from 'src/services';
@@ -36,40 +37,10 @@ const LoginForm = ({ onLoginSuccess }) => {
     <div role="alert">{`Oh no! ${error}`}</div>
   );
 
-  const fields = ['user_name', 'password'];
-
-  const formAttr = {
-    user_name: {
-      displayText: 'Username',
-      inputType: 'text',
-      labelClass: 'user-name-login-label',
-      inputClass: 'user-name-login-input',
-    },
-    password: {
-      displayText: 'Password',
-      inputType: 'password',
-      labelClass: 'password-login-label',
-      inputClass: 'password-login-input',
-    },
-  };
-
-  const inputFields = fields.map((field) => (
-    <label
-      key={field}
-      htmlFor={field}
-      className={formAttr[field].labelClass}
-    >
-      {formAttr[field].displayText}
-      <input
-        required
-        id={field}
-        type={formAttr[field].inputType}
-        value={formFields[field]}
-        onChange={handleOnChange(field)}
-        className={formAttr[field].inputClass}
-      />
-    </label>
-  ));
+  const inputFields = LoginFields.getInputFields(
+    formFields,
+    handleOnChange,
+  );
 
   return (
     <>

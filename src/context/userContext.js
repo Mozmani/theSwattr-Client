@@ -13,6 +13,7 @@ const UserProvider = ({ children }) => {
   };
 
   const processLogin = React.useCallback(() => {
+    window.localStorage.removeItem('selectedApp');
     const payload = TokenService.parseAuthToken();
 
     if (payload.message) {

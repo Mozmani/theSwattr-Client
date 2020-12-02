@@ -1,8 +1,10 @@
 import React from 'react';
 
+import './toggleDev.scss';
+
+import { ToggleDevFields } from 'src/helpers/formFields';
 import { UserService } from 'src/services';
 import { UserContext } from 'src/context';
-import './toggleDev.scss';
 
 const ToggleDev = ({ history }) => {
   const [error, setError] = React.useState('');
@@ -19,19 +21,13 @@ const ToggleDev = ({ history }) => {
     if (res.error || res.message) {
       console.error(res);
       setError(res.error || res.message);
-    } else toggleDev();
+    } else {
+      userData.dev && window.localStorage.removeItem('selectedApp');
+      toggleDev();
+    }
   };
 
-  const devSecretField = (
-    <label htmlFor="devSecret" className="dev-secret-label">
-      Enter Dev Password
-      <input
-        type="password"
-        id="devSecret"
-        className="dev-secret-input"
-      />
-    </label>
-  );
+  const devSecretField = ToggleDevFields.getInputFields();
 
   return (
     <div className="dev-secret-container">

@@ -2,6 +2,7 @@ import React from 'react';
 
 import './addBugs.scss';
 
+import { AddBugFields } from 'src/helpers/formFields';
 import { BugsService } from 'src/services';
 import { BugsContext, UserContext } from 'src/context';
 import useFormState from 'src/hooks/useFormState';
@@ -41,48 +42,10 @@ const AddBugs = ({ history }) => {
     history.goBack();
   };
 
-  const fields = ['bug_name', 'description'];
-
-  const formAttr = {
-    bug_name: {
-      displayText: 'Bug Name',
-      inputType: 'text',
-      labelClass: 'bug-name-add-bug-label',
-      inputClass: 'bug-name-add-bug-input',
-    },
-    description: {
-      displayText: 'Description',
-      inputType: '',
-      labelClass: 'description-add-bug-label',
-      inputClass: 'description-add-bug-input',
-    },
-  };
-
-  const inputFields = fields.map((field) => {
-    const inputAttrs = {
-      required: true,
-      id: field,
-      type: formAttr[field].inputType,
-      value: formFields[field],
-      onChange: handleOnChange(field),
-      className: formAttr[field].inputClass,
-    };
-
-    return (
-      <label
-        key={field}
-        htmlFor={field}
-        className={formAttr[field].labelClass}
-      >
-        {formAttr[field].displayText}
-        {field === 'description' ? (
-          <textarea {...inputAttrs} />
-        ) : (
-            <input {...inputAttrs} />
-          )}
-      </label>
-    );
-  });
+  const inputFields = AddBugFields.getInputFields(
+    formFields,
+    handleOnChange,
+  );
 
   const appOptions = allApps.map((app) => {
     return (

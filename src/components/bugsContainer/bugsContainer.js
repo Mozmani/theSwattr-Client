@@ -49,7 +49,7 @@ const BugsContainer = ({ history }) => {
   );
 
   const nonDevBugs =
-    !userData.dev && userBugs && userBugs.length ? (
+    !userData.dev && userBugs[0] && !userBugs[0].message ? (
       userBugs.map((bug) => (
         <Bug key={bug.id} bug={bug} history={history} />
       ))

@@ -1,24 +1,26 @@
 import React from 'react';
 
-import { BugsService } from 'src/services';
-import { BugsContext } from '../../context/bugsContext';
 import './editBugs.scss';
 
+import { EditBugFields } from 'src/helpers/formFields';
+import { BugsService } from 'src/services';
+import { BugsContext } from 'src/context';
+
 const EditBugs = ({ match, history }) => {
-  let [currentBug, setBug] = React.useState(null);
-  let [severity, setSeverity] = React.useState(null);
-  let [status, setStatus] = React.useState(null);
+  const [currentBug, setCurrentBug] = React.useState(null);
+  const [severity, setSeverity] = React.useState(null);
+  const [status, setStatus] = React.useState(null);
 
   const { allApps, updateBugs } = React.useContext(BugsContext);
 
   let theCurrent;
 
   const drawCurrentBug = async () => {
-    const bugData = await BugsService.getBugById(match.params.bugId);
+    const bug = await BugsService.getBugById(match.params.bugId);
     const severityData = await BugsService.getAllSeverity();
     const statusData = await BugsService.getAllStatus();
 
-    setBug(bugData);
+    setCurrentBug(bug);
     setSeverity(severityData);
     setStatus(statusData);
   };
@@ -52,55 +54,63 @@ const EditBugs = ({ match, history }) => {
     );
   }
 
-  const drawSeverities = severity
-    ? severity.map((sev) => {
+  const drawSeverity = severity
+    ? severity.map((severity) => {
         return (
-          <option key={sev} value={sev}>
-            {sev}
+          <option key={severity} value={severity}>
+            {severity}
           </option>
         );
       })
     : null;
 
-  const drawstatus = status
-    ? status.map((sev) => {
+  const drawStatus = status
+    ? status.map((status) => {
         return (
-          <option key={sev} value={sev}>
-            {sev}
+          <option key={status} value={status}>
+            {status}
           </option>
         );
       })
     : null;
 
   const drawApps = allApps
-    ? allApps.map((sev) => {
+    ? allApps.map((app) => {
         return (
-          <option key={sev.formatName} value={sev.rawName}>
-            {sev.formatName}
+          <option key={app.formatName} value={app.rawName}>
+            {app.formatName}
           </option>
         );
       })
     : null;
 
   const showDescription = currentBug ? (
-    <div className="text-container">
-      <label htmlFor="description">Description:</label>
+    <label htmlFor="description">
+      Description:
       <textarea
         name="description"
         id="description"
         defaultValue={currentBug.description}
       ></textarea>
-    </div>
+    </label>
   ) : null;
+
+  let formRender;
+  if (severity && status) {
+    formRender = EditBugFields.getInputFields(
+      { severity, status, allApps },
+      currentBug,
+    );
+  }
 
   const submitEditedBug = async (ev) => {
     ev.preventDefault();
 
     const {
-      description,
       severity,
       status,
       appName,
+      description,
       completedNotes,
     } = ev.target;
     //console.log(description.value)
@@ -117,7 +127,7 @@ const EditBugs = ({ match, history }) => {
     };
     //console.log(newBug)
     await BugsService.editBug(newBug, currentBug.id);
-    await updateBugs(newBug.app)
+    await updateBugs(newBug.app);
     history.push('/dashboard');
   };
 
@@ -128,27 +138,34 @@ const EditBugs = ({ match, history }) => {
       <div>{theCurrent}</div>
       <h3 className="welcome">Edit Bug details:</h3>
       <form className="edit-bug-form" onSubmit={submitEditedBug}>
-        <label htmlFor="severity">Severity:</label>
-        <select className="selector" id="severity" name="severity">
-          {drawSeverities}
-        </select>
-        <label htmlFor="status">Status:</label>
-        <select className="selector" id="status" name="status">
-          {drawstatus}
-        </select>
-        <label htmlFor="appName">App Name:</label>
-        <select className="selector" id="appName" name="appName">
-          {drawApps}
-        </select>
+        {formRender}
+        {/* <label htmlFor="severity">
+          Severity:
+          <select className="selector" id="severity" name="severity">
+            {drawSeverity}
+          </select>
+        </label>
+        <label htmlFor="status">
+          Status:
+          <select className="selector" id="status" name="status">
+            {drawStatus}
+          </select>
+        </label>
+        <label htmlFor="appName">
+          App Name:
+          <select className="selector" id="appName" name="appName">
+            {drawApps}
+          </select>
+        </label>
         {showDescription}
-        <label htmlFor="completedNotes">Completed Notes:</label>
-        <div className="text-container">
+        <label htmlFor="completedNotes">
+          Completed Notes:
           <textarea
             id="completedNotes"
             placeholder="Only enter this if you are closing the bug!"
             name="completedNotes"
           ></textarea>
-        </div>
+        </label> */}
         <footer className="form-footer">
           <button className="edit-submit-button">Update Bug!</button>
         </footer>

@@ -1,9 +1,11 @@
 import React from 'react';
 
+import './commentsPage.scss';
+
+import { CommentFields } from 'src/helpers/formFields';
 import { CommentsService } from 'src/services';
 import { CommentsContext, UserContext } from 'src/context';
 import useFormState from 'src/hooks/useFormState';
-import './commentsPage.scss';
 
 const CommentsPage = ({ match, history }) => {
   const [header, setHeader] = React.useState('');
@@ -84,34 +86,27 @@ const CommentsPage = ({ match, history }) => {
   const renderComments =
     bugComments[0] && !bugComments[0].message
       ? bugComments.map((comment) => {
-        return (
-          <li className="comment-item" key={comment.id}>
-            <div className="auth-and-comm">
-              <p className="comment-author">{`Author: ${comment.userName}`}</p>
-              <p className="comment-content">
-                {`"`}
-                {comment.comment}
-                {`"`}
-              </p>
-            </div>
-            <div className="comment-time">
-              <p>{comment.createdDate}</p>
-            </div>
-          </li>
-        );
-      })
+          return (
+            <li className="comment-item" key={comment.id}>
+              <div className="auth-and-comm">
+                <p className="comment-author">{`Author: ${comment.userName}`}</p>
+                <p className="comment-content">
+                  {`"`}
+                  {comment.comment}
+                  {`"`}
+                </p>
+              </div>
+              <div className="comment-time">
+                <p>{comment.createdDate}</p>
+              </div>
+            </li>
+          );
+        })
       : null;
 
-  const commentField = (
-    <label htmlFor="newComment" className="new-comment-label">
-      <textarea
-        required
-        id="newComment"
-        value={formFields.comment}
-        onChange={handleOnChange('comment')}
-        className="comment-input"
-      />
-    </label>
+  const commentField = CommentFields.getInputFields(
+    formFields,
+    handleOnChange,
   );
 
   return (
