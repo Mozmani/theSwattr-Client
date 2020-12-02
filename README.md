@@ -24,10 +24,10 @@ CLIENT-DEPLOY-URL-HERE
 <br />
 <p align="center">
   <a href="https://github.com/GIT-USERNAME-HERE/REPO-NAME-HERE">
-    <img src="images/LOGO-PATH-HERE" alt="Logo" width="100" height="100">
+    <img src="src/images/logo-dark.png" alt="Logo" width="auto" height="100">
   </a>
 
-  <h3 align="center">APP-NAME-HERE - Client</h3>
+  <h3 align="center">theSwattr - Client</h3>
 
   <p align="center">
     PUT-TECH-STACK-HERE
@@ -113,7 +113,7 @@ import { PostService } from '../../../../../src/services';
 import { PostService } from 'src/services';
 ```
 
-For more info on the `jsconfig.json`, check out the docs [*_HERE!_*][jsconfig-docs]
+For more info on the `jsconfig.json`, check out the docs [_*HERE!*_][jsconfig-docs]
 
 ### constants:
 
