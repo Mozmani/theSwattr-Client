@@ -35,13 +35,14 @@
 
   > label {
     color: $accent;
+    width: 100%;
   }
 
   > * {
     font-family: 'Andale Mono', sans-serif;
 
     > * {
-      width: 100%;
+      width: 90%;
       margin: 10px 0;
       font-size: 20px;
       text-align: left;
@@ -62,5 +63,5 @@
 }
 
 .text-container {
-  width: 90%;
+  width: 80%;
 }

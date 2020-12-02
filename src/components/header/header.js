@@ -34,17 +34,17 @@ const Header = () => {
   );
 
   // ! DELETE THESE LATER
-  const navButtons = ['/', '/dashboard'].map((route) => (
-    <Link key={route} to={route}>
-      <button>Quick nav: {route}</button>
-    </Link>
-  ));
+  // const navButtons = ['/', '/dashboard'].map((route) => (
+  //   <Link key={route} to={route}>
+  //     <button>Quick nav: {route}</button>
+  //   </Link>
+  // ));
 
   return (
     <header className="dash-header">
-      {navButtons}
+      {/* {navButtons} */}
       <h1>
-        <Link to="/">
+        <Link to="/dashboard">
           <div className="logo-container">
             <img className="logo" src={logo} alt="logo" />
           </div>

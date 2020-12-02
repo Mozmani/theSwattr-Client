@@ -1,1 +1,47 @@
 @import 'src/styles/variables/colors.scss';
+
+.bug-container {
+  background-color: $light;
+  width: 90%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.bug-underline,
+.comment-separator,
+.dev-separator {
+  width: 100%;
+  border: none;
+  height: 1px;
+  background-color: #aaaaaa;
+}
+
+.bug-description {
+  width: 100%;
+  font-size: 16px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.bug-info {
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: $bg;
+}
+
+.bug-time {
+  font-size: 12px;
+  text-align: left;
+}
+
+.bug-severity {
+  font-size: 12px;
+  text-align: right;
+}
+
+.bug-status {
+  font-size: 12px;
+}

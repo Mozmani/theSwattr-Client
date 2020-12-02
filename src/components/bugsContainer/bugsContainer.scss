@@ -8,49 +8,8 @@
   width: 100%;
 }
 
-.bug-container {
-  background-color: $light;
-  width: 90%;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.bug-underline,
-.comment-separator,
-.dev-separator {
-  width: 100%;
-  border: none;
-  height: 1px;
-  background-color: #aaaaaa;
-}
-
-.bug-description {
-  width: 100%;
-  font-size: 16px;
-  text-align: left;
-  margin-bottom: 10px;
-}
-
-.bug-info {
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 10px;
-  color: $accent;
-}
-
-.bug-time {
-  font-size: 12px;
-  text-align: left;
-}
-
-.bug-severity {
-  font-size: 12px;
-  text-align: right;
-}
-
-.add-button {
+.add-button,
+.toggle-completed-bugs {
   width: 90%;
   margin: 10px 0;
   font-size: 20px;
@@ -58,8 +17,13 @@
   font-family: 'Andale Mono', sans-serif;
 }
 
-.add-button {
+.add-button,
+.toggle-completed-bugs {
   border: none;
   outline: none;
   background-color: #00a651;
+}
+
+.add-button {
+  margin-top: 20px;
 }

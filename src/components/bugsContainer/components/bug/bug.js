@@ -1,4 +1,5 @@
 import React from 'react';
+import './bug.scss';
 
 const Bug = ({ bug, history }) => {
   return (
