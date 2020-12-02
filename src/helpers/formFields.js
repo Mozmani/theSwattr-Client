@@ -240,8 +240,8 @@ export const AddBugFields = {
     },
   },
 
-  getInputFields(formFields, handleOnChange) {
-    return AddBugFields._fields.map((field) => {
+  getInputFields(allApps, formFields, handleOnChange) {
+    const inputFields = AddBugFields._fields.map((field) => {
       const attrs = AddBugFields.__formAttributesibutes[field];
 
       const isTextArea = field === 'description';
@@ -254,6 +254,33 @@ export const AddBugFields = {
         isTextArea,
       );
     });
+
+    const appSelect = (
+      <label htmlFor="app" className="app-selector-label">
+        Select Bugged App:
+        <select
+          id="app"
+          value={formFields.app}
+          onChange={handleOnChange('app')}
+          className="app-selector"
+        >
+          {allApps.map((app) => {
+            return (
+              <option key={app.id} value={app.rawName}>
+                {app.formatName}
+              </option>
+            );
+          })}
+        </select>
+      </label>
+    );
+
+    return (
+      <>
+        {appSelect}
+        {inputFields}
+      </>
+    );
   },
 };
 
