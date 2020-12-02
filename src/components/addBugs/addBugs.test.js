@@ -5,7 +5,7 @@ import { BugsProvider, CommentsProvider } from 'src/context';
 import AddBugs from './addBugs';
 
 describe.skip('AddBugs component:', () => {
-  const WrappedAddBugsContainer = () => (
+  const ProvidedComponent = () => (
     <BugsProvider>
       <CommentsProvider>
         <AddBugs />
@@ -15,7 +15,7 @@ describe.skip('AddBugs component:', () => {
 
   let component;
   beforeEach(() => {
-    component = shallow(<WrappedAddBugsContainer />);
+    component = shallow(<ProvidedComponent />);
   });
 
   it('renders without crashing', () => {
