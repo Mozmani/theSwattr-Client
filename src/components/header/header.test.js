@@ -4,14 +4,19 @@ import { shallow } from 'enzyme';
 import { UserProvider } from 'src/context';
 import Header from './header';
 
-const WrappedHeader = () => (
-  <UserProvider>
-    <Header />
-  </UserProvider>
-);
-
 describe.skip('Header component:', () => {
+  const ProvidedComponent = () => (
+    <UserProvider>
+      <Header />
+    </UserProvider>
+  );
+
+  let component;
+  beforeEach(() => {
+    component = shallow(<ProvidedComponent />);
+  });
+
   it('renders without crashing', () => {
-    shallow(<WrappedHeader />);
+    shallow(component);
   });
 });
