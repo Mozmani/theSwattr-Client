@@ -23,7 +23,11 @@
       border: none;
       outline: none;
       background-color: $accent;
+      width:50%;
     }
+  }
+  .dev-secret-submit:hover{
+    background-color:#BABABA
   }
 
   > .form-footer {
