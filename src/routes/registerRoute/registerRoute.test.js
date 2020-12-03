@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import RegisterRoute from './registerRoute';
 
-describe.skip('RegisterRoute component:', () => {
+describe('RegisterRoute component:', () => {
   it('renders without crashing', () => {
     shallow(<RegisterRoute />);
   });

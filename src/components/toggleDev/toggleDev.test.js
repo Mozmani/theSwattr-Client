@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import ToggleDev from './toggleDev';
 
-describe.skip('RegistrationForm component:', () => {
+describe('RegistrationForm component:', () => {
   it('renders without crashing', () => {
     shallow(<ToggleDev />);
   });

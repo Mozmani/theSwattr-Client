@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { UserProvider, BugsProvider } from 'src/context';
 import BugsContainer from './bugsContainer';
 
-describe.skip('BugsContainer component:', () => {
+describe('BugsContainer component:', () => {
   const ProvidedComponent = () => (
     <UserProvider>
       <BugsProvider>
@@ -19,6 +19,6 @@ describe.skip('BugsContainer component:', () => {
   });
 
   it('renders without crashing', () => {
-    shallow(component);
+    expect(component.find('.main-container')).toBeTruthy();
   });
 });
