@@ -5,10 +5,10 @@ import { UserContext } from 'src/context/userContext';
 import { RegistrationForm } from 'src/components';
 
 const RegisterRoute = ({ history }) => {
-  const Context = React.useContext(UserContext);
+  const { processLogin } = React.useContext(UserContext);
 
-  const handleRegistrationSuccess = (user_name, password) => {
-    const res = AuthService.postLogin({
+  const handleRegistrationSuccess = async (user_name, password) => {
+    const res = await AuthService.postLogin({
       user_name,
       password,
     });
@@ -19,16 +19,14 @@ const RegisterRoute = ({ history }) => {
     }
 
     TokenService.saveAuthToken(res.authToken);
-    Context.processLogin();
+    processLogin();
     history.push('/dashboard');
   };
 
   return (
-    <>
-      <RegistrationForm
-        onRegistrationSuccess={handleRegistrationSuccess}
-      />
-    </>
+    <RegistrationForm
+      onRegistrationSuccess={handleRegistrationSuccess}
+    />
   );
 };
 

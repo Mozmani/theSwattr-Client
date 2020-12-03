@@ -1,7 +1,6 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
-import { fireEvent } from '@testing-library/react';
 
 import LoginForm from './loginForm';
 

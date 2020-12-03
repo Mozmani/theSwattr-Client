@@ -1,17 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './header.scss';
+
+import logo from 'src/images/logo.png';
 import { UserContext } from 'src/context';
 import { TokenService } from 'src/services';
-import './header.scss';
-import logo from 'src/images/logo.png';
 
 const Header = () => {
-  const Context = useContext(UserContext);
+  const { userData, processLogout } = React.useContext(UserContext);
   const loggedIn = TokenService.hasAuthToken();
 
   const handleLogoutClick = () => {
-    Context.processLogout();
+    processLogout();
   };
 
   const loginLink = (
@@ -24,7 +25,7 @@ const Header = () => {
 
   const logoutLink = (
     <div className="nav-links">
-      <span>Hello {Context.userData.firstName}!</span>
+      <span>Hello {userData.firstName}!</span>
       <nav>
         <Link onClick={handleLogoutClick} to="/login">
           Logout
@@ -33,7 +34,7 @@ const Header = () => {
     </div>
   );
 
-  // ! DELETE THESE LATER
+  // ? MOCK NAV BUTTONS
   // const navButtons = ['/', '/dashboard'].map((route) => (
   //   <Link key={route} to={route}>
   //     <button>Quick nav: {route}</button>
@@ -42,7 +43,6 @@ const Header = () => {
 
   return (
     <header className="dash-header">
-      {/* {navButtons} */}
       <h1>
         <Link to="/dashboard">
           <div className="logo-container">

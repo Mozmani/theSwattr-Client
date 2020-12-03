@@ -5,10 +5,15 @@ import { CommentsService } from 'src/services';
 const CommentsContext = React.createContext(null);
 
 const CommentsProvider = ({ children }) => {
-  const [bugComments, setBugComments] = React.useState([]);
+  const [bugComments, setBugComments] = React.useState(null);
   const [error, setError] = React.useState(null);
 
-  const getCommentsByBug = async (bugId) => {
+  const setCommentsByBugId = async (bugId) => {
+    if (bugId === undefined) {
+      setBugComments(null);
+      return;
+    }
+
     const res = await CommentsService.getAllBugComments(bugId);
 
     if (!res || 'error' in res) {
@@ -18,13 +23,13 @@ const CommentsProvider = ({ children }) => {
   };
 
   const addNewComment = (newComment) => {
-    setBugComments((prev) => [...prev, newComment]);
+    setBugComments((prev) => [...(prev || []), newComment]);
   };
 
   const value = {
     bugComments,
     error,
-    getCommentsByBug,
+    setCommentsByBugId,
     addNewComment,
   };
 

@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { LoginForm } from 'src/components';
 import './loginRoute.scss';
+
+import { LoginForm } from 'src/components';
 
 const LoginRoute = ({ history }) => {
   const handleLoginSuccess = () => {

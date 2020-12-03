@@ -4,7 +4,6 @@
 |--------------------------------------------------------------------------
 */
 export { default as DashboardRoute } from './dashboardRoute/dashboardRoute';
-export { default as EditBugRoute } from './editBugRoute/editBugRoute';
 export { default as HomeRoute } from './homeRoute/homeRoute';
 export { default as LoginRoute } from './loginRoute/loginRoute';
 export { default as NotFoundRoute } from './notFoundRoute/notFoundRoute';

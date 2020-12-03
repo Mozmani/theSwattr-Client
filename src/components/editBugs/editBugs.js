@@ -75,7 +75,7 @@ const EditBugs = ({ match, history }) => {
 
     await BugsService.editBug(newBug, currentBug.id);
     await updateBugs(newBug.app);
-    history.push('/dashboard');
+    history.goBack();
   };
 
   const renderCurrentBug = currentBug && (

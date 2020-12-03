@@ -65,7 +65,6 @@ const UserProvider = ({ children }) => {
     }
   }, [userData, fetchRefreshToken, logoutBecauseIdle]);
 
-  // ? for page refresh
   React.useEffect(() => {
     if (TokenService.hasAuthToken()) {
       processLogin();

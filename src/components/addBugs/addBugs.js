@@ -16,7 +16,7 @@ const AddBugs = ({ history }) => {
   );
 
   const { formFields, handleOnChange } = useFormState({
-    app: window.localStorage.getItem('selectedApp'),
+    app: window.localStorage.getItem('selectedApp') || '',
     bug_name: '',
     description: '',
   });
@@ -58,12 +58,6 @@ const AddBugs = ({ history }) => {
       </button>
       <h3 className="welcome">Add your bug here!</h3>
       <form className="add-bug-form" onSubmit={handleSubmit}>
-        {/* <select
-          className="app-selector"
-          onChange={handleOnChange('app')}
-        >
-          {appOptions}
-        </select> */}
         {renderFormFields}
         <footer className="form-footer">
           <button type="submit" className="add-bug-submit">

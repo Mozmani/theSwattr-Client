@@ -21,10 +21,12 @@ const ToggleDev = ({ history }) => {
     if (res.error || res.message) {
       console.error(res);
       setError(res.error || res.message);
-    } else {
-      userData.dev && window.localStorage.removeItem('selectedApp');
-      toggleDev();
+      return;
     }
+
+    window.localStorage.removeItem('selectedApp');
+    toggleDev();
+    // history.push('/dashboard');
   };
 
   const devSecretField = ToggleDevFields.getInputFields();
