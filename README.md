@@ -5,10 +5,10 @@
 
 <!-- ! highlight and 'ctrl+shift+L' to replace all ! -->
 
-GIT-USERNAME-HERE
-REPO-NAME-HERE
-APP-NAME-HERE
-PUT-TECH-STACK-HERE
+thinkful-ei-rabbit
+Cap3_Client_Team_A
+theSwattr
+React, Node.js, Postgresql
 CLIENT-DEPLOY-URL-HERE
 
 <!-- ! highlight and 'ctrl+shift+L' to replace all ! -->
@@ -23,21 +23,21 @@ CLIENT-DEPLOY-URL-HERE
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/GIT-USERNAME-HERE/REPO-NAME-HERE">
+  <a href="https://github.com/thinkful-ei-rabbit/Cap3_Client_Team_A">
     <img src="src/images/logo-dark.png" alt="Logo" width="auto" height="100">
   </a>
 
   <h3 align="center">theSwattr - Client</h3>
 
   <p align="center">
-    PUT-TECH-STACK-HERE
+    React, Node.js, Postgresql
     <br />
-    <a href="https://github.com/GIT-USERNAME-HERE/REPO-NAME-HERE"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/thinkful-ei-rabbit/Cap3_Client_Team_A"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/GIT-USERNAME-HERE/REPO-NAME-HERE/issues">Report Bug</a>
+    <a href="https://github.com/thinkful-ei-rabbit/Cap3_Client_Team_A/issues">Report Bug</a>
     ·
-    <a href="https://github.com/GIT-USERNAME-HERE/REPO-NAME-HERE/issues">Request Feature?</a>
+    <a href="https://github.com/thinkful-ei-rabbit/Cap3_Client_Team_A/issues">Request Feature?</a>
   </p>
 </p>
 
@@ -189,15 +189,16 @@ You can see this in action in **[ app.js ]**:
 
 # TODO!!!
 
-<!-- ```js
+```js
 import {
-  LoginPage,
-  HomePage,
-  SongsPage,
-  SetsPage,
-  GigsPage,
+  HomeRoute,
+  DashboardRoute,
+  LoginRoute,
+  RegisterRoute,
+  PrivateRoute,
+  PublicRoute,
 } from 'src/routes';
-``` -->
+``` 
 
 > _Note that the import doesn't point to the index file. Node perceives **[ index.js ]** files as points of entry and the default file to grab exports from, essentially making it an implicit file in import statements_
 
@@ -238,7 +239,8 @@ I decided to use PropType validation throughout, and would say that I'm glad I d
 
 ## <!-- CONTACT -->
 
-## Contact
+## Contact Derek:
+
 
 #### Github - [musicMan1337][github]
 
@@ -248,20 +250,30 @@ I decided to use PropType validation throughout, and would say that I'm glad I d
 
 #### Instagram - [@derek.8bit.nellis][instagram]
 
+## Contact Mark:
+#### Github - [Mark-The-Dev](https://github.com/Mark-The-Dev)
+
+#### LinkedIn - [Mark Marcello](https://www.linkedin.com/in/mark-marcello/)
+
+## Contact Russel:
+
+#### Github -
+#### LinkedIn - 
+
 <!-- MARKDOWN LINKS & IMAGES -->
 
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/GIT-USERNAME-HERE/REPO-NAME-HERE.svg?style=flat-square
-[contributors-url]: https://github.com/GIT-USERNAME-HERE/REPO-NAME-HERE/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/GIT-USERNAME-HERE/REPO-NAME-HERE.svg?style=flat-square
-[forks-url]: https://github.com/GIT-USERNAME-HERE/REPO-NAME-HERE/network/members
-[stars-shield]: https://img.shields.io/github/stars/GIT-USERNAME-HERE/REPO-NAME-HERE.svg?style=flat-square
-[stars-url]: https://github.com/GIT-USERNAME-HERE/REPO-NAME-HERE/stargazers
-[issues-shield]: https://img.shields.io/github/issues/GIT-USERNAME-HERE/REPO-NAME-HERE.svg?style=flat-square
-[issues-url]: https://github.com/GIT-USERNAME-HERE/REPO-NAME-HERE/issues
-[license-shield]: https://img.shields.io/github/license/GIT-USERNAME-HERE/REPO-NAME-HERE.svg?style=flat-square
-[license-url]: https://github.com/GIT-USERNAME-HERE/REPO-NAME-HERE/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/thinkful-ei-rabbit/Cap3_Client_Team_A.svg?style=flat-square
+[contributors-url]: https://github.com/thinkful-ei-rabbit/Cap3_Client_Team_A/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/thinkful-ei-rabbit/Cap3_Client_Team_A.svg?style=flat-square
+[forks-url]: https://github.com/thinkful-ei-rabbit/Cap3_Client_Team_A/network/members
+[stars-shield]: https://img.shields.io/github/stars/thinkful-ei-rabbit/Cap3_Client_Team_A.svg?style=flat-square
+[stars-url]: https://github.com/thinkful-ei-rabbit/Cap3_Client_Team_A/stargazers
+[issues-shield]: https://img.shields.io/github/issues/thinkful-ei-rabbit/Cap3_Client_Team_A.svg?style=flat-square
+[issues-url]: https://github.com/thinkful-ei-rabbit/Cap3_Client_Team_A/issues
+[license-shield]: https://img.shields.io/github/license/thinkful-ei-rabbit/Cap3_Client_Team_A.svg?style=flat-square
+[license-url]: https://github.com/thinkful-ei-rabbit/Cap3_Client_Team_A/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: www.linkedin.com/in/derek-8bit-nellis
 [jsconfig-docs]: https://code.visualstudio.com/docs/languages/jsconfig
