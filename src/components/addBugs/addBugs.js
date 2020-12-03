@@ -16,7 +16,7 @@ const AddBugs = ({ history }) => {
   );
 
   const { formFields, handleOnChange } = useFormState({
-    app: window.localStorage.getItem('selectedApp') || '',
+    app: window.localStorage.getItem('selectedApp') || 'main-app',
     bug_name: '',
     description: '',
   });
