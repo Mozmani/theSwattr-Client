@@ -30,7 +30,6 @@
     "lint:fix": "eslint --fix src/",
     "test": "react-scripts test",
     "coverage": "npm run test -- --coverage --watchAll=false",
-    "prebuild": "CI=true react-scripts test --colors",
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "vercel --prod",

@@ -5,7 +5,7 @@ const dev = {
 };
 
 const prod = {
-  API_ENDPOINT: process.env.REACT_APP_API_PROD_ENDPOINT || '',
+  API_ENDPOINT: process.env.REACT_APP_API_PROD_ENDPOINT || 'https://the-swattr.herokuapp.com/api',
   TOKEN_KEY: process.env.REACT_APP_TOKEN_KEY || '',
 };
 
