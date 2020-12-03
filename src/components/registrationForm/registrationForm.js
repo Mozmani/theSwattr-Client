@@ -45,7 +45,7 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
   return (
     <>
       {renderError}
-      <form className="RegisterForm" onSubmit={handleSubmit}>
+      <form className="register-form" onSubmit={handleSubmit}>
         {inputFields}
         <footer>
           <button type="submit" className="register-button">

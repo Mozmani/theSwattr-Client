@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { BugsProvider, CommentsProvider } from 'src/context';
 import MainContainer from './mainContainer';
 
-describe.skip('Header component:', () => {
+describe('Header component:', () => {
   const ProvidedComponent = () => (
     <BugsProvider>
       <CommentsProvider>
@@ -19,6 +19,6 @@ describe.skip('Header component:', () => {
   });
 
   it('renders without crashing', () => {
-    shallow(component);
+    expect(component.find('dashboard-select-app-div')).toBeTruthy();
   });
 });

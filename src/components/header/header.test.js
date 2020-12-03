@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { UserProvider } from 'src/context';
 import Header from './header';
 
-describe.skip('Header component:', () => {
+describe('Header component:', () => {
   const ProvidedComponent = () => (
     <UserProvider>
       <Header />
@@ -17,6 +17,6 @@ describe.skip('Header component:', () => {
   });
 
   it('renders without crashing', () => {
-    shallow(component);
+    expect(component.find('.dash-header')).toBeTruthy();
   });
 });

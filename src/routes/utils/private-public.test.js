@@ -9,14 +9,14 @@ const props = {
   children: null,
 };
 
-describe.skip('Route utility components:', () => {
-  describe.skip('PrivateRoute [ Route utility ] component:', () => {
+describe('Route utility components:', () => {
+  describe('PrivateRoute [ Route utility ] component:', () => {
     it('renders without crashing', () => {
       shallow(<PrivateRoute {...props} />);
     });
   });
 
-  describe.skip('PublicRoute [ Route utility ] component:', () => {
+  describe('PublicRoute [ Route utility ] component:', () => {
     it('renders without crashing', () => {
       shallow(<PublicRoute {...props} />);
     });

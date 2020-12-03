@@ -35,7 +35,7 @@ const render = (
 export const LoginFields = {
   _fields: ['user_name', 'password'],
 
-  __formAttributesibutes: {
+  _formAttributesibutes: {
     user_name: {
       displayText: 'Username',
       inputType: 'text',
@@ -53,7 +53,7 @@ export const LoginFields = {
 
   getInputFields(formFields, handleOnChange) {
     return LoginFields._fields.map((field) => {
-      const attrs = LoginFields.__formAttributesibutes[field];
+      const attrs = LoginFields._formAttributesibutes[field];
 
       return render(formFields, handleOnChange, field, attrs);
     });
@@ -69,46 +69,46 @@ export const RegisterFields = {
     'password',
   ],
 
-  __formAttributesibutes: {
+  _formAttributesibutes: {
     first_name: {
       displayText: 'Enter First Name',
       inputType: 'text',
-      labelClass: 'first-name-register-label',
-      inputClass: 'first-name-register-input',
+      labelClass: 'first-name-reg-label',
+      inputClass: 'first-name-reg-input',
     },
 
     last_name: {
       displayText: 'Enter Last Name',
       inputType: 'text',
-      labelClass: 'last-name-register-label',
-      inputClass: 'last-name-register-input',
+      labelClass: 'last-name-reg-label',
+      inputClass: 'last-name-reg-input',
     },
 
     email: {
       displayText: 'Enter E-mail',
       inputType: 'text',
-      labelClass: 'email-register-label',
-      inputClass: 'email-register-input',
+      labelClass: 'email-reg-label',
+      inputClass: 'email-reg-input',
     },
 
     user_name: {
       displayText: 'Choose a Username',
       inputType: 'text',
-      labelClass: 'user-name-register-label',
-      inputClass: 'user-name-register-input',
+      labelClass: 'user-name-reg-label',
+      inputClass: 'user-name-reg-input',
     },
 
     password: {
       displayText: 'Choose a Password',
       inputType: 'password',
-      labelClass: 'password-register-label',
-      inputClass: 'password-register-input',
+      labelClass: 'password-reg-label',
+      inputClass: 'password-reg-input',
     },
   },
 
   getInputFields(formFields, handleOnChange) {
     return RegisterFields._fields.map((field) => {
-      const attrs = RegisterFields.__formAttributesibutes[field];
+      const attrs = RegisterFields._formAttributesibutes[field];
 
       return render(formFields, handleOnChange, field, attrs);
     });
@@ -120,42 +120,42 @@ export const EditBugFields = {
 
   _textAreas: ['description', 'completedNotes'],
 
-  __formAttributesibutes: {
+  _formAttributesibutes: {
     severity: {
       displayText: 'Severity:',
-      labelClass: 'user-name-register-label',
-      inputClass: 'user-name-register-input',
+      labelClass: 'severity-edit-label',
+      inputClass: 'severity-edit-input',
     },
 
     status: {
       displayText: 'Status:',
-      labelClass: 'user-name-register-label',
-      inputClass: 'user-name-register-input',
+      labelClass: 'status-edit-label',
+      inputClass: 'status-edit-input',
     },
 
     allApps: {
       displayText: 'App Name:',
-      labelClass: 'user-name-register-label',
-      inputClass: 'user-name-register-input',
+      labelClass: 'all-apps-edit-label',
+      inputClass: 'all-apps-edit-input',
     },
 
     description: {
       displayText: 'Description:',
-      labelClass: 'user-name-register-label',
-      inputClass: 'user-name-register-input',
+      labelClass: 'description-edit-label',
+      inputClass: 'description-edit-input',
     },
 
     completedNotes: {
       displayText: 'Completed Notes',
-      labelClass: 'password-register-label',
-      inputClass: 'password-register-input',
+      labelClass: 'completed-notes-edit-label',
+      inputClass: 'completed-notes-edit-input',
     },
   },
 
   getInputFields(selectData, bug, formFields, handleOnChange) {
     const renderSelects = EditBugFields._selects.map((field) => {
       const datas = selectData[field];
-      const attrs = EditBugFields.__formAttributesibutes[field];
+      const attrs = EditBugFields._formAttributesibutes[field];
 
       return (
         <label
@@ -187,7 +187,7 @@ export const EditBugFields = {
     });
 
     const renderTextAreas = EditBugFields._textAreas.map((field) => {
-      const attrs = EditBugFields.__formAttributesibutes[field];
+      const attrs = EditBugFields._formAttributesibutes[field];
 
       const placeholder =
         field === 'description'
@@ -225,24 +225,24 @@ export const EditBugFields = {
 export const AddBugFields = {
   _fields: ['bug_name', 'description'],
 
-  __formAttributesibutes: {
+  _formAttributesibutes: {
     bug_name: {
       displayText: 'Bug Name',
       inputType: 'text',
-      labelClass: 'bug-name-add-bug-label',
-      inputClass: 'bug-name-add-bug-input',
+      labelClass: 'bug-name-add-label',
+      inputClass: 'bug-name-add-input',
     },
     description: {
       displayText: 'Description',
       inputType: '',
-      labelClass: 'description-add-bug-label',
-      inputClass: 'description-add-bug-input',
+      labelClass: 'description-add-label',
+      inputClass: 'description-add-input',
     },
   },
 
   getInputFields(allApps, formFields, handleOnChange) {
     const inputFields = AddBugFields._fields.map((field) => {
-      const attrs = AddBugFields.__formAttributesibutes[field];
+      const attrs = AddBugFields._formAttributesibutes[field];
 
       const isTextArea = field === 'description';
 
@@ -264,7 +264,7 @@ export const AddBugFields = {
           onChange={handleOnChange('app')}
           className="app-selector"
         >
-          {allApps.map((app) => {
+          {allApps?.map((app) => {
             return (
               <option key={app.id} value={app.rawName}>
                 {app.formatName}
@@ -293,7 +293,7 @@ export const CommentFields = {
           id="newComment"
           value={formFields.comment}
           onChange={handleOnChange('comment')}
-          className="comment-input"
+          className="new-comment-input"
         />
       </label>
     );

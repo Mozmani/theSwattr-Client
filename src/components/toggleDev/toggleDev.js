@@ -40,7 +40,7 @@ const ToggleDev = ({ history }) => {
         Go back
       </button>
       <h3 className="welcome">
-        Current dev status: {userData.dev ? 'True' : 'False'}
+        Current dev status: {userData?.dev ? 'True' : 'False'}
       </h3>
       {error}
       <form onSubmit={handleSubmit} className="dev-secret-form">

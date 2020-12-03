@@ -44,15 +44,6 @@ const EditBugs = ({ match, history }) => {
     }
   }, [currentBug, match.params.bugId, setFormFields, allApps]);
 
-  const renderFormFields =
-    options &&
-    EditBugFields.getInputFields(
-      options,
-      currentBug,
-      formFields,
-      handleOnChange,
-    );
-
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
@@ -100,6 +91,15 @@ const EditBugs = ({ match, history }) => {
       </ul>
     </div>
   );
+
+  const renderFormFields =
+    options &&
+    EditBugFields.getInputFields(
+      options,
+      currentBug,
+      formFields,
+      handleOnChange,
+    );
 
   return (
     <>

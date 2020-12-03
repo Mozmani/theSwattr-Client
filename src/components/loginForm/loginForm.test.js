@@ -26,27 +26,27 @@ describe('LoginForm component: Unit Tests', () => {
     expect(component.find('form')).toHaveLength(1);
   });
 
-  it('renders username and password labels and inputs', () => {
-    const userLabel = component.find('.user-name-login-label'),
-      userInput = component.find('.user-name-login-input'),
-      passLabel = component.find('.password-login-label'),
-      passInput = component.find('.password-login-input');
-
-    expect(userLabel).toHaveLength(1);
-    expect(userInput).toHaveLength(1);
-    expect(passLabel).toHaveLength(1);
-    expect(passInput).toHaveLength(1);
+  let formElements;
+  beforeEach(() => {
+    formElements = [
+      component.find('.user-name-login-label'),
+      component.find('.user-name-login-input'),
+      component.find('.password-login-label'),
+      component.find('.password-login-input'),
+    ];
   });
 
-  xit('invokes handleSubmit and onLoginSuccess', async () => {
-    component
-      .find('.user-name-login-input')
-      .simulate('change', { value: 'admin' });
+  it('renders all labels and inputs', () => {
+    formElements.forEach((el) => expect(el).toHaveLength(1));
+  });
 
-    component
-      .find('.password-login-input')
-      .simulate('change', { value: 'admin' });
+  it.skip('invokes handleSubmit and onLoginSuccess', async () => {
+    await formElements.forEach((el) => {
+      if (!el.text()) {
+        el.simulate('change', { value: 'admin' });
+      }
+    });
 
-    component.find('.LoginForm').simulate('submit');
+    component.find('.login-form').simulate('submit');
   });
 });
