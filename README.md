@@ -9,7 +9,7 @@ thinkful-ei-rabbit
 Cap3_Client_Team_A
 theSwattr
 React, Node.js, Postgresql
-CLIENT-DEPLOY-URL-HERE
+https://cap3-client-team-a.vercel.app/login
 
 <!-- ! highlight and 'ctrl+shift+L' to replace all ! -->
 
@@ -43,7 +43,7 @@ CLIENT-DEPLOY-URL-HERE
 
 ---
 
-<h1 align="center"><a href="https://CLIENT-DEPLOY-URL-HERE">Set List App</a></h1>
+<h1 align="center"><a href="https://https://cap3-client-team-a.vercel.app/login">Set List App</a></h1>
 
 > ---
 >
