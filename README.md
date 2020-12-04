@@ -198,7 +198,7 @@ import {
   PrivateRoute,
   PublicRoute,
 } from 'src/routes';
-``` 
+```
 
 > _Note that the import doesn't point to the index file. Node perceives **[ index.js ]** files as points of entry and the default file to grab exports from, essentially making it an implicit file in import statements_
 
@@ -241,7 +241,6 @@ I decided to use PropType validation throughout, and would say that I'm glad I d
 
 ## Contact Derek:
 
-
 #### Github - [musicMan1337][github]
 
 #### LinkedIn - [Derek-8Bit-Nellis][linkedin]
@@ -251,14 +250,16 @@ I decided to use PropType validation throughout, and would say that I'm glad I d
 #### Instagram - [@derek.8bit.nellis][instagram]
 
 ## Contact Mark:
+
 #### Github - [Mark-The-Dev](https://github.com/Mark-The-Dev)
 
 #### LinkedIn - [Mark Marcello](https://www.linkedin.com/in/mark-marcello/)
 
-## Contact Russel:
+## Contact Russell:
 
-#### Github -
-#### LinkedIn - 
+#### Github - [Russjames92](https://github.com/Russjames92)
+
+#### LinkedIn - [Russell Champlain](https://www.linkedin.com/in/russell-champlain/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
