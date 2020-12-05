@@ -44,7 +44,10 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
 
   return (
     <>
-      {renderError}
+    <div className='logDisplay'>
+      <p>Welcome to theSwattr</p>
+    {renderError}
+    </div>
       <form className="register-form" onSubmit={handleSubmit}>
         {inputFields}
         <footer>

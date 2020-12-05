@@ -29,3 +29,14 @@ body {
 .homeDiv h2{
   margin: 4% 4%;
 }
+
+.homeDiv a{
+  border: 2px solid black;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.homeDiv a:hover{
+  color: #3A9E4D;
+  background-color: black;
+}

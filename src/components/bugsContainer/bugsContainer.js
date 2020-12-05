@@ -89,10 +89,13 @@ const BugsContainer = (props) => {
 
   return (
     <main className="main-container">
-      {showHeader}
+      
       {toggleDevDiv()}
-      {devButton}
+      
       {props.selectAppButtons}
+      
+      {showHeader}
+      {devButton}
       <ul className="bug-list">
         {showComplete ? completeBugs : renderBugs}
       </ul>

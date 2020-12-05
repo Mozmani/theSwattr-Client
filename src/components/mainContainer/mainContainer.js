@@ -55,7 +55,37 @@ const MainContainer = ({ history }) => {
     history.push('/dashboard');
   };
 
-  const selectAppButtons = (
+  const setNewApp = (ev) => {
+    window.localStorage.setItem('selectedApp', ev)
+    setSelectedApp(ev)
+    const getApps = async () => {
+      const appData = await BugsService.getAllApps();
+
+      if (!appData || 'error' in appData) {
+        console.error(appData);
+        setError(appData.error);
+      } else {
+        let appName = window.localStorage.getItem('selectedApp');
+        if (appName) {
+          appName = appData.apps.find(
+            (app) => app.rawName === appName,
+          );
+        } else appName = null;
+
+        setApps(appData.apps);
+        setSelectedApp(appName);
+      }
+    };
+
+    if (!TokenService.hasAuthToken()) {
+      history.push('/login');
+    } else getApps();
+    
+    
+    
+    history.push('/dashboard');
+  }
+  const selectAppButtons = userData.dev === true ?(
     <>
       <h3 className="welcome">Please select an app!</h3>
       {apps.map((app) => (
@@ -68,7 +98,7 @@ const MainContainer = ({ history }) => {
         </button>
       ))}
     </>
-  );
+  ) : null;
 
   return (
     <>
@@ -93,7 +123,9 @@ const MainContainer = ({ history }) => {
             />
             <Route
               path="/dashboard/add"
-              render={(routeProps) => <AddBugs {...routeProps} />}
+              render={(routeProps) => <AddBugs {...routeProps} 
+              setNewApp={setNewApp}
+              />}
             />
             <Route
               path="/dashboard/edit/:bugId"

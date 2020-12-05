@@ -7,11 +7,11 @@ import { BugsService } from 'src/services';
 import { BugsContext, UserContext } from 'src/context';
 import useFormState from 'src/hooks/useFormState';
 
-const AddBugs = ({ history }) => {
+const AddBugs = (props) => {
   const [, setError] = React.useState(null);
 
   const { userData } = React.useContext(UserContext);
-  const { allApps, addNewBug, addNewUserBug } = React.useContext(
+  const { allApps, addNewBug } = React.useContext(
     BugsContext,
   );
 
@@ -32,14 +32,15 @@ const AddBugs = ({ history }) => {
       setError(res.error || res.message);
       return;
     }
+      await addNewBug();
+      if (userData.dev === true){
+        props.setNewApp(res.newBug.app)
+      } else {
+        props.history.goBack();
+      }
+    
 
-    if (userData.dev === true) {
-      await addNewBug(res.newBug);
-    } else {
-      await addNewUserBug(res.newBug);
-    }
-
-    history.goBack();
+    
   };
 
   const renderFormFields = AddBugFields.getInputFields(
@@ -48,10 +49,15 @@ const AddBugs = ({ history }) => {
     handleOnChange,
   );
 
+
+  // const setNewApp = (ev) => {
+  //   window.localStorage.setItem('selectedApp', ev)
+  // }
+
   return (
     <div className="add-bug-container">
       <button
-        onClick={() => history.goBack()}
+        onClick={() => props.history.goBack()}
         className="go-back-button"
       >
         Back to Bugs

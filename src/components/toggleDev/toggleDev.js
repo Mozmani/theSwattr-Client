@@ -32,6 +32,13 @@ const ToggleDev = ({ history }) => {
   const devSecretField = ToggleDevFields.getInputFields();
 
   return (
+    <>
+    <div className='logDisplay'>
+    <p>Test Developer Set Code:</p>
+    <p>irdev</p>
+    {error}
+    </div>
+    
     <div className="dev-secret-container">
       <button
         onClick={() => history.goBack()}
@@ -42,8 +49,8 @@ const ToggleDev = ({ history }) => {
       <h3 className="welcome">
         Current dev status: {userData?.dev ? 'True' : 'False'}
       </h3>
-      {error}
       <form onSubmit={handleSubmit} className="dev-secret-form">
+        <p>Use this form to activate dev mode on user with code.</p>
         {devSecretField}
         <footer className="form-footer">
           <button type="submit" className="dev-secret-submit">
@@ -52,6 +59,7 @@ const ToggleDev = ({ history }) => {
         </footer>
       </form>
     </div>
+    </>
   );
 };
 
