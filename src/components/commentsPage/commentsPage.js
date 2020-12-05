@@ -3,18 +3,18 @@ import React from 'react';
 import './commentsPage.scss';
 
 import { CommentFields } from 'src/helpers/formFields';
-import { BugsService, CommentsService } from 'src/services';
+import { CommentsService } from 'src/services';
 import { CommentsContext, UserContext } from 'src/context';
 import useFormState from 'src/hooks/useFormState';
 
 const CommentsPage = ({ match, history }) => {
-  const [bugName, setBugName] = React.useState('');
+  const [header, setHeader] = React.useState('');
   const [, setError] = React.useState(null);
 
   const { userData } = React.useContext(UserContext);
   const {
     bugComments,
-    setCommentsByBugId,
+    getCommentsByBug,
     addNewComment,
   } = React.useContext(CommentsContext);
 
@@ -23,27 +23,15 @@ const CommentsPage = ({ match, history }) => {
     comment: '',
   });
 
-  React.useEffect(() => {
-    const fetchComments = async () => {
-      await setCommentsByBugId(match.params.bugId);
-      const bug = await BugsService.getBugById(match.params.bugId);
+  const [commentsLoaded, setLoaded] = React.useState(false);
 
-      if (bugComments && bugComments[0]?.message) {
-        setError(bugComments[0].message);
-      }
-
-      setBugName(bug.bugName);
-    };
-
-    if (!bugComments) {
-      fetchComments();
+  if (commentsLoaded === false) {
+    let commentData = getCommentsByBug(match.params.bugId);
+    setLoaded(true);
+    if (bugComments[0]) {
+      setHeader(bugComments[0].bugName);
     }
-
-    return () => {
-      setBugName('');
-      setCommentsByBugId();
-    };
-  }, [match.params.bugId]);
+  }
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
@@ -58,24 +46,45 @@ const CommentsPage = ({ match, history }) => {
     }
 
     await addNewComment(res.newComment);
+    setLoaded(false);
     formFields.comment = '';
   };
 
-  const openEdit = userData?.dev && (
-    <div className="edit-button-holder">
-      <button
-        className="edit-button"
-        onClick={() => {
-          history.push(`/dashboard/edit/${match.params.bugId}`);
-        }}
-      >
-        Edit bug
-      </button>
-    </div>
-  );
+  const openEdit = () => {
+    if (userData.dev === true) {
+      return (
+        <div className="edit-button-holder">
+          <button
+            className="edit-button"
+            onClick={() => {
+              history.push(`/dashboard/edit/${match.params.bugId}`);
+            }}
+          >
+            Edit bug
+          </button>
+        </div>
+      );
+    }
+  };
+
+  // React.useEffect(() => {
+  //   const fetchComments = async () => {
+  //     await getCommentsByBug(match.params.bugId);
+  //   };
+
+  //   if (bugComments && !header) {
+  //     if (bugComments[0].message) {
+  //       setError(bugComments[0].message);
+  //     } else setHeader(bugComments[0].bugName);
+  //   }
+
+  //   if (!bugComments) {
+  //     fetchComments();
+  //   }
+  // }, [getCommentsByBug, match.params.bugId, header, bugComments]);
 
   const renderComments =
-    bugComments && !bugComments[0]?.message
+    bugComments[0] && !bugComments[0].message
       ? bugComments.map((comment) => {
           return (
             <li className="comment-item" key={comment.id}>
@@ -108,8 +117,8 @@ const CommentsPage = ({ match, history }) => {
       >
         Back to Bugs
       </button>
-      <h3 className="welcome">{bugName}</h3>
-      {openEdit}
+      <h3 className="welcome">{header}</h3>
+      {openEdit()}
       <ul className="comments">{renderComments}</ul>
       <form onSubmit={handleSubmit} className="new-comment-form">
         <h3 className="welcome">Add A Comment</h3>
