@@ -5,11 +5,6 @@
 
 <!-- ! highlight and 'ctrl+shift+L' to replace all ! -->
 
-Mark-The-Dev
-theSwattr-Client
-theSwattr
-React, Node.js, Postgresql
-
 
 <!-- ! highlight and 'ctrl+shift+L' to replace all ! -->
 
@@ -241,7 +236,7 @@ I decided to use PropType validation throughout, and would say that I'm glad I d
 ## <!-- CONTACT -->
 ## Contact Mark:
 
-#### Github - [theSwattr-Client](https://github.com/theSwattr-Client)
+#### Github - [Mark-The-Dev](https://github.com/Mark-The-Dev)
 
 #### LinkedIn - [Mark Marcello](https://www.linkedin.com/in/mark-marcello/)
 

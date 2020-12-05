@@ -7,12 +7,14 @@ import { BugsService } from 'src/services';
 import { BugsContext } from 'src/context';
 import useFormState from 'src/hooks/useFormState';
 
+//edit bugs component
 const EditBugs = ({ match, history }) => {
   const [currentBug, setCurrentBug] = React.useState(null);
   const [options, setOptions] = React.useState(null);
 
   const { allApps, updateBugs } = React.useContext(BugsContext);
 
+  //sets form based off custom form hook
   const { formFields, setFormFields, handleOnChange } = useFormState({
     severity: '',
     status: '',
@@ -21,7 +23,9 @@ const EditBugs = ({ match, history }) => {
     completedNotes: '',
   });
 
+  //useEffect to mimic a similar action to componentDidMount
   React.useEffect(() => {
+   //draws data for the bugs current info
     const drawCurrentBug = async () => {
       const bug = await BugsService.getBugById(match.params.bugId);
       const severity = await BugsService.getAllSeverity();
@@ -44,6 +48,7 @@ const EditBugs = ({ match, history }) => {
     }
   }, [currentBug, match.params.bugId, setFormFields, allApps]);
 
+  // handles submit of edited bug
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
@@ -56,6 +61,7 @@ const EditBugs = ({ match, history }) => {
       bug_name: currentBug.bugName,
     };
 
+    // makes sure you set the bug to closed if using closing notes
     const notes = formFields.completedNotes;
     if (notes) {
       if (newBug.status !== 'closed') {
@@ -69,6 +75,7 @@ const EditBugs = ({ match, history }) => {
     history.goBack();
   };
 
+  // renders the details of the current bug -pre edit
   const renderCurrentBug = currentBug && (
     <div>
       <h3 className="welcome">Current Bug Details:</h3>
@@ -92,6 +99,7 @@ const EditBugs = ({ match, history }) => {
     </div>
   );
 
+  // adds input fields from custom reach hook
   const renderFormFields =
     options &&
     EditBugFields.getInputFields(

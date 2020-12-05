@@ -7,6 +7,7 @@ import { RegisterFields } from 'src/helpers/formFields';
 import useFormState from 'src/hooks/useFormState';
 import { AuthService } from 'src/services';
 
+//registration form component
 const RegistrationForm = ({ onRegistrationSuccess }) => {
   const [error, setError] = React.useState(null);
 
@@ -18,6 +19,7 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
     email: '',
   });
 
+  //handles registration
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
@@ -33,10 +35,12 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
     onRegistrationSuccess(user_name, password);
   };
 
+  //renders an error is present
   const renderError = !error ? null : (
     <div role="alert">{`Oh no! ${error}`}</div>
   );
 
+  //renders input fields from custom react hook
   const inputFields = RegisterFields.getInputFields(
     formFields,
     handleOnChange,

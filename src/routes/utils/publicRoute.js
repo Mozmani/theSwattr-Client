@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { UserContext } from 'src/context';
 
+//custom public route
 const PublicRoute = ({ component, path }) => {
   const Component = component;
   const { userData } = React.useContext(UserContext);

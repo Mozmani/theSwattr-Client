@@ -7,6 +7,7 @@ import { CommentsService } from "src/services";
 import { CommentsContext, UserContext } from "src/context";
 import useFormState from "src/hooks/useFormState";
 
+//component for comments
 const CommentsPage = ({ match, history }) => {
   const [header, setHeader] = React.useState("");
   const [, setError] = React.useState(null);
@@ -22,6 +23,7 @@ const CommentsPage = ({ match, history }) => {
     getCommentsByBug,
   } = React.useContext(CommentsContext);
 
+  //sets form from custom form hook
   const { formFields, handleOnChange } = useFormState({
     bug_id: match.params.bugId,
     comment: "",
@@ -29,7 +31,7 @@ const CommentsPage = ({ match, history }) => {
 
   
 
-  
+  // function to trigger comments loading
   const loadPage = async () => {
   
     await getCommentsByBug(id);
@@ -45,11 +47,13 @@ const CommentsPage = ({ match, history }) => {
     }
   };
 
+  //trigger loadPage
   if (commentsLoaded === false) {
     loadPage();
 
   }
 
+  //function to submit a new comment and rerender the comments
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
@@ -74,6 +78,7 @@ const CommentsPage = ({ match, history }) => {
      
   };
 
+  //adds an edit bug button if the user is a dev
   const openEdit = () => {
     if (userData.dev === true) {
       return (
@@ -96,6 +101,7 @@ const CommentsPage = ({ match, history }) => {
   };
 
  
+  // renders each field desired for each comment on the page
   const renderComments =
     bugComments && !bugComments[0].message
       ? bugComments.map((comment) => {
@@ -117,6 +123,8 @@ const CommentsPage = ({ match, history }) => {
         })
       : null;
 
+
+  // sets input fields based off the custom input fields hook
   const commentField = CommentFields.getInputFields(formFields, handleOnChange);
 
   

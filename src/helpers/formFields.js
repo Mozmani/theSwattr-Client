@@ -1,5 +1,6 @@
 import React from 'react';
 
+//custom forms hook
 const render = (
   formFields,
   handleOnChange,
@@ -31,7 +32,7 @@ const render = (
     </label>
   );
 };
-
+// generate login fields
 export const LoginFields = {
   _fields: ['user_name', 'password'],
 
@@ -50,7 +51,7 @@ export const LoginFields = {
       inputClass: 'password-login-input',
     },
   },
-
+//generate input fields
   getInputFields(formFields, handleOnChange) {
     return LoginFields._fields.map((field) => {
       const attrs = LoginFields._formAttributesibutes[field];
@@ -60,6 +61,7 @@ export const LoginFields = {
   },
 };
 
+//generates registration fields
 export const RegisterFields = {
   _fields: [
     'first_name',
@@ -106,6 +108,7 @@ export const RegisterFields = {
     },
   },
 
+  //generates input fields
   getInputFields(formFields, handleOnChange) {
     return RegisterFields._fields.map((field) => {
       const attrs = RegisterFields._formAttributesibutes[field];
@@ -115,6 +118,7 @@ export const RegisterFields = {
   },
 };
 
+// generate edit bug fields
 export const EditBugFields = {
   _selects: ['severity', 'status', 'allApps'],
 
@@ -152,6 +156,7 @@ export const EditBugFields = {
     },
   },
 
+  //generates input fields
   getInputFields(selectData, bug, formFields, handleOnChange) {
     const renderSelects = EditBugFields._selects.map((field) => {
       const datas = selectData[field];
@@ -186,9 +191,11 @@ export const EditBugFields = {
       );
     });
 
+    // renders textarea's
     const renderTextAreas = EditBugFields._textAreas.map((field) => {
       const attrs = EditBugFields._formAttributesibutes[field];
 
+      //render placeholder text for edit bugs 
       const placeholder =
         field === 'description'
           ? bug.description
@@ -222,6 +229,7 @@ export const EditBugFields = {
   },
 };
 
+//renders add bug form
 export const AddBugFields = {
   _fields: ['bug_name', 'description'],
 
@@ -284,6 +292,7 @@ export const AddBugFields = {
   },
 };
 
+//renders add comment form
 export const CommentFields = {
   getInputFields(formFields, handleOnChange) {
     return (

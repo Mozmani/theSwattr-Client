@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { TokenService } from 'src/services';
 
+//custom private route
 const PrivateRoute = ({ component, path }) => {
   const Component = component;
 

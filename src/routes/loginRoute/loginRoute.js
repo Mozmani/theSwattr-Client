@@ -3,7 +3,7 @@ import React from 'react';
 import './loginRoute.scss';
 
 import { LoginForm } from 'src/components';
-
+// route for log in
 const LoginRoute = ({ history }) => {
   const handleLoginSuccess = () => {
     history.push('/dashboard');

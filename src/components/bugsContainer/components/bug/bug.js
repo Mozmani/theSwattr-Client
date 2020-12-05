@@ -1,6 +1,6 @@
 import React from 'react';
 import './bug.scss';
-
+// each bug component
 const Bug = ({ bug, history }) => {
   return (
     <li

@@ -4,15 +4,18 @@ import { AuthService, IdleService, TokenService } from 'src/services';
 
 const UserContext = React.createContext({});
 
+//user context provider
 const UserProvider = ({ children }) => {
   const [userData, setUserData] = React.useState({});
 
+  //logout function
   const processLogout = () => {
     window.localStorage.removeItem('selectedApp');
     TokenService.clearAuthToken();
     setUserData({});
   };
 
+  //login function
   const processLogin = React.useCallback(() => {
     const payload = TokenService.parseAuthToken();
 
@@ -30,6 +33,7 @@ const UserProvider = ({ children }) => {
     });
   }, []);
 
+  //refreshes auth token
   const fetchRefreshToken = React.useCallback(async () => {
     const res = await AuthService.refreshToken();
 
@@ -45,12 +49,14 @@ const UserProvider = ({ children }) => {
     });
   }, []);
 
+  //logs out user after idle based of idle timer.
   const logoutBecauseIdle = React.useCallback(() => {
     IdleService.clearCallbackBeforeExpiry();
     IdleService.removeIdleResets();
     processLogout();
   }, []);
 
+  // handles logout from idle
   React.useEffect(() => {
     IdleService.setIdleCallback(logoutBecauseIdle);
 
@@ -65,12 +71,14 @@ const UserProvider = ({ children }) => {
     }
   }, [userData, fetchRefreshToken, logoutBecauseIdle]);
 
+  // handles login
   React.useEffect(() => {
     if (TokenService.hasAuthToken()) {
       processLogin();
     } else window.localStorage.removeItem('selectedApp');
   }, [processLogin]);
 
+  //helps show dev status in client
   const toggleDev = () => {
     setUserData((prev) => ({
       ...prev,

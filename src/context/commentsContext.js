@@ -3,11 +3,12 @@ import React from 'react';
 import { CommentsService } from 'src/services';
 
 const CommentsContext = React.createContext(null);
-
+//comments context provider
 const CommentsProvider = ({ children }) => {
   const [bugComments, setBugComments] = React.useState(null);
   const [error, setError] = React.useState(null);
 
+  //gets comments by bug id
   const getCommentsByBug = async (bugId) => {
     const res = await CommentsService.getAllBugComments(bugId);
 
@@ -17,6 +18,7 @@ const CommentsProvider = ({ children }) => {
     } else setBugComments(res.bugComments);
   };
 
+  //calls get comments on new comment
   const addNewComment = (id) => {
     getCommentsByBug(id)
   };

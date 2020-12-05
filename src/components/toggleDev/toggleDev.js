@@ -6,11 +6,13 @@ import { ToggleDevFields } from 'src/helpers/formFields';
 import { UserService } from 'src/services';
 import { UserContext } from 'src/context';
 
+//toggle dev component, allows user to become a dev.
 const ToggleDev = ({ history }) => {
   const [error, setError] = React.useState('');
 
   const { userData, toggleDev } = React.useContext(UserContext);
 
+  // handles submit of patch to dev status
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
@@ -26,9 +28,9 @@ const ToggleDev = ({ history }) => {
 
     window.localStorage.removeItem('selectedApp');
     toggleDev();
-    // history.push('/dashboard');
   };
 
+  // grabs input fields from 
   const devSecretField = ToggleDevFields.getInputFields();
 
   return (

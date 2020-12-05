@@ -15,7 +15,7 @@ import {
 } from 'src/routes';
 
 const { DASHBOARD, LOGIN, REGISTER } = ROUTES;
-
+// App component
 const App = () => {
   return (
     <>

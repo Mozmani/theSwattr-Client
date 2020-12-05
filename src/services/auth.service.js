@@ -1,7 +1,9 @@
 import config from 'src/config';
 import TokenService from './token.service';
 
+//auth services file
 const AuthService = {
+  //handles registration
   async postRegistration(registrationBody) {
     try {
       const res = await fetch(
@@ -24,6 +26,7 @@ const AuthService = {
     }
   },
 
+  //handles login
   async postLogin(loginBody) {
     try {
       const res = await fetch(`${config.API_ENDPOINT}/users/login`, {
@@ -43,6 +46,7 @@ const AuthService = {
     }
   },
 
+  //handles token refresh
   async refreshToken() {
     try {
       const res = await fetch(`${config.API_ENDPOINT}/users/token`, {

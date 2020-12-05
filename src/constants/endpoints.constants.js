@@ -1,3 +1,4 @@
+// defined endpoints
 export const ENDPOINTS = {
   USERS: '/users',
   BUGS: '/bugs',

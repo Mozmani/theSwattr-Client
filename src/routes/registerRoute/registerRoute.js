@@ -4,9 +4,11 @@ import { AuthService, TokenService } from 'src/services';
 import { UserContext } from 'src/context/userContext';
 import { RegistrationForm } from 'src/components';
 
+//registration route
 const RegisterRoute = ({ history }) => {
   const { processLogin } = React.useContext(UserContext);
 
+  //handles registration
   const handleRegistrationSuccess = async (user_name, password) => {
     const res = await AuthService.postLogin({
       user_name,
