@@ -72,15 +72,7 @@ const MainContainer = ({ history }) => {
 
   return (
     <>
-      <div className="dashboard-select-app-div">
-        <button
-          className="dev-button"
-          onClick={() => history.push('/dashboard/dev')}
-        >
-          Toggle Dev
-        </button>
-        {userData.dev && selectAppButtons}
-      </div>
+   
       <BugsProvider selectedApp={selectedApp} allApps={apps}>
         <CommentsProvider>
           <Switch>
@@ -88,12 +80,16 @@ const MainContainer = ({ history }) => {
               exact
               path="/dashboard"
               render={(routeProps) => (
-                <BugsContainer {...routeProps} />
+                <BugsContainer {...routeProps} 
+                selectAppButtons={selectAppButtons}
+                userData={userData}
+                />
               )}
             />
             <Route
               path="/dashboard/dev"
-              render={(routeProps) => <ToggleDev {...routeProps} />}
+              render={(routeProps) => <ToggleDev {...routeProps} 
+              />}
             />
             <Route
               path="/dashboard/add"

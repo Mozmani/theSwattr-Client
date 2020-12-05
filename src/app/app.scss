@@ -12,3 +12,20 @@ body {
 .app-container {
   width: 100%;
 }
+.homeDiv, .logDisplay {
+  background-color: #BABABA;
+  display: flex;
+  flex-direction: column;
+  margin: 5% 5%;
+  border-radius: 10px;
+  padding: 2%;
+}
+
+
+.homeDiv p{
+  margin: 4% 4%;
+}
+
+.homeDiv h2{
+  margin: 4% 4%;
+}

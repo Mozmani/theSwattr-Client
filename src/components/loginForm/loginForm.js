@@ -44,7 +44,12 @@ const LoginForm = ({ onLoginSuccess }) => {
 
   return (
     <>
-      {renderError}
+    <div className='logDisplay'>
+    <p>Test Developer Account:</p>
+    <p>Username: admin</p>
+    <p>Password: pass</p>
+    {renderError}
+    </div>
       <form className="login-form" onSubmit={handleSubmit}>
         {inputFields}
         <footer>
