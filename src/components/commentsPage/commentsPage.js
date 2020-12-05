@@ -1,36 +1,53 @@
-import React from 'react';
+import React from "react";
 
-import './commentsPage.scss';
+import "./commentsPage.scss";
 
-import { CommentFields } from 'src/helpers/formFields';
-import { CommentsService } from 'src/services';
-import { CommentsContext, UserContext } from 'src/context';
-import useFormState from 'src/hooks/useFormState';
+import { CommentFields } from "src/helpers/formFields";
+import { CommentsService } from "src/services";
+import { CommentsContext, UserContext } from "src/context";
+import useFormState from "src/hooks/useFormState";
 
 const CommentsPage = ({ match, history }) => {
-  const [header, setHeader] = React.useState('');
+  const [header, setHeader] = React.useState("");
   const [, setError] = React.useState(null);
+  const [commentsLoaded, setLoaded] = React.useState(false);
+  const [bugName, setBugName] = React.useState(null)
+
+  const id = match.params.bugId;
 
   const { userData } = React.useContext(UserContext);
   const {
     bugComments,
-    getCommentsByBug,
     addNewComment,
+    getCommentsByBug,
   } = React.useContext(CommentsContext);
 
   const { formFields, handleOnChange } = useFormState({
     bug_id: match.params.bugId,
-    comment: '',
+    comment: "",
   });
 
-  const [commentsLoaded, setLoaded] = React.useState(false);
+  
+
+  
+  const loadPage = async () => {
+  
+    await getCommentsByBug(id);
+    if (bugComments !== null) {
+      if (bugComments[0].message) {
+        setHeader(bugComments[0].message);
+        setBugName(bugComments[0].bugName)
+      } else {
+        setHeader(bugComments[0].bugName);
+      }
+
+      setLoaded(true);
+    }
+  };
 
   if (commentsLoaded === false) {
-    let commentData = getCommentsByBug(match.params.bugId);
-    setLoaded(true);
-    if (bugComments[0]) {
-      setHeader(bugComments[0].bugName);
-    }
+    loadPage();
+
   }
 
   const handleSubmit = async (ev) => {
@@ -45,9 +62,16 @@ const CommentsPage = ({ match, history }) => {
       return;
     }
 
-    await addNewComment(res.newComment);
-    setLoaded(false);
-    formFields.comment = '';
+    await addNewComment(match.params.bugId);
+    formFields.comment = "";
+
+     console.log('bugcomas', bugComments[0].bugName)
+      if (header !== bugComments[0].bugName){
+       
+       setHeader(bugName)
+      }
+    
+     
   };
 
   const openEdit = () => {
@@ -67,24 +91,13 @@ const CommentsPage = ({ match, history }) => {
     }
   };
 
-  // React.useEffect(() => {
-  //   const fetchComments = async () => {
-  //     await getCommentsByBug(match.params.bugId);
-  //   };
+  const goBack = () => {
+    history.goBack();
+  };
 
-  //   if (bugComments && !header) {
-  //     if (bugComments[0].message) {
-  //       setError(bugComments[0].message);
-  //     } else setHeader(bugComments[0].bugName);
-  //   }
-
-  //   if (!bugComments) {
-  //     fetchComments();
-  //   }
-  // }, [getCommentsByBug, match.params.bugId, header, bugComments]);
-
+ 
   const renderComments =
-    bugComments[0] && !bugComments[0].message
+    bugComments && !bugComments[0].message
       ? bugComments.map((comment) => {
           return (
             <li className="comment-item" key={comment.id}>
@@ -104,17 +117,12 @@ const CommentsPage = ({ match, history }) => {
         })
       : null;
 
-  const commentField = CommentFields.getInputFields(
-    formFields,
-    handleOnChange,
-  );
+  const commentField = CommentFields.getInputFields(formFields, handleOnChange);
 
+  
   return (
     <div className="comments-container">
-      <button
-        onClick={() => history.goBack()}
-        className="go-back-button"
-      >
+      <button onClick={() => goBack()} className="go-back-button">
         Back to Bugs
       </button>
       <h3 className="welcome">{header}</h3>
