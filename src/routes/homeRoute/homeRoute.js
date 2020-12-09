@@ -11,7 +11,7 @@ const HomeRoute = () => {
         <p>
           This application allows users to contribute information to the development team so that the user experience can improve.
            This application also allows developers to smoothly track bugs that are sorted by severity, and status.
-           Developers in additon can respond to the users through a comments thread in each bug, as well as update the status, severity or which app the bug belongs to.           
+           Developers in addition can respond to the users through a comments thread in each bug, as well as update the status, severity or which app the bug belongs to.           
         </p>
         <Link to='/login'>
           Lets get started!

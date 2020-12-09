@@ -127,7 +127,6 @@ const CommentsPage = ({ match, history }) => {
   // sets input fields based off the custom input fields hook
   const commentField = CommentFields.getInputFields(formFields, handleOnChange);
 
-  
   return (
     <div className="comments-container">
       <button onClick={() => goBack()} className="go-back-button">
